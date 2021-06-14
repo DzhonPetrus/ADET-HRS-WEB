@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Template extends CI_Controller {
+class Access extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,19 +18,12 @@ class Template extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	public function login()
 	{
+		$this->session->sess_destroy();
 		$this->load->view('template/head');
-		$this->load->view('template/nav');
-		$this->load->view('template/body-table');
+		$this->load->view('access/login');
 		$this->load->view('template/footer');
 	}
 
-	public function profile()
-	{
-		$this->load->view('template/head');
-		$this->load->view('template/nav');
-		$this->load->view('template/body-profile');
-		$this->load->view('template/footer');
-	}
 }
