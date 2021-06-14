@@ -89,4 +89,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 //  NEW CONSTANT
-defined('SYSTEM_NAME', 'Hotel Reservation System with Online Payment');
+define('SYSTEM_NAME', 'Hotel Reservation System with Online Payment');
