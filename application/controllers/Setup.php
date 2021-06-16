@@ -19,10 +19,10 @@ class Setup extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 
-	//  function __construct() {
-	// 	 parent::__construct();
-	// 	 ($this->session->userdata('TOKEN')) ? null : redirect('Access/login');
-	//  }
+	 function __construct() {
+		 parent::__construct();
+		 ($this->session->userdata['token']) ? null : redirect('Access/login');
+	 }
 
 	public function index()
 	{

@@ -126,7 +126,7 @@
                     <img alt="Image placeholder" src="<?= base_url('assets') ?>/img/theme/team-4.jpg">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                    <span class="mb-0 text-sm  font-weight-bold"><?= $this->session->userdata['email'] ?></span>
                   </div>
                 </div>
               </a>
@@ -139,7 +139,7 @@
                   <span>My profile</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#!" class="dropdown-item">
+                <a href="./Access/login" class="dropdown-item">
                   <i class="ni ni-user-run"></i>
                   <span>Logout</span>
                 </a>

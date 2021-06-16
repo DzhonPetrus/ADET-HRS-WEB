@@ -16,6 +16,9 @@
   <link rel="stylesheet" href="<?= base_url('assets') ?>/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Argon CSS -->
   <link rel="stylesheet" href="<?= base_url('assets') ?>/css/argon.min.css?v=1.2.0" type="text/css">
+  <!-- Parsley CSS -->
+  <link rel="stylesheet" href="<?= base_url('assets') ?>/css/parsley.css" type="text/css">
+  <link rel="stylesheet" href="<?= base_url('assets') ?>/css/toastr.min.css" type="text/css">
 </head>
 
 <body>

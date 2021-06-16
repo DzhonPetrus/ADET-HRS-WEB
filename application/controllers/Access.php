@@ -26,4 +26,17 @@ class Access extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+	public function oAuth() {
+		if ($_GET['token'] != null){
+			$this->session->set_userdata(
+				array(
+					'token' => $_GET['token'],
+					'email' => $_GET['email'],
+					'user_type' => $_GET['user_type']
+				)
+			);
+
+			redirect(base_url('/'));
+		}
+	}
 }
