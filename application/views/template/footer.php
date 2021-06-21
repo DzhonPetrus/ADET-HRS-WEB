@@ -14,7 +14,7 @@
 
  <!-- Argon Scripts -->
   <!-- Core -->
-  <script src="<?= base_url('assets') ?>/vendor/jquery/dist/jquery.min.js"></script>
+  
   <script src="<?= base_url('assets') ?>/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="<?= base_url('assets') ?>/js/toastr.min.js"></script>
   <!-- Argon JS -->
@@ -24,6 +24,6 @@
   <script src="<?= base_url('assets') ?>/js/parsley.min.js"></script>
   <!-- Common -->
   <script src="<?= base_url('assets') ?>/js/common.js"></script>
-</body>
+  <script type="text/javascript" src="<?= base_url('assets') ?>/js/datatables.min.js"></script>
 
 </html>
