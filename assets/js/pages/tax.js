@@ -2,12 +2,12 @@ $(function()
 {
 	loadTable();
 	// function to save/update record
-    $("#amenities_form").on("submit", function (e)
+    $("#tax_form").on("submit", function (e)
     {
         e.preventDefault();
         trimInputFields();
 
-        if ($("#amenities_form").parsley().validate())
+        if ($("#tax_form").parsley().validate())
         {
             var form_data = new FormData(this);
 
@@ -20,7 +20,7 @@ console.table([...form_data]);
                 // add record
                 $.ajax(
                     {
-                        url: BASE_URL + "amenity",
+                        url: BASE_URL + "tax",
                         type: "POST",
                         data: form_data,
                         dataType: "JSON",
@@ -48,6 +48,9 @@ console.table([...form_data]);
         }
     });
 });
+
+
+//TABLEEEEEE
 loadTable = () => 
 {
 	$.ajaxSetup(
@@ -76,20 +79,14 @@ loadTable = () =>
 		],
 		columns: [
 			{
-				data: "amenity_id",
-				name: "amenity_id",
+				data: "taxCode",
+				name: "taxCode",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "type",
-				name: "type",
-				searchable: true,
-				className: "dtr-control",
-			},
-            {
-				data: "description",
-				name: "description",
+				data: "percentage",
+				name: "percentage",
 				searchable: true,
 				className: "dtr-control",
 			},
@@ -101,17 +98,17 @@ loadTable = () =>
 					// info
 					buttons +=
 						'<button type="button" onClick="return editData(\'' +
-						aData["user_id"] +
+						aData["taxCode"] +
 						'\',0)" class="btn btn-light waves-effect"><i class="bx bx-info-circle font-size-16 align-middle">View</i></button> ';
 					// edit
 					buttons +=
 						'<button type="button" onClick="return editData(\'' +
-						aData["user_id"] +
+						aData["taxCode"] +
 						'\',1)" class="btn btn-success waves-effect"><i class="bx bx-edit font-size-16 align-middle">Edit</i></button> ';
 					// delete
 					buttons +=
 						'<button type="button" onClick="return deleteData(\'' +
-						aData["user_id"] +
+						aData["taxCode"] +
 						'\')" class="btn btn-danger waves-effect"><i class="bx bx-trash font-size-16 align-middle">Delete</i></button> ';
 					return buttons; // same class in i element removed it from a element
 				},
@@ -119,7 +116,7 @@ loadTable = () =>
 		],
 		ajax: 
 		{
-			url: BASE_URL + "amenity",
+			url: BASE_URL + "tax",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
@@ -143,9 +140,8 @@ loadTable = () =>
 				aData["amenity_id"] +
 				'\')" class="btn btn-danger waves-effect"><i class="bx bx-trash font-size-16 align-middle">Delete</i></button> ';
 
-			$("td:eq(0)", nRow).html(aData["amenity_id"]);
-			$("td:eq(1)", nRow).html(aData["type"]);
-            $("td:eq(2)", nRow).html(aData["description"]);
+			$("td:eq(0)", nRow).html(aData["taxCode"]);
+			$("td:eq(1)", nRow).html(aData["percentage"]);
 			$("td:eq(3)", nRow).html(buttons);
 
 		},

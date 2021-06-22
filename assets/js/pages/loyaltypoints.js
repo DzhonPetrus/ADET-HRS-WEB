@@ -2,12 +2,12 @@ $(function()
 {
 	loadTable();
 	// function to save/update record
-    $("#amenities_form").on("submit", function (e)
+    $("#loyaltypoint_form").on("submit", function (e)
     {
         e.preventDefault();
         trimInputFields();
 
-        if ($("#amenities_form").parsley().validate())
+        if ($("#loyaltypoint_form").parsley().validate())
         {
             var form_data = new FormData(this);
 
@@ -20,7 +20,7 @@ console.table([...form_data]);
                 // add record
                 $.ajax(
                     {
-                        url: BASE_URL + "amenity",
+                        url: BASE_URL + "loyalty_point",
                         type: "POST",
                         data: form_data,
                         dataType: "JSON",
@@ -76,20 +76,14 @@ loadTable = () =>
 		],
 		columns: [
 			{
-				data: "amenity_id",
-				name: "amenity_id",
+				data: "loyalty_point_id	",
+				name: "loyalty_point_id	",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "type",
-				name: "type",
-				searchable: true,
-				className: "dtr-control",
-			},
-            {
-				data: "description",
-				name: "description",
+				data: "points",
+				name: "points",
 				searchable: true,
 				className: "dtr-control",
 			},
@@ -119,7 +113,7 @@ loadTable = () =>
 		],
 		ajax: 
 		{
-			url: BASE_URL + "amenity",
+			url: BASE_URL + "loyalty_point",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
@@ -129,23 +123,22 @@ loadTable = () =>
 			// info
 			buttons +=
 				'<button type="button" onClick="return editData(\'' +
-				aData["amenity_id"] +
+				aData["loyalty_point_id"] +
 				'\',0)" class="btn btn-light waves-effect"><i class="bx bx-info-circle font-size-16 align-middle">View</i></button> ';
 			// edit
 			buttons +=
 				'<button type="button" onClick="return editData(\'' +
-				aData["amenity_id"] +
+				aData["loyalty_point_id"] +
 				'\',1)" class="btn btn-success waves-effect"><i class="bx bx-edit font-size-16 align-middle">Edit</i></button> ';
 
 			//delete
 			buttons +=
 				'<button type="button" onClick="return deleteData(\'' +
-				aData["amenity_id"] +
+				aData["loyalty_point_id"] +
 				'\')" class="btn btn-danger waves-effect"><i class="bx bx-trash font-size-16 align-middle">Delete</i></button> ';
 
-			$("td:eq(0)", nRow).html(aData["amenity_id"]);
-			$("td:eq(1)", nRow).html(aData["type"]);
-            $("td:eq(2)", nRow).html(aData["description"]);
+			$("td:eq(0)", nRow).html(aData["loyalty_point_id"]);
+			$("td:eq(1)", nRow).html(aData["points"]);
 			$("td:eq(3)", nRow).html(buttons);
 
 		},

@@ -15,3 +15,13 @@ $.ajaxSetup(
             Authorization: "Bearer " + token,
         },
     });
+
+// trim input fields except file, select, textarea
+trimInputFields = () => 
+{
+    var allInputs = $("input:not(:file())");
+    allInputs.each(function () 
+    {
+        $(this).val($.trim($(this).val()));
+    });
+};
