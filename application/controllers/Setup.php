@@ -63,4 +63,12 @@ class Setup extends CI_Controller {
 		$this->load->view('pages/loyaltypoints');
 		$this->load->view('template/footer');
 	}
+
+	public function user_information()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/nav');
+		$this->load->view('pages/userinfo');
+		$this->load->view('template/footer');
+	}
 }

@@ -2,12 +2,12 @@ $(function()
 {
 	loadTable();
 	// function to save/update record
-    $("#tax_form").on("submit", function (e)
+    /*$("#userinfo-form").on("submit", function (e)
     {
         e.preventDefault();
         trimInputFields();
 
-        if ($("#tax_form").parsley().validate())
+        if ($("#userinfo-form").parsley().validate())
         {
             var form_data = new FormData(this);
 
@@ -20,7 +20,7 @@ console.table([...form_data]);
                 // add record
                 $.ajax(
                     {
-                        url: BASE_URL + "tax",
+                        url: BASE_URL + "user_information",
                         type: "POST",
                         data: form_data,
                         dataType: "JSON",
@@ -46,11 +46,8 @@ console.table([...form_data]);
                     });
             }
         }
-    });
+    }); */
 });
-
-
-//TABLEEEEEE
 loadTable = () => 
 {
 	$.ajaxSetup(
@@ -79,17 +76,95 @@ loadTable = () =>
 		],
 		columns: [
 			{
-				data: "taxCode",
-				name: "taxCode",
+				data: "user_info_id",
+				name: "user_info_id",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "percentage",
-				name: "percentage",
+				data: "email",
+				name: "email",
 				searchable: true,
 				className: "dtr-control",
 			},
+            {
+				data: "first_name",
+				name: "first_name",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "middle_name",
+				name: "middle_name",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "last_name",
+				name: "last_name",
+				searchable: true,
+				className: "dtr-control",
+			},
+			/*{
+				data: "birth_date",
+				name: "birth_date",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "nationality",
+				name: "nationality",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "photo_url",
+				name: "photo_url",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "loyalty_point_id",
+				name: "loyalty_point_id",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "contact_no",
+				name: "contact_no",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "street1",
+				name: "street1",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "city1",
+				name: "city1",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "zip1",
+				name: "zip1",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "state1",
+				name: "state1",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "country1",
+				name: "country1",
+				searchable: true,
+				className: "dtr-control",
+			},*/
 			{
 				data: null,
 				render: function (aData, type, row) 
@@ -98,17 +173,17 @@ loadTable = () =>
 					// info
 					buttons +=
 						'<button type="button" onClick="return editData(\'' +
-						aData["taxCode"] +
+						aData["user_id"] +
 						'\',0)" class="btn btn-light waves-effect"><i class="bx bx-info-circle font-size-16 align-middle">View</i></button> ';
 					// edit
 					buttons +=
 						'<button type="button" onClick="return editData(\'' +
-						aData["taxCode"] +
+						aData["user_id"] +
 						'\',1)" class="btn btn-success waves-effect"><i class="bx bx-edit font-size-16 align-middle">Edit</i></button> ';
 					// delete
 					buttons +=
 						'<button type="button" onClick="return deleteData(\'' +
-						aData["taxCode"] +
+						aData["user_id"] +
 						'\')" class="btn btn-danger waves-effect"><i class="bx bx-trash font-size-16 align-middle">Delete</i></button> ';
 					return buttons; // same class in i element removed it from a element
 				},
@@ -116,7 +191,7 @@ loadTable = () =>
 		],
 		ajax: 
 		{
-			url: BASE_URL + "tax",
+			url: BASE_URL + "user_information",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
@@ -126,23 +201,36 @@ loadTable = () =>
 			// info
 			buttons +=
 				'<button type="button" onClick="return editData(\'' +
-				aData["amenity_id"] +
+				aData["user_info_id"] +
 				'\',0)" class="btn btn-light waves-effect"><i class="bx bx-info-circle font-size-16 align-middle">View</i></button> ';
 			// edit
 			buttons +=
 				'<button type="button" onClick="return editData(\'' +
-				aData["amenity_id"] +
+				aData["user_info_id"] +
 				'\',1)" class="btn btn-success waves-effect"><i class="bx bx-edit font-size-16 align-middle">Edit</i></button> ';
 
 			//delete
 			buttons +=
 				'<button type="button" onClick="return deleteData(\'' +
-				aData["amenity_id"] +
+				aData["user_info_id"] +
 				'\')" class="btn btn-danger waves-effect"><i class="bx bx-trash font-size-16 align-middle">Delete</i></button> ';
 
-			$("td:eq(0)", nRow).html(aData["taxCode"]);
-			$("td:eq(1)", nRow).html(aData["percentage"]);
-			$("td:eq(2)", nRow).html(buttons);
+			$("td:eq(0)", nRow).html(aData["user_info_id"]);
+			$("td:eq(1)", nRow).html(aData["email"]);
+            $("td:eq(2)", nRow).html(aData["first_name"]);
+			$("td:eq(3)", nRow).html(aData["middle_name"]);
+			$("td:eq(4)", nRow).html(aData["last_name"]);
+			/*$("td:eq(5)", nRow).html(aData["birth_date"]);
+			$("td:eq(6)", nRow).html(aData["nationality"]);
+			$("td:eq(7)", nRow).html(aData["photo_url"]);
+			$("td:eq(8)", nRow).html(aData["loyalty_point_id"]);
+			$("td:eq(9)", nRow).html(aData["contact_no"]);
+			$("td:eq(10)", nRow).html(aData["street1"]);
+			$("td:eq(11)", nRow).html(aData["city1"]);
+			$("td:eq(12)", nRow).html(aData["zip1"]);
+			$("td:eq(13)", nRow).html(aData["state1"]);
+			$("td:eq(14)", nRow).html(aData["country1"]);*/
+			$("td:eq(5)", nRow).html(buttons);
 
 		},
 		drawCallback: function (settings) {
