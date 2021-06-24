@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADET-HRS-WEB</title>
+
+        <!-- Favicon -->
+<link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+<!-- Icons -->
+<link href="../assets/vendor/nucleo/css/nucleo.min.css" rel="stylesheet">
+<link href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+<!-- Argon CSS -->
+<link type="text/css" href="../assets/css/argon.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="col-xl-8 order-xl-1">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Room Types</h3>
+                </div>
+                <!--Button-->
+                <div class="col-4 text-right">
+                  <a href="#!" class="btn btn-sm btn-primary">Add Room Type</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+<!--First Row-->
+              <form>
+                <h6 class="heading-small text-muted mb-4">Room Type Information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-roomtype-id">Room Type ID Code</label>
+                        <input type="text" id="input-roomtype-id" class="form-control" placeholder="Room Type ID" value="A1sW23aA24f">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-type-of-room">Type</label>
+                        <select class="form-control">
+                          <option>Hotel Room</option>
+                          <option>Amenity</option>
+                          <option>Other</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pl-gl-4">
+                    <label class="form-control-label">Description</label>
+                  <textarea rows="4" class="form-control" placeholder="Description"></textarea>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-min-guest">Minimum Guest</label>
+                        <input type="number" id="input-min-guest" class="form-control" placeholder="Minimum Guest" value="1">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-max-guest">Maximum Guest</label>
+                        <input type="number" id="input-max-guest" class="form-control" placeholder="Maximum Guest" value="10">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-fk-pricing-id">Pricing</label>
+                        <input type="text" id="input-fk-pricing-id" class="form-control" placeholder="Pricing ID" value="GA23hAjE45H">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<!--Second Row-->
+                <hr class="my-4">
+                <h6 class="heading-small text-muted mb-4">Additional Information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-additional-guest">Additional Guest (Optional)</label>
+                        <input type="number" id="input-additional-guest" class="form-control" placeholder="Additional Guest" value="3">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-additional-guest-rate">Additional Rate (Optional)</label>
+                        <input type="number" id="input-additional-guest-rate" class="form-control" placeholder="Additional Rate Guest" value="3000">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4">
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- Core -->
+<script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Argon JS -->
+<script src="../assets/js/argon.min.js"></script>
+</body>
+</html>
+
+
+<!-- TO DO List -->
+<!-- Cancel and Add Button at the Bottom-->

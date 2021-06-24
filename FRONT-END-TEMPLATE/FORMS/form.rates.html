@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADET-HRS-WEB</title>
+
+        <!-- Favicon -->
+<link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+<!-- Icons -->
+<link href="../assets/vendor/nucleo/css/nucleo.min.css" rel="stylesheet">
+<link href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+<!-- Argon CSS -->
+<link type="text/css" href="../assets/css/argon.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="col-xl-8 order-xl-1">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Edit Rates</h3>
+                </div>
+                <!--Button-->
+                <div class="col-4 text-right">
+                  <a href="#!" class="btn btn-sm btn-primary">Add Rate</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+<!--First Row-->
+              <form>
+                <h6 class="heading-small text-muted mb-4">Rates Information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-rate-id">Rate ID Code</label>
+                        <input type="text" id="input-rate-id" class="form-control" placeholder="Price ID" value="A1sW23aA24f">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-rate-per-qty">Rate Per Quality</label>
+                        <input type="number" id="input-rate-per-qty" class="form-control" placeholder="Rate-Per-Qty">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<!--Second Row-->
+                <hr class="my-4">
+                <h6 class="heading-small text-muted mb-4">Date Information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-rate-start-date">Start Date</label>
+                        <input type="date" id="input-rate-start-date" class="form-control" placeholder="Rate_Start_Date">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-rate-end-date">End Date</label>
+                        <input type="date" id="input-rate-end-date" class="form-control" placeholder="Rate_End_Date">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<!--Third Row-->
+                <hr class="my-4">
+                <h6 class="heading-small text-muted mb-4">Room Information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-room-id">Room ID</label>
+                        <input type="text" id="input-room-id" class="form-control" placeholder="FK_Room_ID" value="A1sW23aA24f">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-room-type-id">Room Type ID</label>
+                        <input type="text" id="input-room-type-id" class="form-control" placeholder="FK_Room_Type_ID" value="A1sW23aA24f">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4">
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- Core -->
+<script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Argon JS -->
+<script src="../assets/js/argon.min.js"></script>
+</body>
+</html>
+
+
+<!-- TO DO List -->
+<!-- Edit price per qty if mali quality kasi pagkakaintindi ko sa qty-->
+<!-- Buttons-->

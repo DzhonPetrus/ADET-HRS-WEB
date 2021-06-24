@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADET-HRS-WEB</title>
+
+        <!-- Favicon -->
+<link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+<!-- Icons -->
+<link href="../assets/vendor/nucleo/css/nucleo.min.css" rel="stylesheet">
+<link href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+<!-- Argon CSS -->
+<link type="text/css" href="../assets/css/argon.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="col-xl-8 order-xl-1">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Rooms Reserved</h3>
+                </div>
+                <!--Button-->
+                <div class="col-4 text-right">
+                  <a href="#!" class="btn btn-sm btn-primary">Add Room Reserved</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+<!--First Row-->
+              <form>
+                <h6 class="heading-small text-muted mb-4">Room Reserved Information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-room-reserved-id">Room Reserved ID</label>
+                        <input type="text" id="input-room-reserved-id" class="form-control" placeholder="Room Reserve ID" value="A1sW23aA24f">
+                      </div>
+                    </div>
+                  </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-booking-id">Booking ID</label>
+                          <input type="text" id="input-booking-id" class="form-control" placeholder="Booking ID" value="A1sW23aA24f">
+                        </div>
+                      </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label class="form-control-label" for="input-room-id">Room ID</label>
+                            <input type="text" id="input-room-id" class="form-control" placeholder="Room ID" value="A1sW23aA24f">
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label class="form-control-label" for="input-room-reserved-status-id">Room Reserved Status</label>
+                            <select class="form-control">
+                              <option>Available</option>
+                              <option>Occupied</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label class="form-control-label" for="input-rate-id">Rate</label>
+                            <input type="number" id="input-rate-id" class="form-control" placeholder="Rate" value="1">
+                          </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="input-no-guest">Number of Guest</label>
+                              <input type="number" id="input-no-guest" class="form-control" placeholder="Number Guest" value="1">
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="input-no-nights">Number of Nights</label>
+                              <input type="number" id="input-no-nights" class="form-control" placeholder="Number Nights" value="10">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="input-no-guest">Date from</label>
+                              <input type="date" id="input-no-guest" class="form-control" placeholder="Number Guest">
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="input-no-nights">Date to</label>
+                              <input type="date" id="input-no-nights" class="form-control" placeholder="Number Nights">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="input-package-id">Package ID</label>
+                              <input type="text" id="input-package-id" class="form-control" placeholder="Package ID" value="A1sW23aA24f">
+                            </div>
+                          </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-check-in">Check In</label>
+                                <input type="datetime-local" id="input-check-in" class="form-control" placeholder="Check In">
+                              </div>
+                            </div>
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-check-out">Check Out</label>
+                                <input type="datetime-local" id="input-check-out" class="form-control" placeholder="Check Out">
+                              </div>
+                            </div>
+                          </div>
+    
+                   
+
+
+        <!-- Core -->
+<script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Argon JS -->
+<script src="../assets/js/argon.min.js"></script>
+</body>
+</html>
+
+
+<!-- TO DO List -->
+<!-- Cancel and Add Button at the Bottom-->
+<!-- Duration and minduration Data Type-->
+
+<!-- is limitation per use?-->
