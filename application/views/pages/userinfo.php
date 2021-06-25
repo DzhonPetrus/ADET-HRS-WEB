@@ -25,7 +25,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-user-first-name">First Name</label>
-                        <input id="first_name" name="first_name" class="form-control" placeholder="First Name" type="text">
+                        <input id="firstname" name="firstname" class="form-control" placeholder="First Name" type="text">
                       </div>
                     </div>
                     <div class="col-md-12">

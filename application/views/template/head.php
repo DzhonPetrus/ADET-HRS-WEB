@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="<?= base_url('assets') ?>/css/toastr.min.css" type="text/css">
   <!---->
   <link rel="stylesheet" type="text/css" href="<?= base_url('assets') ?>/css/datatables.min.css"/>
+  <link rel="stylesheet" type="text/css" href="<?= base_url('assets') ?>/css/sweetalert2.min.css"/>
+  <script src="<?= base_url('assets') ?>/js/common.js"></script>
 </head>
 
 <body>
