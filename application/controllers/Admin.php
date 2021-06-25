@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Setup extends CI_Controller {
+class Admin extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -27,7 +27,7 @@ class Setup extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('template/head');
-		$this->load->view('template/nav');
+		$this->load->view('template/admin/nav');
 		$this->load->view('template/body-table');
 		$this->load->view('template/footer');
 	}
@@ -35,7 +35,7 @@ class Setup extends CI_Controller {
 	public function profile()
 	{
 		$this->load->view('template/head');
-		$this->load->view('template/nav');
+		$this->load->view('template/admin/nav');
 		$this->load->view('template/body-profile');
 		$this->load->view('template/footer');
 	}
@@ -43,7 +43,7 @@ class Setup extends CI_Controller {
 	public function amenity()
 	{
 		$this->load->view('template/head');
-		$this->load->view('template/nav');
+		$this->load->view('template/admin/nav');
 		$this->load->view('pages/amenity');
 		$this->load->view('template/footer');
 	}
@@ -51,7 +51,7 @@ class Setup extends CI_Controller {
 	public function tax()
 	{
 		$this->load->view('template/head');
-		$this->load->view('template/nav');
+		$this->load->view('template/admin/nav');
 		$this->load->view('pages/taxes');
 		$this->load->view('template/footer');
 	}
@@ -59,7 +59,7 @@ class Setup extends CI_Controller {
 	public function loyalty_point()
 	{
 		$this->load->view('template/head');
-		$this->load->view('template/nav');
+		$this->load->view('template/admin/nav');
 		$this->load->view('pages/loyaltypoints');
 		$this->load->view('template/footer');
 	}
@@ -67,7 +67,7 @@ class Setup extends CI_Controller {
 	public function user_information()
 	{
 		$this->load->view('template/head');
-		$this->load->view('template/nav');
+		$this->load->view('template/admin/nav');
 		$this->load->view('pages/userinfo');
 		$this->load->view('template/footer');
 	}
@@ -75,7 +75,7 @@ class Setup extends CI_Controller {
 	public function pricing()
 	{
 		$this->load->view('template/head');
-		$this->load->view('template/nav');
+		$this->load->view('template/admin/nav');
 		$this->load->view('pages/prices');
 		$this->load->view('template/footer');
 	}
@@ -83,7 +83,7 @@ class Setup extends CI_Controller {
 	public function room_type()
 	{
 		$this->load->view('template/head');
-		$this->load->view('template/nav');
+		$this->load->view('template/admin/nav');
 		$this->load->view('pages/roomtypes');
 		$this->load->view('template/footer');
 	}
