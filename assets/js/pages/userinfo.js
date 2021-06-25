@@ -72,6 +72,8 @@ loadTable = () =>
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
 			{ sClass: "text-center" },
 		],
 		columns: [
@@ -88,8 +90,8 @@ loadTable = () =>
 				className: "dtr-control",
 			},
             {
-				data: "first_name",
-				name: "first_name",
+				data: "firstname",
+				name: "firstname",
 				searchable: true,
 				className: "dtr-control",
 			},
@@ -217,7 +219,7 @@ loadTable = () =>
 
 			$("td:eq(0)", nRow).html(aData["user_info_id"]);
 			$("td:eq(1)", nRow).html(aData["email"]);
-            $("td:eq(2)", nRow).html(aData["first_name"]);
+            $("td:eq(2)", nRow).html(aData["firstname"]);
 			$("td:eq(3)", nRow).html(aData["middle_name"]);
 			$("td:eq(4)", nRow).html(aData["last_name"]);
 			/*$("td:eq(5)", nRow).html(aData["birth_date"]);
@@ -237,4 +239,48 @@ loadTable = () =>
 			// $("#data-table").removeClass("dataTable");
 		},
 	});
+};
+// function to delete data
+deleteData = (user_info_id) => 
+{
+    Swal.fire(
+    {
+        title: "Are you sure you want to delete this record?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: !0,
+        confirmButtonColor: "#34c38f",
+        cancelButtonColor: "#f46a6a",
+        confirmButtonText: "Yes, delete it!",
+    })
+    .then(function (t) 
+    {
+        // if user clickes yes, it will change the active status to "Not Active".
+        if (t.value) 
+        {
+            $.ajax(
+                {
+                url: BASE_URL + "user_information/",
+                type: "DELETE",
+				data: {user_info_id},
+                dataType: "json",
+				
+				
+                success: function (data) {
+					
+
+                    if (data.error == false) 
+                    {
+                        notification("success", "Success!", data.message);
+                        loadTable();
+                    }
+                    else 
+                    {
+                        notification("error", "Error!", data.message);
+                    }
+                },
+                error: function ({ responseJSON }) {},
+            });
+        }
+    });
 };

@@ -23,7 +23,7 @@
   <!-- Parsley JS -->
   <script src="<?= base_url('assets') ?>/js/parsley.min.js"></script>
   <!-- Common -->
-  <script src="<?= base_url('assets') ?>/js/common.js"></script>
+  
   <script type="text/javascript" src="<?= base_url('assets') ?>/js/datatables.min.js"></script>
-
+  <script type="text/javascript" src="<?= base_url('assets') ?>/js/sweetalert2.min.js"></script>
 </html>

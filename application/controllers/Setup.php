@@ -71,4 +71,20 @@ class Setup extends CI_Controller {
 		$this->load->view('pages/userinfo');
 		$this->load->view('template/footer');
 	}
+
+	public function pricing()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/nav');
+		$this->load->view('pages/prices');
+		$this->load->view('template/footer');
+	}
+
+	public function room_type()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/nav');
+		$this->load->view('pages/roomtypes');
+		$this->load->view('template/footer');
+	}
 }
