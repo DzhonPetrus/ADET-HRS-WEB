@@ -39,4 +39,36 @@ class Setup extends CI_Controller {
 		$this->load->view('template/body-profile');
 		$this->load->view('template/footer');
 	}
+
+	public function amenity()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/nav');
+		$this->load->view('pages/amenity');
+		$this->load->view('template/footer');
+	}
+
+	public function tax()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/nav');
+		$this->load->view('pages/taxes');
+		$this->load->view('template/footer');
+	}
+
+	public function loyalty_point()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/nav');
+		$this->load->view('pages/loyaltypoints');
+		$this->load->view('template/footer');
+	}
+
+	public function user_information()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/nav');
+		$this->load->view('pages/userinfo');
+		$this->load->view('template/footer');
+	}
 }
