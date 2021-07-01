@@ -63,6 +63,7 @@ $(function()
                             {
                                 notification("success", "Success!", data.message);
 								loadTable();
+								document.getElementById("userin_form").reset();
                             }
                             else
                             {
