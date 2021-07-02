@@ -76,6 +76,7 @@ loadTable = () =>
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-center" },
+
 		],
 		columns: [
 			{
@@ -149,4 +150,48 @@ loadTable = () =>
 			// $("#data-table").removeClass("dataTable");
 		},
 	});
+};
+// function to delete data
+deleteData = (taxCode) => 
+{
+    Swal.fire(
+    {
+        title: "Are you sure you want to delete this record?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: !0,
+        confirmButtonColor: "#34c38f",
+        cancelButtonColor: "#f46a6a",
+        confirmButtonText: "Yes, delete it!",
+    })
+    .then(function (t) 
+    {
+        // if user clickes yes, it will change the active status to "Not Active".
+        if (t.value) 
+        {
+            $.ajax(
+                {
+                url: BASE_URL + "tax/",
+                type: "DELETE",
+				data: {taxCode},
+                dataType: "json",
+				
+				
+                success: function (data) {
+					
+
+                    if (data.error == false) 
+                    {
+                        notification("success", "Success!", data.message);
+                        loadTable();
+                    }
+                    else 
+                    {
+                        notification("error", "Error!", data.message);
+                    }
+                },
+                error: function ({ responseJSON }) {},
+            });
+        }
+    });
 };
