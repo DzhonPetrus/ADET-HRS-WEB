@@ -137,23 +137,76 @@
 <!-- BODY -->
 
 
-<!-- <table id="myTable">
+<table id="myTable" class="display nowrap" style="width:100%">
   <thead>
     <tr>
       <th>
-        Tax Code
+        User Information ID
       </th>
       <th>
-        Percentage
+        Email
       </th>
       <th>
-        Action
+        First Name
       </th>
+      <th>
+        Middle Name
+      </th>
+      <th>
+        Last Name
+      </th>
+      <th>
+        Photo URL
+      </th>
+      <th>
+        Birthdate
+      </th>
+      <th>
+        Nationality
+      </th>
+      <th>
+        Loyalty Points
+      </th>
+      <th>
+        Contacts
+      </th>
+      <th>
+        Street1
+      </th>
+      <th>
+        City1
+      </th>
+      <th>
+        State1
+      </th>
+      <th>
+        Zip Code1
+      </th>
+      <th>
+        Country1
+      </th>
+      <th>
+        Street1=2
+      </th>
+      <th>
+        City2
+      </th>
+      <th>
+        State2
+      </th>
+      <th>
+        Zip Code2
+      </th>
+      <th>
+        Country2
+      </th>
+      
+
     </tr>
 </thead>
 <tbody>
 </tbody>
-</table> -->
+</table> 
 
 
 

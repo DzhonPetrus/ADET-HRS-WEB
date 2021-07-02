@@ -90,7 +90,6 @@ loadTable = () =>
 			ContentType: "application/x-www-form-urlencoded",
 		},
 	});
-
 	$("#myTable").dataTable().fnClearTable();
 	$("#myTable").dataTable().fnDraw();
 	$("#myTable").dataTable().fnDestroy();
@@ -99,7 +98,17 @@ loadTable = () =>
 		serverSide: false,
 		order: [[0, "desc"]],
 		aLengthMenu: [5, 10, 20, 30, 50, 100],
-		aaColumns: [
+		aoColumns: [
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
@@ -138,7 +147,7 @@ loadTable = () =>
 				searchable: true,
 				className: "dtr-control",
 			},
-			/*{
+			{
 				data: "birth_date",
 				name: "birth_date",
 				searchable: true,
@@ -197,7 +206,7 @@ loadTable = () =>
 				name: "country1",
 				searchable: true,
 				className: "dtr-control",
-			},*/
+			},
 			{
 				data: null,
 				render: function (aData, type, row) 
@@ -253,7 +262,7 @@ loadTable = () =>
             $("td:eq(2)", nRow).html(aData["firstname"]);
 			$("td:eq(3)", nRow).html(aData["middle_name"]);
 			$("td:eq(4)", nRow).html(aData["last_name"]);
-			/*$("td:eq(5)", nRow).html(aData["birth_date"]);
+			$("td:eq(5)", nRow).html(aData["birth_date"]);
 			$("td:eq(6)", nRow).html(aData["nationality"]);
 			$("td:eq(7)", nRow).html(aData["photo_url"]);
 			$("td:eq(8)", nRow).html(aData["loyalty_point_id"]);
@@ -262,8 +271,8 @@ loadTable = () =>
 			$("td:eq(11)", nRow).html(aData["city1"]);
 			$("td:eq(12)", nRow).html(aData["zip1"]);
 			$("td:eq(13)", nRow).html(aData["state1"]);
-			$("td:eq(14)", nRow).html(aData["country1"]);*/
-			$("td:eq(5)", nRow).html(buttons);
+			$("td:eq(14)", nRow).html(aData["country1"]);
+			$("td:eq(15)", nRow).html(buttons);
 
 		},
 		drawCallback: function (settings) {

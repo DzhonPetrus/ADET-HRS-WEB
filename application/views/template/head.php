@@ -23,6 +23,7 @@
   <!---->
   <link rel="stylesheet" type="text/css" href="<?= base_url('assets') ?>/css/datatables.min.css"/>
   <link rel="stylesheet" type="text/css" href="<?= base_url('assets') ?>/css/sweetalert2.min.css"/>
+  <link rel="stylesheet" type="text/css" href="<?= base_url('assets') ?>/css/modalpop.css"/>
   <script src="<?= base_url('assets') ?>/js/common.js"></script>
 </head>
 

@@ -1,6 +1,8 @@
 $(function()
 {
+	
 	loadTable();
+	formReset('hide');
 	// function to save/update record
     $("#tax_form").on("submit", function (e)
     {
@@ -33,6 +35,7 @@ console.table([...form_data]);
                             {
                                 notification("success", "Success!", data.message);
 								loadTable();
+								document.getElementById("tax_form").reset();
                             }
                             else
                             {
@@ -91,15 +94,21 @@ loadTable = () =>
 				className: "dtr-control",
 			},
 			{
+				data: "created.email",
+				name: "created.email",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
 				data: null,
 				render: function (aData, type, row) 
 				{
 					let buttons = "";
 					// info
 					buttons +=
-						'<button type="button" onClick="return editData(\'' +
+						'<button type="button" id="modal_button" onClick="return viewData(\'' +
 						aData["taxCode"] +
-						'\',0)" class="btn btn-light waves-effect"><i class="bx bx-info-circle font-size-16 align-middle">View</i></button> ';
+						'\')" class="btn btn-light waves-effect"><i class="bx bx-info-circle font-size-16 align-middle">View</i></button> ';
 					// edit
 					buttons +=
 						'<button type="button" onClick="return editData(\'' +
@@ -125,24 +134,25 @@ loadTable = () =>
 			let buttons = "";
 			// info
 			buttons +=
-				'<button type="button" onClick="return editData(\'' +
-				aData["amenity_id"] +
-				'\',0)" class="btn btn-light waves-effect"><i class="bx bx-info-circle font-size-16 align-middle">View</i></button> ';
+				'<button type="button" id="modal_button" onClick="return viewData(\'' +
+				aData["taxCode"] +
+				'\')" class="btn btn-light waves-effect"><i class="bx bx-info-circle font-size-16 align-middle">View</i></button> ';
 			// edit
 			buttons +=
 				'<button type="button" onClick="return editData(\'' +
-				aData["amenity_id"] +
+				aData["taxCode"] +
 				'\',1)" class="btn btn-success waves-effect"><i class="bx bx-edit font-size-16 align-middle">Edit</i></button> ';
 
 			//delete
 			buttons +=
 				'<button type="button" onClick="return deleteData(\'' +
-				aData["amenity_id"] +
+				aData["taxCode"] +
 				'\')" class="btn btn-danger waves-effect"><i class="bx bx-trash font-size-16 align-middle">Delete</i></button> ';
 
 			$("td:eq(0)", nRow).html(aData["taxCode"]);
 			$("td:eq(1)", nRow).html(aData["percentage"]);
-			$("td:eq(2)", nRow).html(buttons);
+			$("td:eq(2)", nRow).html(aData["created.email"]);
+			$("td:eq(3)", nRow).html(buttons);
 
 		},
 		drawCallback: function (settings) {
@@ -150,3 +160,62 @@ loadTable = () =>
 		},
 	});
 };
+
+// VIEW DATA
+viewData = (taxCode) => 
+{
+		document.querySelector('.bg-modal').style.display = 'flex';
+
+        {
+
+
+            $.ajax(
+                {
+                url: BASE_URL + "tax/" + taxCode,
+                type: "GET",
+				data: {taxCode},
+                dataType: "json",
+				
+				
+                success: function (data) {
+					
+
+                    if (data.error == false) 
+                    {
+                        $('#taxCode').val(data.data.taxCode);
+            			$('#modal_percentage').val(data.data.percentage);
+						$('#created_email').val(data.data.created.email);
+                    }
+                    else 
+                    {
+                        notification("error", "Error!", data.message);
+
+                    }
+                },
+                error: function ({ responseJSON }) {},
+				
+            });
+			
+		};
+		
+};
+
+document.getElementById('close_modal').addEventListener('click',
+	function(){
+		document.querySelector('.bg-modal').style.display = 'none';
+	}
+); 
+// formReset =  (action = "hide") =>{
+//     console.log(action);
+//     $("html","body").animate({scrollTop:0}, "slow");
+
+//     if (action == "hide"){
+//         $("#tax_form")[0].reset();
+//         $("#show_hide").hide();
+//         $("#show_tax_form").show();
+
+//     } else if (action == "show"){
+//         $("#show_hide").show();
+//         $("#show_tax_form").hide();
+//     }
+// };
