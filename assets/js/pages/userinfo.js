@@ -2,16 +2,17 @@ $(function()
 {
 	loadTable();
 	// function to save/update record
-    /*$("#userinfo-form").on("submit", function (e)
+    $("#userin_form").on("submit", function (e)
     {
         e.preventDefault();
         trimInputFields();
 
-        if ($("#userinfo-form").parsley().validate())
+        if ($("#userin_form").parsley().validate())
         {
+			var loyalty_point_id;
             var form_data = new FormData(this);
 
-console.table([...form_data]);
+
             if ($("#uuid").val() == "")
             {
                 form_data.append("password", "P@ssw0rd");
@@ -19,9 +20,38 @@ console.table([...form_data]);
 
                 // add record
                 $.ajax(
+					{
+                        url: BASE_URL + "loyalty_point",
+                        type: "POST",
+						async: false,
+                        data: form_data,
+                        dataType: "JSON",
+                        contentType: false,
+                        processData: false,
+                        cache: false,
+                        success: function (data)
+                        {
+                            if (data.error == false)
+                            {
+								loyalty_point_id = data.data.loyalty_point_id;
+                            }
+                            else
+                            {
+                                notification("error", "Error Lp", data.message);
+                            }
+                        },
+                        error: function({responseJSON})
+                        {
+
+                        }
+                    });
+					console.log(loyalty_point_id);
+					form_data.append('loyalty_point_id',loyalty_point_id);
+				$.ajax(
                     {
                         url: BASE_URL + "user_information",
                         type: "POST",
+						async: false,
                         data: form_data,
                         dataType: "JSON",
                         contentType: false,
@@ -46,7 +76,7 @@ console.table([...form_data]);
                     });
             }
         }
-    }); */
+    });
 });
 loadTable = () => 
 {
