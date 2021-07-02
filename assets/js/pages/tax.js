@@ -75,7 +75,7 @@ loadTable = () =>
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
-			{ sClass: "text-center" },
+			{ sClass: "text-left" },
 
 		],
 		columns: [
@@ -100,17 +100,17 @@ loadTable = () =>
 					buttons +=
 						'<button type="button" onClick="return editData(\'' +
 						aData["taxCode"] +
-						'\',0)" class="btn btn-light waves-effect"><i class="bx bx-info-circle font-size-16 align-middle">View</i></button> ';
+						'\',0)" class="btn btn-light waves-effect"><i class="fa fa-eye font-size-16 align-middle"></i></button> ';
 					// edit
 					buttons +=
 						'<button type="button" onClick="return editData(\'' +
 						aData["taxCode"] +
-						'\',1)" class="btn btn-success waves-effect"><i class="bx bx-edit font-size-16 align-middle">Edit</i></button> ';
+						'\',1)" class="btn btn-success waves-effect"><i class="fa fa-pencil-alt font-size-16 align-middle"></i></button> ';
 					// delete
 					buttons +=
 						'<button type="button" onClick="return deleteData(\'' +
 						aData["taxCode"] +
-						'\')" class="btn btn-danger waves-effect"><i class="bx bx-trash font-size-16 align-middle">Delete</i></button> ';
+						'\',2)" class="btn btn-danger waves-effect"><i class="fa fa-trash font-size-16 align-middle"></i></button> ';
 					return buttons; // same class in i element removed it from a element
 				},
 			},
@@ -127,22 +127,23 @@ loadTable = () =>
 			// info
 			buttons +=
 				'<button type="button" onClick="return editData(\'' +
-				aData["amenity_id"] +
-				'\',0)" class="btn btn-light waves-effect"><i class="bx bx-info-circle font-size-16 align-middle">View</i></button> ';
+				aData["taxCode"] +
+				'\',0)" class="btn btn-light waves-effect"><i class="fa fa-eye font-size-16 align-middle"></i></button> ';
 			// edit
 			buttons +=
 				'<button type="button" onClick="return editData(\'' +
-				aData["amenity_id"] +
-				'\',1)" class="btn btn-success waves-effect"><i class="bx bx-edit font-size-16 align-middle">Edit</i></button> ';
+				aData["taxCode"] +
+				'\',1)" class="btn btn-success waves-effect"><i class="fa fa-pencil-alt font-size-16 align-middle"></i></button> ';
 
 			//delete
 			buttons +=
 				'<button type="button" onClick="return deleteData(\'' +
-				aData["amenity_id"] +
-				'\')" class="btn btn-danger waves-effect"><i class="bx bx-trash font-size-16 align-middle">Delete</i></button> ';
+				aData["taxCode"] +
+				'\',2)" class="btn btn-danger waves-effect"><i class="fa fa-trash font-size-16 align-middle"></i></button> ';
 
 			$("td:eq(0)", nRow).html(aData["taxCode"]);
 			$("td:eq(1)", nRow).html(aData["percentage"]);
+			// $("td:eq(2)", nRow).html(aData["date_updated"]);
 			$("td:eq(2)", nRow).html(buttons);
 
 		},
