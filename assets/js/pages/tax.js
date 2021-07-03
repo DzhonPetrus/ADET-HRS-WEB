@@ -2,6 +2,7 @@ $(function()
 {
 	
 	loadTable();
+	$("#view_form").hide();
 	formReset('hide');
 	// function to save/update record
     $("#tax_form").on("submit", function (e)
@@ -197,9 +198,9 @@ loadTable = () =>
 
 // VIEW DATA
 viewData = (taxCode) => 
-{
-		document.querySelector('.bg-modal').style.display = 'flex';
-
+{	
+	$("#view_form").show();
+	$("#show_hide").hide();
         {
 
             $.ajax(
@@ -215,9 +216,10 @@ viewData = (taxCode) =>
                     if (data.error == false) 
                     {
 
-                        $('#taxCode').val(data.data.taxCode);
-            			$('#modal_percentage').val(data.data.percentage);
-						$('#created_email').val(data.data.created.email);
+                        $('#view_taxcode').val(data.data.taxCode);
+            			$('#view_percentage').val(data.data.percentage);
+						$('#view_creator').val(data.data.created.email);
+						console.log(data.data.created.email)
                     }
                     else 
                     {
@@ -241,6 +243,7 @@ editData = (taxCode) =>
     $("#show_tax_form").hide();
 	$("#add_tax").hide();
 	$("#update_tax").show();
+	$("#view_form").hide();
         {
 
             $.ajax(
@@ -326,11 +329,6 @@ deleteData = (taxCode) =>
 
 
 //EXTRA 
-document.getElementById('close_modal').addEventListener('click',
-	function(){
-		document.querySelector('.bg-modal').style.display = 'none';
-	}
-); 
 formReset =  (action = "hide") =>{
     $("html","body").animate({scrollTop:0}, "slow");
 
