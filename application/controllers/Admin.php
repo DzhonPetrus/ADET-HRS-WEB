@@ -60,7 +60,7 @@ class Admin extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/admin/nav');
-		$this->load->view('pages/loyaltypoints');
+		$this->load->view('pages/loyalty_points');
 		$this->load->view('template/footer');
 	}
 
@@ -68,7 +68,7 @@ class Admin extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/admin/nav');
-		$this->load->view('pages/userinfo');
+		$this->load->view('pages/user_info');
 		$this->load->view('template/footer');
 	}
 
@@ -76,7 +76,7 @@ class Admin extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/admin/nav');
-		$this->load->view('pages/prices');
+		$this->load->view('pages/pricing');
 		$this->load->view('template/footer');
 	}
 
@@ -84,7 +84,7 @@ class Admin extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/admin/nav');
-		$this->load->view('pages/roomtypes');
+		$this->load->view('pages/room_types');
 		$this->load->view('template/footer');
 	}
 }
