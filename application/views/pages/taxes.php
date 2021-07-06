@@ -52,6 +52,7 @@
         <!-- Card footer -->
 
         <!-- <div class="card-footer py-4">
+
               <nav aria-label="...">
                 <ul class="pagination justify-content-end mb-0">
                   <li class="page-item disabled">
@@ -133,7 +134,7 @@
         </form>
 
         </div>
-
+        
         <!-- </div> -->
 
       </div>
@@ -141,10 +142,11 @@
   </div>
 
 
-
   <!-- BODY CLOSING -->
 </div>
 
+<!-- BODY CLOSING -->
+</div>
 
 <!-- Import JS-->
 <script src="<?= base_url('assets') ?>/js/pages/tax.js"></script>

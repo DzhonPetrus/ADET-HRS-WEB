@@ -8,7 +8,7 @@
   <meta name="author" content="Creative Tim">
   <title><?= SYSTEM_NAME ?></title>
   <!-- Favicon -->
-  <link rel="icon" href="<?= base_url('assets') ?>/img/brand/favicon.png" type="image/png">
+  <link rel="icon" href="https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/512x512/hotel.png" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->

@@ -117,6 +117,7 @@ loadTable = () => {
 			$("td:eq(1)", nRow).html(aData["taxCode"]);
 			$("td:eq(2)", nRow).html(aData["percentage"]);
 			$("td:eq(3)", nRow).html(aData["created.email"]);
+
 		},
 		drawCallback: function (settings) {
 			// $("#data-table").removeClass("dataTable");
@@ -244,4 +245,5 @@ const setState = (state, data) => {
 	}
 
 	showModal();
+
 };
