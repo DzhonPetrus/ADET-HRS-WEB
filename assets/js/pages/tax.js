@@ -31,6 +31,7 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
+							document.getElementById("tax_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
 						}
