@@ -38,7 +38,7 @@
 <!-- BODY -->
 
 
-<table id="myTable">
+<table id="myTable" class="display nowrap">
   <thead>
     <tr>
       <th>

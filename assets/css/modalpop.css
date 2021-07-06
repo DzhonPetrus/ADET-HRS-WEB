@@ -1,0 +1,99 @@
+.bg-modal{
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.bg-modal-edit{
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.modal-content{
+    width: 500px;
+    height: 500px;
+    background-color: white;
+}
+
+.button{
+    background-color:#f5365c;
+    border-radius: 30px;
+    border: 2px solid white;
+    padding: 10px 28px;
+    text-decoration: none;
+    color:white;
+    display: inline-block;
+    margin-top: 10px;
+}
+.button:hover{
+    background-color:white;
+    border: 2px solid #f5365c;
+    color:#f5365c;
+    cursor: pointer;
+}
+
+.button_add{
+    background-color:#5e72e4;
+    border-radius: 3px;
+    border: 0px;
+    color:white;
+
+}
+.button_add_form{
+    background-color:#5e72e4;
+    border-radius: 3px;
+    border: 0px;
+    color:white;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+.button_cancel{
+    background-color:#f5365c;
+    color:white;
+    border: 0px;
+    border-radius: 3px;
+}
+.show_hide_form{
+    width: 100%;
+    height: 100%;
+
+}
+.icon_view{
+    width:25px;
+    height:25px;
+}
+.button_for_icon_delete{
+    width:40px;
+    height:40px;
+    background-color:#f5365c;
+    border:0px;
+    border-radius: 3px;
+}
+.button_for_icon_view{
+    width:40px;
+    height:40px;
+    background-color:#adb6bd;
+    border:0px;
+    border-radius: 3px;
+}
+.button_for_icon_edit{
+    width:40px;
+    height:40px;
+    background-color:#2dce89;
+    border:0px;
+    border-radius: 3px;
+}
