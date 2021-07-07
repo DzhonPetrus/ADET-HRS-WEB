@@ -19,7 +19,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="./">
+              <a class="nav-link active" href="./Admin">
                 <i class="ni ni-bullet-list-67 text-default"></i>
                 <span class="nav-link-text">Tables</span>
               </a>
