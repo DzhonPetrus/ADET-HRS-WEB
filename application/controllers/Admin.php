@@ -111,4 +111,12 @@ class Admin extends CI_Controller {
 		$this->load->view('pages/pdconditions');
 		$this->load->view('template/footer');
 	}
+
+	public function room()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/room');
+		$this->load->view('template/footer');
+	}
 }
