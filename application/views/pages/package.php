@@ -101,72 +101,71 @@
 
         <div class="card shadow-none">
 
-        <form id="package_form">
-
-          <div class="card-body">
-            <h6 class="heading-small text-muted mb-4">Package Information</h6>
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="form-group" id="group-package_id">
-                    <label class="form-control-label" for="input-package-percentage">Package ID</label>
-                    <input type="text" id="package_id" class="form-control" readonly name="package_id">
-                  </div>
+      <form id="package_form">
+        <div class="card-body">
+          <h6 class="heading-small text-muted mb-4">Package Information</h6>
+          <div class="pl-lg-4">
+            <div class="row">
+              <div class="col-lg-12" id="update_package_id">
+                <div class="form-group" id="group-package_id">
+                  <label class="form-control-label" for="input-package-percentage">Package ID</label>
+                  <input type="text" id="package_id" class="form-control" readonly name="package_id">
                 </div>
-                <div class="col-lg-12">
+              </div>
+              <div class="col-lg-12">
                 <div class="form-group" id="group-percentage">
-                    <label class="form-control-label" for="input-room-type">Title</label>
-                    <input type="text" id="title" class="form-control" readonly name="title" >
-                  </div>
+                  <label class="form-control-label" for="input-room-type">Title</label>
+                  <input type="text" id="title" class="form-control" readonly name="title" >
                 </div>
-                <div class="col-lg-12">
-                  <div class="form-group" id="group-percentage">
-                    <label class="form-control-label" for="input-min-guest">Min Guest</label>
-                    <input type="Number" id="min_guest" class="form-control" readonly name="min_guest">
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="form-group" id="group-percentage">
-                    <label class="form-control-label" for="input-max-guest">Max Guest</label>
-                    <input type="Number" id="max_guest" class="form-control" readonly name="max_guest">
-                  </div>
-                </div>
-                <div class="col-lg-12">
+              </div>
+              <div class="col-lg-12">
                 <div class="form-group" id="group-percentage">
-                    <label class="form-control-label" for="input-price">Price</label>
-                    <select name="pricing_id" id="pricing_id" class="form-control">
-                    </select>
-                  </div>
+                  <label class="form-control-label" for="input-min-guest">Min Guest</label>
+                  <input type="Number" id="min_guest" class="form-control" readonly name="min_guest">
                 </div>
-                <div class="col-lg-12">
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group" id="group-percentage">
+                  <label class="form-control-label" for="input-max-guest">Max Guest</label>
+                  <input type="Number" id="max_guest" class="form-control" readonly name="max_guest">
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group" id="group-percentage">
+                  <label class="form-control-label" for="input-price">Price</label>
+                  <select name="pricing_id" id="pricing_id" class="form-control">
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-12">
                 <div class="form-group" id="room_type">
-                    <label class="form-control-label" for="input-room-type">Room Type</label>
-                    <select name="room_type_id" id="room_type_id" class="form-control">
-                    </select>
-                  </div>
+                  <label class="form-control-label" for="input-room-type">Room Type</label>
+                  <select name="room_type_id" id="room_type_id" class="form-control">
+                  </select>
                 </div>
-                <div class="col-lg-12">
+              </div>
+              <div class="col-lg-12">
                 <div class="form-group" id="group-description">
-                <label class="form-control-label" for="input-tax-percentage">Description</label>
-                    <input type="text" id="description" class="form-control" readonly name="description">
-                  </div>
+                  <label class="form-control-label" for="input-tax-percentage">Description</label>
+                  <input type="text" id="description" class="form-control" readonly name="description">
                 </div>
-                <div class="col-lg-12">
-                  <div class="form-group" id="group-creator">
-                    <label class="form-control-label" for="input-created">CREATED BY</label>
-                    <input type="text" id="creator" class="form-control" readonly name="creator">
-                  </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group" id="group-creator">
+                  <label class="form-control-label" for="input-created">CREATED BY</label>
+                  <input type="text" id="creator" class="form-control" readonly name="creator">
                 </div>
+              </div>
             </div>
-        </div>
-            <hr class="my-4">
+          </div>
+          <hr class="my-4">
             <div class="col-12 text-right">
               <button type="button" class="btn btn-secondary" onClick="formReset()" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary" id="group-btnAdd">Add</button>
               <button type="submit" class="btn btn-primary" id="group-btnUpdate">Save Changes</button>
             </div>
-          </div>
-        </form>
+        </div>
+      </form>
 
         </div>
         
