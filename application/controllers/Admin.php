@@ -87,4 +87,19 @@ class Admin extends CI_Controller {
 		$this->load->view('pages/room_types');
 		$this->load->view('template/footer');
 	}
+
+	public function package()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/packages');
+		$this->load->view('template/footer');
+	}
+	public function room()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/rooms');
+		$this->load->view('template/footer');
+	}
 }
