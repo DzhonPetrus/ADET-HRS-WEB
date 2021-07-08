@@ -1,26 +1,26 @@
 $(function () {
-	window.fields = ["amenity_id", "type", "description","creator", "btnAdd", "btnUpdate"];
-	window.fieldsHidden = ["amenity_id", "creator", "btnUpdate"];
-	window.readOnlyFields = ["amenity_id", "creator"];
+	window.fields = ["rate_id", "price_per_qty", "startDate","endDate","creator", "btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["rate_id", "creator", "btnUpdate"];
+	window.readOnlyFields = ["rate_id", "creator"];
 
 	formReset();
 	loadTable();
 
 	// function to save/update record
-	$("#amenity_form").on("submit", function (e) {
+	$("#rate_form").on("submit", function (e) {
 		e.preventDefault();
 		trimInputFields();
 
-		if ($("#amenity_form").parsley().validate()) {
+		if ($("#rate_form").parsley().validate()) {
 			var form_data = new FormData(this);
-			var amenity_id = $("#amenity_id").val();
-			if (amenity_id == "") {
+			var rate_id = $("#rate_id").val();
+			if (rate_id == "") {
 				// form_data.append("password", "P@ssw0rd");
 				// form_data.append("c_password", "P@ssw0rd");
 
 				// add record
 				$.ajax({
-					url: BASE_URL + "amenity",
+					url: BASE_URL + "rate",
 					type: "POST",
 					data: form_data,
 					dataType: "JSON",
@@ -31,7 +31,7 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
-							document.getElementById("amenity_form").reset();
+							document.getElementById("rate_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
 						}
@@ -40,7 +40,7 @@ $(function () {
 				});
 			} else {
 				$.ajax({
-					url: BASE_URL + `amenity/${amenity_id}`,
+					url: BASE_URL + `rate/${rate_id}`,
 					type: "PUT",
 					data: form_data,
 					dataType: "JSON",
@@ -84,6 +84,7 @@ loadTable = () => {
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
+			{ sClass: "text-left" },
 		],
 		columns: [
 			{
@@ -91,20 +92,26 @@ loadTable = () => {
 				render: (aData, type, row) => renderButtons(aData),
 			},
 			{
-				data: "amenity_id",
-				name: "amenity_id",
+				data: "rate_id",
+				name: "rate_id",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "type",
-				name: "type",
+				data: "price_per_qty",
+				name: "price_per_qty",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "description",
-				name: "description",
+				data: "startDate",
+				name: "startDate",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "endDate",
+				name: "endDate",
 				searchable: true,
 				className: "dtr-control",
 			},
@@ -116,16 +123,17 @@ loadTable = () => {
 			},
 		],
 		ajax: {
-			url: BASE_URL + "amenity",
+			url: BASE_URL + "rate",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["amenity_id"]);
-			$("td:eq(2)", nRow).html(aData["type"]);
-			$("td:eq(3)", nRow).html(aData["description"]);
-			$("td:eq(4)", nRow).html(aData["created.email"]);
+			$("td:eq(1)", nRow).html(aData["rate_id"]);
+			$("td:eq(2)", nRow).html(aData["price_per_qty"]);
+			$("td:eq(3)", nRow).html(aData["date_start"]);
+			$("td:eq(4)", nRow).html(aData["date_end"]);
+			$("td:eq(5)", nRow).html(aData["created.email"]);
 
 		},
 		drawCallback: function (settings) {
@@ -135,12 +143,12 @@ loadTable = () => {
 };
 
 // VIEW DATA
-viewData = (amenity_id) => {
+viewData = (rate_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "amenity/" + amenity_id,
+			url: BASE_URL + "rate/" + rate_id,
 			type: "GET",
-			data: { amenity_id },
+			data: { rate_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("view", data) : notification("error", "Error!", data.message),
@@ -150,12 +158,12 @@ viewData = (amenity_id) => {
 };
 
 // Edit DATA
-editData = (amenity_id) => {
+editData = (rate_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "amenity/" + amenity_id,
+			url: BASE_URL + "rate/" + rate_id,
 			type: "GET",
-			data: { amenity_id },
+			data: { rate_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("edit", data) : notification("error", "Error!", data.message),
@@ -165,7 +173,7 @@ editData = (amenity_id) => {
 };
 
 // function to delete data
-deleteData = (amenity_id) => {
+deleteData = (rate_id) => {
 	Swal.fire({
 		title: "Are you sure you want to delete this record?",
 		text: "You won't be able to revert this!",
@@ -178,9 +186,9 @@ deleteData = (amenity_id) => {
 		// if user clickes yes, it will change the active status to "Not Active".
 		if (t.value) {
 			$.ajax({
-				url: BASE_URL + "amenity",
+				url: BASE_URL + "rate",
 				type: "DELETE",
-				data: { amenity_id },
+				data: { rate_id },
 				dataType: "json",
 
 				success: function (data) {
@@ -201,12 +209,12 @@ deleteData = (amenity_id) => {
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
-	$("#amenity_form")[0].reset();
+	$("#rate_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormAmenities").modal("show");
+const showModal = () => $("#FormRates").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
@@ -229,9 +237,9 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["amenity_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
-		`<button type="button" onClick="return editData('${aData["amenity_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
-		`<button type="button" onClick="return deleteData('${aData["amenity_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
+		`<button type="button" onClick="return viewData('${aData["rate_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
+		`<button type="button" onClick="return editData('${aData["rate_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
+		`<button type="button" onClick="return deleteData('${aData["rate_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
 	return buttons;
 };
 
