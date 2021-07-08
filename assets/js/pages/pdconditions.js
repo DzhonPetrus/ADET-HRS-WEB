@@ -1,53 +1,37 @@
 $(function () {
-	window.fields = ["room_type_id", "type", "description","min_guest","max_guest", "pricing_id", "creator","btnAdd", "btnUpdate"];
-	window.fieldsHidden = ["room_type_id", "creator", "btnUpdate"];
-	window.readOnlyFields = ["room_type_id", "creator"];
+	window.fields = ["condition_code", "duration", "min_duration","min_guest","max_guest","limit","creator", "btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["condition_code", "creator", "btnUpdate"];
+	window.readOnlyFields = ["condition_code", "creator"];
 
-
-	loadPricing = () => {
-		$.ajax({
-			url: BASE_URL + "pricing",
-			type: "GET",
-			dataType: "JSON",
-			success: function (data){
-				if (data.error == false){
-					$("#pricing_id").empty();
-					$.each(data.data, function (i, dataOptions)
-					{
-						var options = "";
-
-						options = "<option value='" + dataOptions.pricing_id + "'>" + dataOptions.price_per_qty + "</option>";
-
-						$("#pricing_id").append(options);
-					});
-				} else {
-					notification("error", "Eror!", data.message);
-				}
-			},
-			error: function({responseJSON}){},
-		});
-	};
 	loadTable();
-	loadPricing();
 	formReset();
 	
 
 	// function to save/update record
-	$("#room_type_form").on("submit", function (e) {
+	$("#pd_condition_form").on("submit", function (e) {
 		e.preventDefault();
 		trimInputFields();
 
-		if ($("#room_type_form").parsley().validate()) {
+		if ($("#pd_condition_form").parsley().validate()) {
 			var form_data = new FormData(this);
-			var room_type_id = $("#room_type_id").val();
-			if (room_type_id == "") {
+			var condition_code = $("#condition_code").val();
+			var min = $("#min_guest").val();
+			var max = $("#max_guest").val();
+			console.log(min);
+			console.log(max);
+			if (min > max){
+
+				notification("error", "Min > Max");
+				formReset();
+			}else{ 
+			if (condition_code == "") {
 				// form_data.append("password", "P@ssw0rd");
 				// form_data.append("c_password", "P@ssw0rd");
 
 				// add record
 				console.table([...form_data]);
 				$.ajax({
-					url: BASE_URL + "room_type",
+					url: BASE_URL + "pd_condition",
 					type: "POST",
 					data: form_data,
 					dataType: "JSON",
@@ -58,16 +42,20 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
-							document.getElementById("room_type_form").reset();
+							document.getElementById("pd_condition_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
+							document.getElementById("pd_condition_form").reset();
 						}
 					},
-					error: function ({ responseJSON }) {},
+					error: function ({ responseError }) {
+						notification("error", "Error!");
+						document.getElementById("pd_condition_form").reset();
+					},
 				});
 			} else {
 				$.ajax({
-					url: BASE_URL + `room_type/${room_type_id}`,
+					url: BASE_URL + `pd_condition/${condition_code}`,
 					type: "PUT",
 					data: form_data,
 					dataType: "JSON",
@@ -82,8 +70,11 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {},
+					error: function ({ responseJSON }) {
+						notification("error", "Error!");
+					},
 				});
+			}
 			}
 		}
 	});
@@ -121,20 +112,20 @@ loadTable = () => {
 				render: (aData, type, row) => renderButtons(aData),
 			},
 			{
-				data: "room_type_id",
-				name: "room_type_id",
+				data: "condition_code",
+				name: "condition_code",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "type",
-				name: "type",
+				data: "duration",
+				name: "duration",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "description",
-				name: "description",
+				data: "min_duration",
+				name: "min_duration",
 				searchable: true,
 				className: "dtr-control",
 			},
@@ -151,8 +142,8 @@ loadTable = () => {
 				className: "dtr-control",
 			},
 			{
-				data: "price.price_per_qty",
-				name: "price.price_per_qty",
+				data: "limit",
+				name: "limit",
 				searchable: true,
 				className: "dtr-control",
 			},
@@ -164,19 +155,19 @@ loadTable = () => {
 			},
 		],
 		ajax: {
-			url: BASE_URL + "room_type",
+			url: BASE_URL + "pd_condition",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["room_type_id"]);
-			$("td:eq(2)", nRow).html(aData["type"]);
-			$("td:eq(3)", nRow).html(aData["description"]);
+			$("td:eq(1)", nRow).html(aData["condition_code"]);
+			$("td:eq(2)", nRow).html(aData["duration"]);
+			$("td:eq(3)", nRow).html(aData["min_duration"]);
 			$("td:eq(4)", nRow).html(aData["min_guest"]);
-			$("td:eq(5)", nRow).html(aData["max_guest"]);
-			$("td:eq(6)", nRow).html(aData["price.price_per_qty"]);
-			$("td:eq(7a)", nRow).html(aData["created.email"]);
+			$("td:eq(2)", nRow).html(aData["max_guest"]);
+			$("td:eq(2)", nRow).html(aData["limit"]);
+			$("td:eq(2)", nRow).html(aData["created.email"]);
 
 		},
 		drawCallback: function (settings) {
@@ -186,27 +177,28 @@ loadTable = () => {
 };
 
 // VIEW DATA
-viewData = (room_type_id) => {
+viewData = (condition_code) => {
 	{
 		$.ajax({
-			url: BASE_URL + "room_type/" + room_type_id,
+			url: BASE_URL + "pd_condition/" + condition_code,
 			type: "GET",
-			data: { room_type_id },
+			data: { condition_code },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("view", data) : notification("error", "Error!", data.message),
 			error: function ({ responseJSON }) {},
 		});
+		
 	}
 };
 
 // Edit DATA
-editData = (room_type_id) => {
+editData = (condition_code) => {
 	{
 		$.ajax({
-			url: BASE_URL + "room_type/" + room_type_id,
+			url: BASE_URL + "pd_condition/" + condition_code,
 			type: "GET",
-			data: { room_type_id },
+			data: { condition_code },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("edit", data) : notification("error", "Error!", data.message),
@@ -216,7 +208,7 @@ editData = (room_type_id) => {
 };
 
 // function to delete data
-deleteData = (room_type_id) => {
+deleteData = (condition_code) => {
 	Swal.fire({
 		title: "Are you sure you want to delete this record?",
 		text: "You won't be able to revert this!",
@@ -229,15 +221,15 @@ deleteData = (room_type_id) => {
 		// if user clickes yes, it will change the active status to "Not Active".
 		if (t.value) {
 			$.ajax({
-				url: BASE_URL + "room_type",
+				url: BASE_URL + "pd_condition",
 				type: "DELETE",
-				data: { room_type_id },
+				data: { condition_code },
 				dataType: "json",
 
 				success: function (data) {
 					if (data.error == false) {
-						notification("success", "Success!", data.message);
 						loadTable();
+						notification("success", "Success!", data.message);
 					} else {
 						notification("error", "Error!", data.message);
 					}
@@ -252,12 +244,12 @@ deleteData = (room_type_id) => {
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
-	$("#room_type_form")[0].reset();
+	$("#pd_condition_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormRoomTypes").modal("show");
+const showModal = () => $("#FormPdConditions").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
@@ -280,9 +272,9 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["room_type_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
-		`<button type="button" onClick="return editData('${aData["room_type_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
-		`<button type="button" onClick="return deleteData('${aData["room_type_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
+		`<button type="button" onClick="return viewData('${aData["condition_code"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
+		`<button type="button" onClick="return editData('${aData["condition_code"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
+		`<button type="button" onClick="return deleteData('${aData["condition_code"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
 	return buttons;
 };
 

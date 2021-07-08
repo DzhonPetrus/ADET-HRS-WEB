@@ -103,4 +103,12 @@ class Admin extends CI_Controller {
 		$this->load->view('pages/package');
 		$this->load->view('template/footer');
 	}
+
+	public function pd_condition()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/pdconditions');
+		$this->load->view('template/footer');
+	}
 }
