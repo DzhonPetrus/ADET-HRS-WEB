@@ -262,9 +262,9 @@ const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
 const setFieldsReadOnly = (bool) =>
-	fields.forEach((field) => $(`#${field}`).prop("readonly", bool));
+	fields.forEach((field) => $(`#${field}`).prop("disabled", bool));
 const setReadOnlyFields = () =>
-	readOnlyFields.forEach((field) => $(`#${field}`).prop("readonly", true));
+	readOnlyFields.forEach((field) => $(`#${field}`).prop("disabled", true));
 
 const showAllFields = () =>
 	fields.forEach((field) => $(`#group-${field}`).show());
