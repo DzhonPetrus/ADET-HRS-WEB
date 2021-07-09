@@ -127,4 +127,11 @@ class Admin extends CI_Controller {
 		$this->load->view('pages/booking');
 		$this->load->view('template/footer');
 	}
+	public function loyalty_point_history()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/loyalty_point_history');
+		$this->load->view('template/footer');
+	}
 }
