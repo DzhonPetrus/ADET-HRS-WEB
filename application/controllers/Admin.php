@@ -119,4 +119,12 @@ class Admin extends CI_Controller {
 		$this->load->view('pages/room');
 		$this->load->view('template/footer');
 	}
+
+	public function booking()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/booking');
+		$this->load->view('template/footer');
+	}
 }
