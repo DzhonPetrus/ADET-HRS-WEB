@@ -1,27 +1,75 @@
 $(function () {
-	window.fields = ["pricing_id", "price_per_qty", "date_start","date_end","creator", "btnAdd", "btnUpdate"];
-	window.fieldsHidden = ["pricing_id", "creator", "btnUpdate"];
-	window.readOnlyFields = ["pricing_id", "creator"];
+	window.fields = ["lp_history_id","loyalty_point_id","booking_id", "points", "type","creator", "btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["lp_history_id", "creator", "owner","btnUpdate"];
+	window.readOnlyFields = ["lp_history_id", "creator","owner"];
 	
-	loadTable();
-	formReset();
+	loadLP = () => {
+		$.ajax({
+			url: BASE_URL + "loyalty_point",
+			type: "GET",
+			dataType: "JSON",
+			success: function (data){
+				if (data.error == false){
+					$("#loyalty_point_id").empty();
+					$.each(data.data, function (i, dataOptions)
+					{
+						var options = "";
 
+						options = "<option value='" + dataOptions.loyalty_point_id + "'>" + dataOptions.loyalty_point_id + "</option>";
+
+						$("#loyalty_point_id").append(options);
+					});
+				} else {
+					notification("error", "Eror!", data.message);
+				}
+			},
+			error: function({responseJSON}){},
+		});
+	};
+	loadBooking = () => {
+		$.ajax({
+			url: BASE_URL + "booking",
+			type: "GET",
+			dataType: "JSON",
+			success: function (data){
+				if (data.error == false){
+					$("#booking_id").empty();
+					$.each(data.data, function (i, dataOptions)
+					{
+						var options = "";
+
+						options = "<option value='" + dataOptions.booking_id + "'>" + dataOptions.booking_id + "</option>";
+
+						$("#booking_id").append(options);
+					});
+				} else {
+					notification("error", "Eror!", data.message);
+				}
+			},
+			error: function({responseJSON}){},
+		});
+	};
+
+	loadBooking();
+	loadLP();
+	formReset();
+	loadTable();
 
 	// function to save/update record
-	$("#pricing_form").on("submit", function (e) {
+	$("#lphistory_form").on("submit", function (e) {
 		e.preventDefault();
 		trimInputFields();
 
-		if ($("#pricing_form").parsley().validate()) {
+		if ($("#lphistory_form").parsley().validate()) {
 			var form_data = new FormData(this);
-			var pricing_id = $("#pricing_id").val();
-			if (pricing_id == "") {
+			var lp_history_id = $("#lp_history_id").val();
+			if (lp_history_id == "") {
 				// form_data.append("password", "P@ssw0rd");
 				// form_data.append("c_password", "P@ssw0rd");
 
 				// add record
 				$.ajax({
-					url: BASE_URL + "pricing",
+					url: BASE_URL + "loyalty_point_history",
 					type: "POST",
 					data: form_data,
 					dataType: "JSON",
@@ -32,7 +80,7 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
-							document.getElementById("pricing_form").reset();
+							document.getElementById("lphistory_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
 						}
@@ -41,7 +89,7 @@ $(function () {
 				});
 			} else {
 				$.ajax({
-					url: BASE_URL + `pricing/${pricing_id}`,
+					url: BASE_URL + `loyalty_point_history/${lp_history_id}`,
 					type: "PUT",
 					data: form_data,
 					dataType: "JSON",
@@ -86,6 +134,7 @@ loadTable = () => {
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
+			{ sClass: "text-left" },
 		],
 		columns: [
 			{
@@ -93,26 +142,32 @@ loadTable = () => {
 				render: (aData, type, row) => renderButtons(aData),
 			},
 			{
-				data: "pricing_id",
-				name: "pricing_id",
+				data: "lp_history_id",
+				name: "lp_history_id",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "price_per_qty",
-				name: "price_per_qty",
+				data: "loyalty_point_id",
+				name: "loyalty_point_id",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "date_start",
-				name: "date_start",
+				data: "booking_id",
+				name: "booking_id",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "date_end",
-				name: "date_end",
+				data: "points",
+				name: "points",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "type",
+				name: "type",
 				searchable: true,
 				className: "dtr-control",
 			},
@@ -124,17 +179,18 @@ loadTable = () => {
 			},
 		],
 		ajax: {
-			url: BASE_URL + "pricing",
+			url: BASE_URL + "loyalty_point_history",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["pricing_id"]);
-			$("td:eq(2)", nRow).html(aData["price_per_qty"]);
-			$("td:eq(3)", nRow).html(aData["date_start"]);
-			$("td:eq(4)", nRow).html(aData["date_end"]);
-			$("td:eq(5)", nRow).html(aData["created.email"]);
+			$("td:eq(1)", nRow).html(aData["lp_history_id"]);
+			$("td:eq(2)", nRow).html(aData["loyalty_point_id"]);
+			$("td:eq(3)", nRow).html(aData["booking_id"]);
+			$("td:eq(4)", nRow).html(aData["points"]);
+			$("td:eq(5)", nRow).html(aData["type"]);
+			$("td:eq(6)", nRow).html(aData["created.email"]);
 
 		},
 		drawCallback: function (settings) {
@@ -144,12 +200,12 @@ loadTable = () => {
 };
 
 // VIEW DATA
-viewData = (pricing_id) => {
+viewData = (lp_history_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "pricing/" + pricing_id,
+			url: BASE_URL + "loyalty_point_history/" + lp_history_id,
 			type: "GET",
-			data: { pricing_id },
+			data: { lp_history_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("view", data) : notification("error", "Error!", data.message),
@@ -159,12 +215,12 @@ viewData = (pricing_id) => {
 };
 
 // Edit DATA
-editData = (pricing_id) => {
+editData = (lp_history_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "pricing/" + pricing_id,
+			url: BASE_URL + "loyalty_point_history/" + lp_history_id,
 			type: "GET",
-			data: { pricing_id },
+			data: { lp_history_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("edit", data) : notification("error", "Error!", data.message),
@@ -174,7 +230,7 @@ editData = (pricing_id) => {
 };
 
 // function to delete data
-deleteData = (pricing_id) => {
+deleteData = (lp_history_id) => {
 	Swal.fire({
 		title: "Are you sure you want to delete this record?",
 		text: "You won't be able to revert this!",
@@ -187,16 +243,15 @@ deleteData = (pricing_id) => {
 		// if user clickes yes, it will change the active status to "Not Active".
 		if (t.value) {
 			$.ajax({
-				url: BASE_URL + "pricing",
+				url: BASE_URL + "loyalty_point_history",
 				type: "DELETE",
-				data: { pricing_id },
+				data: { lp_history_id },
 				dataType: "json",
 
 				success: function (data) {
 					if (data.error == false) {
 						loadTable();
 						notification("success", "Success!", data.message);
-						
 					} else {
 						notification("error", "Error!", data.message);
 					}
@@ -211,19 +266,19 @@ deleteData = (pricing_id) => {
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
-	$("#pricing_form")[0].reset();
+	$("#lphistory_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormPricings").modal("show");
+const showModal = () => $("#FormLPHistory").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
 const setFieldsReadOnly = (bool) =>
-	fields.forEach((field) => $(`#${field}`).prop("readonly", bool));
+	fields.forEach((field) => $(`#${field}`).prop("disabled", bool));
 const setReadOnlyFields = () =>
-	readOnlyFields.forEach((field) => $(`#${field}`).prop("readonly", true));
+	readOnlyFields.forEach((field) => $(`#${field}`).prop("disabled", true));
 
 const showAllFields = () =>
 	fields.forEach((field) => $(`#group-${field}`).show());
@@ -239,9 +294,9 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["pricing_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
-		`<button type="button" onClick="return editData('${aData["pricing_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
-		`<button type="button" onClick="return deleteData('${aData["pricing_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
+		`<button type="button" onClick="return viewData('${aData["lp_history_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
+		`<button type="button" onClick="return editData('${aData["lp_history_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
+		`<button type="button" onClick="return deleteData('${aData["lp_history_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
 	return buttons;
 };
 
