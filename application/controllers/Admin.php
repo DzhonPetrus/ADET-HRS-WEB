@@ -134,4 +134,27 @@ class Admin extends CI_Controller {
 		$this->load->view('pages/loyalty_point_history');
 		$this->load->view('template/footer');
 	}
+	public function promo_and_discount()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/promo_discount');
+		$this->load->view('template/footer');
+	}
+
+	public function rooms_reserved()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/rooms_reserved');
+		$this->load->view('template/footer');
+	}
+
+	public function housekeeping()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/housekeeping');
+		$this->load->view('template/footer');
+	}
 }

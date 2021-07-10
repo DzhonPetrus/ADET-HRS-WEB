@@ -1,26 +1,77 @@
 $(function () {
-	window.fields = ["rate_id", "price_per_qty", "startDate","endDate","creator", "btnAdd", "btnUpdate"];
-	window.fieldsHidden = ["rate_id", "creator", "btnUpdate"];
-	window.readOnlyFields = ["rate_id", "creator"];
+	window.fields = ["pd_code", "type", "description","room_type_id","discount_percentage_amount", "valid_from","valid_until","condition_code", "creator","btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["pd_code", "creator", "btnUpdate"];
+	window.readOnlyFields = ["pd_code", "creator"];
 
-	formReset();
+
+	loadRoomtype = () => {
+		$.ajax({
+			url: BASE_URL + "room_type",
+			type: "GET",
+			dataType: "JSON",
+			success: function (data){
+				if (data.error == false){
+					$("#room_type_id").empty();
+					$.each(data.data, function (i, dataOptions)
+					{
+						var options = "";
+
+						options = "<option value='" + dataOptions.room_type_id + "'>" + dataOptions.type + "</option>";
+
+						$("#room_type_id").append(options);
+					});
+				} else {
+					notification("error", "Eror!", data.message);
+				}
+			},
+			error: function({responseJSON}){},
+		});
+	};
+	loadCondition = () => {
+		$.ajax({
+			url: BASE_URL + "pd_condition",
+			type: "GET",
+			dataType: "JSON",
+			success: function (data){
+				if (data.error == false){
+					$("#condition_code").empty();
+					$.each(data.data, function (i, dataOptions)
+					{
+						var options = "";
+
+						options = "<option value='" + dataOptions.condition_code + "'>" + dataOptions.condition_code + "</option>";
+
+						$("#condition_code").append(options);
+					});
+				} else {
+					notification("error", "Eror!", data.message);
+				}
+			},
+			error: function({responseJSON}){},
+		});
+	};
+	loadCondition();
+	loadRoomtype();
 	loadTable();
+	formReset();
+	
 
 	// function to save/update record
-	$("#rate_form").on("submit", function (e) {
+	$("#pd_form").on("submit", function (e) {
 		e.preventDefault();
 		trimInputFields();
 
-		if ($("#rate_form").parsley().validate()) {
+		if ($("#pd_form").parsley().validate()) {
 			var form_data = new FormData(this);
-			var rate_id = $("#rate_id").val();
-			if (rate_id == "") {
+			var pd_code = $("#pd_code").val();
+			if (pd_code == "") {
 				// form_data.append("password", "P@ssw0rd");
 				// form_data.append("c_password", "P@ssw0rd");
 
 				// add record
+				console.table([...form_data]);
 				$.ajax({
-					url: BASE_URL + "rate",
+					url: BASE_URL + "promo_and_discount",
 					type: "POST",
 					data: form_data,
 					dataType: "JSON",
@@ -31,7 +82,7 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
-							document.getElementById("rate_form").reset();
+							document.getElementById("pd_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
 						}
@@ -40,7 +91,7 @@ $(function () {
 				});
 			} else {
 				$.ajax({
-					url: BASE_URL + `rate/${rate_id}`,
+					url: BASE_URL + `promo_and_discount/${pd_code}`,
 					type: "PUT",
 					data: form_data,
 					dataType: "JSON",
@@ -85,6 +136,8 @@ loadTable = () => {
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
 		],
 		columns: [
 			{
@@ -92,26 +145,38 @@ loadTable = () => {
 				render: (aData, type, row) => renderButtons(aData),
 			},
 			{
-				data: "rate_id",
-				name: "rate_id",
+				data: "pd_code",
+				name: "pd_code",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "price_per_qty",
-				name: "price_per_qty",
+				data: "type",
+				name: "type",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "startDate",
-				name: "startDate",
+				data: "rooms.type",
+				name: "rooms.type",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "endDate",
-				name: "endDate",
+				data: "description",
+				name: "description",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "discount_percentage_amount",
+				name: "discount_percentage_amount",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "condition_code",
+				name: "condition_code",
 				searchable: true,
 				className: "dtr-control",
 			},
@@ -123,17 +188,19 @@ loadTable = () => {
 			},
 		],
 		ajax: {
-			url: BASE_URL + "rate",
+			url: BASE_URL + "promo_and_discount",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["rate_id"]);
-			$("td:eq(2)", nRow).html(aData["price_per_qty"]);
-			$("td:eq(3)", nRow).html(aData["date_start"]);
-			$("td:eq(4)", nRow).html(aData["date_end"]);
-			$("td:eq(5)", nRow).html(aData["created.email"]);
+			$("td:eq(1)", nRow).html(aData["pd_code"]);
+			$("td:eq(2)", nRow).html(aData["type"]);
+			$("td:eq(3)", nRow).html(aData["rooms.type"]);
+			$("td:eq(4)", nRow).html(aData["description"]);
+			$("td:eq(5)", nRow).html(aData["discount_percentage_amount"]);
+			$("td:eq(6)", nRow).html(aData["condition_code"]);
+			$("td:eq(7)", nRow).html(aData["created.email"]);
 
 		},
 		drawCallback: function (settings) {
@@ -143,12 +210,12 @@ loadTable = () => {
 };
 
 // VIEW DATA
-viewData = (rate_id) => {
+viewData = (pd_code) => {
 	{
 		$.ajax({
-			url: BASE_URL + "rate/" + rate_id,
+			url: BASE_URL + "promo_and_discount/" + pd_code,
 			type: "GET",
-			data: { rate_id },
+			data: { pd_code },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("view", data) : notification("error", "Error!", data.message),
@@ -158,12 +225,12 @@ viewData = (rate_id) => {
 };
 
 // Edit DATA
-editData = (rate_id) => {
+editData = (pd_code) => {
 	{
 		$.ajax({
-			url: BASE_URL + "rate/" + rate_id,
+			url: BASE_URL + "promo_and_discount/" + pd_code,
 			type: "GET",
-			data: { rate_id },
+			data: { pd_code },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("edit", data) : notification("error", "Error!", data.message),
@@ -173,7 +240,7 @@ editData = (rate_id) => {
 };
 
 // function to delete data
-deleteData = (rate_id) => {
+deleteData = (pd_code) => {
 	Swal.fire({
 		title: "Are you sure you want to delete this record?",
 		text: "You won't be able to revert this!",
@@ -186,9 +253,9 @@ deleteData = (rate_id) => {
 		// if user clickes yes, it will change the active status to "Not Active".
 		if (t.value) {
 			$.ajax({
-				url: BASE_URL + "rate",
+				url: BASE_URL + "promo_and_discount",
 				type: "DELETE",
-				data: { rate_id },
+				data: { pd_code },
 				dataType: "json",
 
 				success: function (data) {
@@ -209,12 +276,12 @@ deleteData = (rate_id) => {
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
-	$("#rate_form")[0].reset();
+	$("#pd_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormRates").modal("show");
+const showModal = () => $("#FormPD").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
@@ -237,9 +304,9 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["rate_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
-		`<button type="button" onClick="return editData('${aData["rate_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
-		`<button type="button" onClick="return deleteData('${aData["rate_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
+		`<button type="button" onClick="return viewData('${aData["pd_code"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
+		`<button type="button" onClick="return editData('${aData["pd_code"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
+		`<button type="button" onClick="return deleteData('${aData["pd_code"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
 	return buttons;
 };
 
