@@ -1,5 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
 
@@ -88,18 +87,73 @@ class Admin extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+	public function rates()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/rates');
+		$this->load->view('template/footer');
+	}
+
 	public function package()
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/admin/nav');
-		$this->load->view('pages/packages');
+		$this->load->view('pages/package');
 		$this->load->view('template/footer');
 	}
+
+	public function pd_condition()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/pdconditions');
+		$this->load->view('template/footer');
+	}
+
 	public function room()
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/admin/nav');
-		$this->load->view('pages/rooms');
+		$this->load->view('pages/room');
+		$this->load->view('template/footer');
+	}
+
+	public function booking()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/booking');
+		$this->load->view('template/footer');
+	}
+	public function loyalty_point_history()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/loyalty_point_history');
+		$this->load->view('template/footer');
+	}
+	public function promo_and_discount()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/promo_discount');
+		$this->load->view('template/footer');
+	}
+
+	public function rooms_reserved()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/rooms_reserved');
+		$this->load->view('template/footer');
+	}
+
+	public function housekeeping()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/housekeeping');
 		$this->load->view('template/footer');
 	}
 }
