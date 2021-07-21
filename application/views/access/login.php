@@ -1,11 +1,11 @@
 <div class="main-content">
     <!-- Header -->
-    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+    <div class="header  py-7 py-lg-8 pt-lg-9" style="background-color:#dca73a">
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-                <i class="ni ni-building text-primary"></i>
+                <i class="fa fa-building" style="color:white"></i>
               <h1 class="display-4 text-white">
                 Hotel Reservation System
               </h1>
@@ -31,11 +31,11 @@
               <div class="btn-wrapper text-center">
                 <a href="#" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
-                  <span class="btn-inner--text">Github</span>
+                  <span class="btn-inner--text" style="color:black">Github</span>
                 </a>
                 <a href="#" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-                  <span class="btn-inner--text">Google</span>
+                  <span class="btn-inner--text"style="color:black">Google</span>
                 </a>
               </div>
             </div>
@@ -60,14 +60,16 @@
                     <input class="form-control" placeholder="Password" type="password" id="password"  name="password" required>
                   </div>
                 </div>
+                  <div class="row">
                 <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                  <label class="custom-control-label" for=" customCheckLogin">
+                  <input  type="checkbox">
+                  <label>
                     <span class="text-muted">Remember me</span>
                   </label>
                 </div>
+                  </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4">Sign in</button>
+                  <button type="submit" class="btn btn-primary my-4" style="background-color:#dca73a; border-color:#dca73a">Sign in</button>
                 </div>
               </form>
             </div>
@@ -77,7 +79,7 @@
               <a href="#" class="text-light"><small>Forgot password?</small></a>
             </div>
             <div class="col-6 text-right">
-              <a href="#" class="text-light"><small>Create new account</small></a>
+              <a href="<?= base_url() ?>Access/register" class="text-light"><small>Create new account</small></a>
             </div>
           </div>
         </div>
