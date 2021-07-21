@@ -1,27 +1,74 @@
 $(function () {
-	window.fields = ["pricing_id", "price_per_qty", "date_start","date_end","creator", "btnAdd", "btnUpdate"];
-	window.fieldsHidden = ["pricing_id", "creator", "btnUpdate"];
-	window.readOnlyFields = ["pricing_id", "creator"];
-	
-	loadTable();
-	formReset();
+	window.fields = ["package_id", "min_guest", "max_guest","pricing_id","room_type_id","title","description","creator", "btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["package_id", "creator", "btnUpdate"];
+	window.readOnlyFields = ["package_id", "creator"];
 
+    loadPricing = () => {
+		$.ajax({
+			url: BASE_URL + "pricing",
+			type: "GET",
+			dataType: "JSON",
+			success: function (data){
+				if (data.error == false){
+					$("#pricing_id").empty();
+					$.each(data.data, function (i, dataOptions)
+					{
+						var options = "";
+
+						options = "<option value='" + dataOptions.pricing_id + "'>" + dataOptions.price_per_qty + "</option>";
+
+						$("#pricing_id").append(options);
+					});
+				} else {
+					notification("error", "Eror!", data.message);
+				}
+			},
+			error: function({responseJSON}){},
+		});
+	};
+    loadRoomType = () => {
+		$.ajax({
+			url: BASE_URL + "room_type",
+			type: "GET",
+			dataType: "JSON",
+			success: function (data){
+				if (data.error == false){
+					$("#room_type_id").empty();
+					$.each(data.data, function (i, dataOptions)
+					{
+						var options = "";
+
+						options = "<option value='" + dataOptions.room_type_id + "'>" + dataOptions.type + "</option>";
+
+						$("#room_type_id").append(options);
+					});
+				} else {
+					notification("error", "Eror!", data.message);
+				}
+			},
+			error: function({responseJSON}){},
+		});
+	};
+    loadRoomType();
+    loadPricing();
+	formReset();
+	loadTable();
 
 	// function to save/update record
-	$("#pricing_form").on("submit", function (e) {
+	$("#package_form").on("submit", function (e) {
 		e.preventDefault();
 		trimInputFields();
 
-		if ($("#pricing_form").parsley().validate()) {
+		if ($("#package_form").parsley().validate()) {
 			var form_data = new FormData(this);
-			var pricing_id = $("#pricing_id").val();
-			if (pricing_id == "") {
+			var package_id = $("#package_id").val();
+			if (package_id == "") {
 				// form_data.append("password", "P@ssw0rd");
 				// form_data.append("c_password", "P@ssw0rd");
 
 				// add record
 				$.ajax({
-					url: BASE_URL + "pricing",
+					url: BASE_URL + "package",
 					type: "POST",
 					data: form_data,
 					dataType: "JSON",
@@ -32,7 +79,7 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
-							document.getElementById("pricing_form").reset();
+                            document.getElementById("package_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
 						}
@@ -41,7 +88,7 @@ $(function () {
 				});
 			} else {
 				$.ajax({
-					url: BASE_URL + `pricing/${pricing_id}`,
+					url: BASE_URL + `package/`+package_id,
 					type: "PUT",
 					data: form_data,
 					dataType: "JSON",
@@ -49,6 +96,7 @@ $(function () {
 					processData: false,
 					cache: false,
 					success: function (data) {
+                        console.table([...form_data]);
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
@@ -84,8 +132,10 @@ loadTable = () => {
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
-			{ sClass: "text-left" },
-			{ sClass: "text-left" },
+            { sClass: "text-left" },
+            { sClass: "text-left" },
+            { sClass: "text-left" },
+            { sClass: "text-left" },
 		],
 		columns: [
 			{
@@ -93,26 +143,38 @@ loadTable = () => {
 				render: (aData, type, row) => renderButtons(aData),
 			},
 			{
-				data: "pricing_id",
-				name: "pricing_id",
+				data: "package_id",
+				name: "package_id",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "price_per_qty",
-				name: "price_per_qty",
+				data: "min_guest",
+				name: "min_guest",
 				searchable: true,
 				className: "dtr-control",
 			},
-			{
-				data: "date_start",
-				name: "date_start",
+            {
+				data: "max_guest",
+				name: "max_guest",
 				searchable: true,
 				className: "dtr-control",
 			},
-			{
-				data: "date_end",
-				name: "date_end",
+            {
+				data: "title",
+				name: "title",
+				searchable: true,
+				className: "dtr-control",
+			},
+            {
+				data: "price.price_per_qty",
+				name: "price.price_per_qty",
+				searchable: true,
+				className: "dtr-control",
+			},
+            {
+				data: "rooms.type",
+				name: "rooms.type",
 				searchable: true,
 				className: "dtr-control",
 			},
@@ -124,17 +186,19 @@ loadTable = () => {
 			},
 		],
 		ajax: {
-			url: BASE_URL + "pricing",
+			url: BASE_URL + "package",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["pricing_id"]);
-			$("td:eq(2)", nRow).html(aData["price_per_qty"]);
-			$("td:eq(3)", nRow).html(aData["date_start"]);
-			$("td:eq(4)", nRow).html(aData["date_end"]);
-			$("td:eq(5)", nRow).html(aData["created.email"]);
+			$("td:eq(1)", nRow).html(aData["package_id"]);
+            $("td:eq(2)", nRow).html(aData["title"]);
+			$("td:eq(3)", nRow).html(aData["min_guest"]);
+			$("td:eq(4)", nRow).html(aData["max_guest"]);
+            $("td:eq(5)", nRow).html(aData["price.price_per_qty"]);
+            $("td:eq(6)", nRow).html(aData["rooms.type"]);
+            $("td:eq(7)", nRow).html(aData["created.email"]);
 
 		},
 		drawCallback: function (settings) {
@@ -144,12 +208,12 @@ loadTable = () => {
 };
 
 // VIEW DATA
-viewData = (pricing_id) => {
+viewData = (package_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "pricing/" + pricing_id,
+			url: BASE_URL + "package/" + package_id,
 			type: "GET",
-			data: { pricing_id },
+			data: { package_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("view", data) : notification("error", "Error!", data.message),
@@ -159,12 +223,12 @@ viewData = (pricing_id) => {
 };
 
 // Edit DATA
-editData = (pricing_id) => {
+editData = (package_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "pricing/" + pricing_id,
+			url: BASE_URL + "package/" + package_id,
 			type: "GET",
-			data: { pricing_id },
+			data: { package_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("edit", data) : notification("error", "Error!", data.message),
@@ -174,7 +238,7 @@ editData = (pricing_id) => {
 };
 
 // function to delete data
-deleteData = (pricing_id) => {
+deleteData = (package_id) => {
 	Swal.fire({
 		title: "Are you sure you want to delete this record?",
 		text: "You won't be able to revert this!",
@@ -187,16 +251,15 @@ deleteData = (pricing_id) => {
 		// if user clickes yes, it will change the active status to "Not Active".
 		if (t.value) {
 			$.ajax({
-				url: BASE_URL + "pricing",
+				url: BASE_URL + "package",
 				type: "DELETE",
-				data: { pricing_id },
+				data: { package_id },
 				dataType: "json",
 
 				success: function (data) {
 					if (data.error == false) {
-						loadTable();
 						notification("success", "Success!", data.message);
-						
+						loadTable();
 					} else {
 						notification("error", "Error!", data.message);
 					}
@@ -211,12 +274,12 @@ deleteData = (pricing_id) => {
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
-	$("#pricing_form")[0].reset();
+	$("#package_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormPricings").modal("show");
+const showModal = () => $("#FormPackages").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
@@ -239,9 +302,9 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["pricing_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
-		`<button type="button" onClick="return editData('${aData["pricing_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
-		`<button type="button" onClick="return deleteData('${aData["pricing_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
+		`<button type="button" onClick="return viewData('${aData["package_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
+		`<button type="button" onClick="return editData('${aData["package_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
+		`<button type="button" onClick="return deleteData('${aData["package_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
 	return buttons;
 };
 

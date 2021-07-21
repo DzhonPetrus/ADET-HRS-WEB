@@ -9,12 +9,12 @@
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
               <li class="breadcrumb-item"><a href="./"><i class="fas fa-home"></i></a></li>
               <li class="breadcrumb-item"><a href="#">Tables</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Room Type</li>
+              <li class="breadcrumb-item active" aria-current="page">Promo/Discount Condition</li>
             </ol>
           </nav>
         </div>
         <div class="col-lg-6 col-5 text-right">
-          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormRoomTypes" id="show_tax_form" onClick="newHandler()">New</button>
+          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormPdConditions" id="show_tax_form" onClick="newHandler()">New</button>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
       <div class="card">
         <!-- Card header -->
         <div class="card-header border-0">
-          <h3 class="mb-0">ROOM TYPES TABLE</h3>
+          <h3 class="mb-0">PROMO/DISCOUNT CONDITION TABLE</h3>
         </div>
         <!-- Light table -->
         <div class="table-responsive">
@@ -39,12 +39,12 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col" class="sort" data-sort="buttons">Actions</th>
-                <th scope="col" class="sort" data-sort="room_type_id">Room Type ID</th>
-                <th scope="col" class="sort" data-sort="type">TYPE</th>
-                <th scope="col" class="sort" data-sort="description">Description</th>
-                <th scope="col" class="sort" data-sort="min_guest">Minumum Guest</th>
+                <th scope="col" class="sort" data-sort="condition_code">Promo/Discount Condition ID</th>
+                <th scope="col" class="sort" data-sort="duration">Duration</th>
+                <th scope="col" class="sort" data-sort="min_duration">Minimum Duration</th>
+                <th scope="col" class="sort" data-sort="min_guest">Minimum Guest</th>
                 <th scope="col" class="sort" data-sort="max_guest">Maximum Guest</th>
-                <th scope="col" class="sort" data-sort="pricing_id">Price</th>
+                <th scope="col" class="sort" data-sort="limit">Limit</th>
                 <th scope="col" class="sort" data-sort="created">Created</th>
               </tr>
             </thead>
@@ -87,11 +87,11 @@
 
 
   <!-- MODAL FORM -->
-  <div class="modal fade" id="FormRoomTypes" tabindex="-1" role="dialog" aria-labelledby="FormRoomTypesLabel" aria-hidden="true">
+  <div class="modal fade" id="FormPdConditions" tabindex="-1" role="dialog" aria-labelledby="FormPdConditionsLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="FormRoomTypesLabel">Room Types</h5>
+          <h5 class="modal-title" id="FormPdConditionsLabel">Promo/Discount Condition</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -101,53 +101,52 @@
 
         <div class="card shadow-none">
 
-        <form id="room_type_form">
+        <form id="pd_condition_form">
 
           <div class="card-body">
-            <h6 class="heading-small text-muted mb-4">Room Types Information</h6>
+            <h6 class="heading-small text-muted mb-4">Promo/Discount Condition Information</h6>
             <div class="pl-lg-4">
               <div class="row">
-                <div class="col-lg-12" id="update_room_type_id">
-                  <div class="form-group" id="group-room_type_id">
-                    <label class="form-control-label" for="input-tax-percentage">Room Type ID</label>
-                    <input type="text" id="room_type_id" class="form-control" name="room_type_id">
+                <div class="col-lg-12" id="update_condition_code">
+                  <div class="form-group" id="group-condition_code">
+                    <label class="form-control-label" for="input-tax-percentage">Promo/Discount Condition ID</label>
+                    <input type="text" id="condition_code" class="form-control" readonly name="condition_code">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-type">
-                    <label class="form-control-label" for="input-tax-percentage">Type</label>
-                    <input type="text" id="type" class="form-control" name="type">
+                    <label class="form-control-label" for="input-tax-percentage">Duration</label>
+                    <input type="time" id="duration" class="form-control" readonly name="duration">
                   </div>
                 </div>
                 <div class="col-lg-12">
-                  <div class="form-group" id="group-description">
-                    <label class="form-control-label" for="input-tax-percentage">Description</label>
-                    <input type="text" id="description" class="form-control" name="description">
+                  <div class="form-group" id="group-owner">
+                    <label class="form-control-label" for="input-tax-percentage">Minimum Duration</label>
+                    <input type="date" id="min_duration" class="form-control" readonly name="min_duration">
                   </div>
                 </div>
                 <div class="col-lg-6">
-                  <div class="form-group" id="group-description">
-                    <label class="form-control-label" for="input-tax-percentage">Minumum Guest</label>
-                    <input type="number" id="min_guest" class="form-control" name="min_guest">
+                  <div class="form-group" id="group-owner">
+                    <label class="form-control-label" for="input-tax-percentage">Minimum Guest</label>
+                    <input type="number" id="min_guest" class="form-control" readonly name="min_guest">
                   </div>
                 </div>
                 <div class="col-lg-6">
-                  <div class="form-group" id="group-type">
+                  <div class="form-group" id="group-owner">
                     <label class="form-control-label" for="input-tax-percentage">Maximum Guest</label>
-                    <input type="number" id="max_guest" class="form-control" name="max_guest">
+                    <input type="number" id="max_guest" class="form-control" readonly name="max_guest">
                   </div>
                 </div>
                 <div class="col-lg-12">
-                  <div class="form-group" id="group-description">
-                    <label class="form-control-label" for="input-tax-percentage">Price</label>
-                    <select id="pricing_id" class="form-control" name="pricing_id">
-                    </select>
+                  <div class="form-group" id="group-owner">
+                    <label class="form-control-label" for="input-tax-percentage">Limit</label>
+                    <input type="number" id="limit" class="form-control" readonly name="limit">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-creator">
                     <label class="form-control-label" for="input-tax-percentage">CREATED BY</label>
-                    <input type="text" id="creator" class="form-control" name="creator">
+                    <input type="text" id="creator" class="form-control" readonly name="creator">
                   </div>
                 </div>
               </div>
@@ -177,4 +176,4 @@
 </div>
 
 <!-- Import JS-->
-<script src="<?= base_url('assets') ?>/js/pages/roomtypes.js"></script>
+<script src="<?= base_url('assets') ?>/js/pages/pdconditions.js"></script>

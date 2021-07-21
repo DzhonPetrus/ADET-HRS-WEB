@@ -1,27 +1,54 @@
 $(function () {
-	window.fields = ["pricing_id", "price_per_qty", "date_start","date_end","creator", "btnAdd", "btnUpdate"];
-	window.fieldsHidden = ["pricing_id", "creator", "btnUpdate"];
-	window.readOnlyFields = ["pricing_id", "creator"];
-	
+	window.fields = ["booking_id", "user_id", "total_no_guest","total_no_night","total_price", "discount", "creator","btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["booking_id", "creator", "btnUpdate"];
+	window.readOnlyFields = ["booking_id", "creator"];
+
+
+	loadUser = () => {
+		$.ajax({
+			url: BASE_URL + "user",
+			type: "GET",
+			dataType: "JSON",
+			success: function (data){
+				if (data.error == false){
+					$("#user_id").empty();
+					$.each(data.data, function (i, dataOptions)
+					{
+						var options = "";
+
+						options = "<option value='" + dataOptions.id + "'>" + dataOptions.email + "</option>";
+
+						$("#user_id").append(options);
+					});
+				} else {
+					notification("error", "Eror!", data.message);
+				}
+			},
+			error: function({responseJSON}){},
+		});
+	};
+
+	loadUser();
 	loadTable();
 	formReset();
-
+	
 
 	// function to save/update record
-	$("#pricing_form").on("submit", function (e) {
+	$("#booking_form").on("submit", function (e) {
 		e.preventDefault();
 		trimInputFields();
 
-		if ($("#pricing_form").parsley().validate()) {
+		if ($("#booking_form").parsley().validate()) {
 			var form_data = new FormData(this);
-			var pricing_id = $("#pricing_id").val();
-			if (pricing_id == "") {
+			var booking_id = $("#booking_id").val();
+			if (booking_id == "") {
 				// form_data.append("password", "P@ssw0rd");
 				// form_data.append("c_password", "P@ssw0rd");
 
 				// add record
+				console.table([...form_data]);
 				$.ajax({
-					url: BASE_URL + "pricing",
+					url: BASE_URL + "booking",
 					type: "POST",
 					data: form_data,
 					dataType: "JSON",
@@ -32,7 +59,7 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
-							document.getElementById("pricing_form").reset();
+							document.getElementById("booking_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
 						}
@@ -41,7 +68,7 @@ $(function () {
 				});
 			} else {
 				$.ajax({
-					url: BASE_URL + `pricing/${pricing_id}`,
+					url: BASE_URL + `booking/${booking_id}`,
 					type: "PUT",
 					data: form_data,
 					dataType: "JSON",
@@ -86,6 +113,8 @@ loadTable = () => {
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
 		],
 		columns: [
 			{
@@ -93,26 +122,38 @@ loadTable = () => {
 				render: (aData, type, row) => renderButtons(aData),
 			},
 			{
-				data: "pricing_id",
-				name: "pricing_id",
+				data: "booking_id",
+				name: "booking_id",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "price_per_qty",
-				name: "price_per_qty",
+				data: "client.email",
+				name: "client.email",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "date_start",
-				name: "date_start",
+				data: "total_no_guest",
+				name: "total_no_guest",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "date_end",
-				name: "date_end",
+				data: "total_no_night",
+				name: "total_no_night",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "total_price",
+				name: "total_price",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "discount",
+				name: "discount",
 				searchable: true,
 				className: "dtr-control",
 			},
@@ -124,17 +165,19 @@ loadTable = () => {
 			},
 		],
 		ajax: {
-			url: BASE_URL + "pricing",
+			url: BASE_URL + "booking",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["pricing_id"]);
-			$("td:eq(2)", nRow).html(aData["price_per_qty"]);
-			$("td:eq(3)", nRow).html(aData["date_start"]);
-			$("td:eq(4)", nRow).html(aData["date_end"]);
-			$("td:eq(5)", nRow).html(aData["created.email"]);
+			$("td:eq(1)", nRow).html(aData["booking_id"]);
+			$("td:eq(2)", nRow).html(aData["client.email"]);
+			$("td:eq(3)", nRow).html(aData["total_no_guest"]);
+			$("td:eq(4)", nRow).html(aData["total_no_night"]);
+			$("td:eq(5)", nRow).html(aData["total_price"]);
+			$("td:eq(6)", nRow).html(aData["discount"]);
+			$("td:eq(7a)", nRow).html(aData["created.email"]);
 
 		},
 		drawCallback: function (settings) {
@@ -144,12 +187,12 @@ loadTable = () => {
 };
 
 // VIEW DATA
-viewData = (pricing_id) => {
+viewData = (booking_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "pricing/" + pricing_id,
+			url: BASE_URL + "booking/" + booking_id,
 			type: "GET",
-			data: { pricing_id },
+			data: { booking_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("view", data) : notification("error", "Error!", data.message),
@@ -159,12 +202,12 @@ viewData = (pricing_id) => {
 };
 
 // Edit DATA
-editData = (pricing_id) => {
+editData = (booking_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "pricing/" + pricing_id,
+			url: BASE_URL + "booking/" + booking_id,
 			type: "GET",
-			data: { pricing_id },
+			data: { booking_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("edit", data) : notification("error", "Error!", data.message),
@@ -174,7 +217,7 @@ editData = (pricing_id) => {
 };
 
 // function to delete data
-deleteData = (pricing_id) => {
+deleteData = (booking_id) => {
 	Swal.fire({
 		title: "Are you sure you want to delete this record?",
 		text: "You won't be able to revert this!",
@@ -187,16 +230,15 @@ deleteData = (pricing_id) => {
 		// if user clickes yes, it will change the active status to "Not Active".
 		if (t.value) {
 			$.ajax({
-				url: BASE_URL + "pricing",
+				url: BASE_URL + "booking",
 				type: "DELETE",
-				data: { pricing_id },
+				data: { booking_id },
 				dataType: "json",
 
 				success: function (data) {
 					if (data.error == false) {
-						loadTable();
 						notification("success", "Success!", data.message);
-						
+						loadTable();
 					} else {
 						notification("error", "Error!", data.message);
 					}
@@ -211,19 +253,19 @@ deleteData = (pricing_id) => {
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
-	$("#pricing_form")[0].reset();
+	$("#booking_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormPricings").modal("show");
+const showModal = () => $("#FormBookings").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
 const setFieldsReadOnly = (bool) =>
-	fields.forEach((field) => $(`#${field}`).prop("readonly", bool));
+	fields.forEach((field) => $(`#${field}`).prop("disabled", bool));
 const setReadOnlyFields = () =>
-	readOnlyFields.forEach((field) => $(`#${field}`).prop("readonly", true));
+	readOnlyFields.forEach((field) => $(`#${field}`).prop("disabled", true));
 
 const showAllFields = () =>
 	fields.forEach((field) => $(`#group-${field}`).show());
@@ -239,9 +281,9 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["pricing_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
-		`<button type="button" onClick="return editData('${aData["pricing_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
-		`<button type="button" onClick="return deleteData('${aData["pricing_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
+		`<button type="button" onClick="return viewData('${aData["booking_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
+		`<button type="button" onClick="return editData('${aData["booking_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
+		`<button type="button" onClick="return deleteData('${aData["booking_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
 	return buttons;
 };
 
