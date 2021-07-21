@@ -25,6 +25,13 @@ class Access extends CI_Controller {
 		$this->load->view('access/login');
 		$this->load->view('template/footer');
 	}
+	public function register()
+	{
+		$this->session->sess_destroy();
+		$this->load->view('template/head');
+		$this->load->view('access/register');
+		$this->load->view('template/footer');
+	}
 
 	public function oAuth() {
 		if ($_GET['token'] != null){
