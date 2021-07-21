@@ -32,7 +32,7 @@
               <div class="col-lg-12">
                 <div class="form-group">
                   <label class="form-control-label" for="input-user-first-name">First Name</label>
-                  <input id="firstname" name="firstname" class="form-control" placeholder="First Name" type="text">
+                  <input id="firstname" name="first_name" class="form-control" placeholder="First Name" type="text">
                 </div>
               </div>
             </div>
@@ -211,7 +211,7 @@
 
 
 <!-- Import JS-->
-<script src="<?= base_url('assets') ?>/js/pages/userinfo.js"></script>
+<script src="<?= base_url('assets') ?>/js/pages/user_info.js"></script>
 
 
 

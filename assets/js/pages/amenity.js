@@ -1,5 +1,5 @@
 $(function () {
-	window.fields = ["amenity_id", "type", "description","creator", "btnAdd", "btnUpdate"];
+	window.fields = ["amenity_id", "type", "description","creator", "btnAdd", "btnUpdate", "photo_url"];
 	window.fieldsHidden = ["amenity_id", "creator", "btnUpdate"];
 	window.readOnlyFields = ["amenity_id", "creator"];
 
@@ -13,6 +13,7 @@ $(function () {
 
 		if ($("#amenity_form").parsley().validate()) {
 			var form_data = new FormData(this);
+			console.log(form_data.values())
 			var amenity_id = $("#amenity_id").val();
 			if (amenity_id == "") {
 				// form_data.append("password", "P@ssw0rd");
@@ -36,7 +37,7 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {},
+					error: function ({ responseJSON }) {notification("error", "Error!", responseJSON)},
 				});
 			} else {
 				$.ajax({
@@ -55,7 +56,7 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {},
+					error: function ({ responseJSON }) {notification("error", "Error!", responseJSON)},
 				});
 			}
 		}

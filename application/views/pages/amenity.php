@@ -98,7 +98,7 @@
 
         <div class="card shadow-none">
 
-        <form id="amenity_form">
+        <form id="amenity_form" enctype="multipart/form-data">
 
           <div class="card-body">
             <h6 class="heading-small text-muted mb-4">Amenities Information</h6>
@@ -111,6 +111,12 @@
                   </div>
                 </div>
                 <div class="col-lg-12">
+                  <div class="form-group" id="group-type">
+                    <label class="form-label" for="photo_url">Image</label>
+                    <input type="file" class="form-control-file" name="image">
+                    <input type="hidden" name="photo_url">
+                  </div>
+                </div><div class="col-lg-12">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Type</label>
                     <input type="text" id="type" class="form-control" readonly name="type">

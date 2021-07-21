@@ -130,8 +130,8 @@ loadTable = () =>
 				className: "dtr-control",
 			},
             {
-				data: "firstname",
-				name: "firstname",
+				data: "first_name",
+				name: "first_name",
 				searchable: true,
 				className: "dtr-control",
 			},
