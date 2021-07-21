@@ -9,12 +9,12 @@
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
               <li class="breadcrumb-item"><a href="./"><i class="fas fa-home"></i></a></li>
               <li class="breadcrumb-item"><a href="#">Tables</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Room Type</li>
+              <li class="breadcrumb-item active" aria-current="page">Loyalty Point History</li>
             </ol>
           </nav>
         </div>
         <div class="col-lg-6 col-5 text-right">
-          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormRoomTypes" id="show_tax_form" onClick="newHandler()">New</button>
+          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormLPHistory" id="show_tax_form" onClick="newHandler()">New</button>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
       <div class="card">
         <!-- Card header -->
         <div class="card-header border-0">
-          <h3 class="mb-0">ROOM TYPES TABLE</h3>
+          <h3 class="mb-0">LOYALTY POINT HISTORY TABLE</h3>
         </div>
         <!-- Light table -->
         <div class="table-responsive">
@@ -39,12 +39,11 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col" class="sort" data-sort="buttons">Actions</th>
-                <th scope="col" class="sort" data-sort="room_type_id">Room Type ID</th>
-                <th scope="col" class="sort" data-sort="type">TYPE</th>
-                <th scope="col" class="sort" data-sort="description">Description</th>
-                <th scope="col" class="sort" data-sort="min_guest">Minumum Guest</th>
-                <th scope="col" class="sort" data-sort="max_guest">Maximum Guest</th>
-                <th scope="col" class="sort" data-sort="pricing_id">Price</th>
+                <th scope="col" class="sort" data-sort="lp_history_id">Loyalty Point History ID</th>
+                <th scope="col" class="sort" data-sort="loyalty_point_id">Loyalty Point ID</th>
+                <th scope="col" class="sort" data-sort="booking_id">Booking ID</th>
+                <th scope="col" class="sort" data-sort="points">Points</th>
+                <th scope="col" class="sort" data-sort="type">Type ID</th>
                 <th scope="col" class="sort" data-sort="created">Created</th>
               </tr>
             </thead>
@@ -87,11 +86,11 @@
 
 
   <!-- MODAL FORM -->
-  <div class="modal fade" id="FormRoomTypes" tabindex="-1" role="dialog" aria-labelledby="FormRoomTypesLabel" aria-hidden="true">
+  <div class="modal fade" id="FormLPHistory" tabindex="-1" role="dialog" aria-labelledby="FormLPHistoryLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="FormRoomTypesLabel">Room Types</h5>
+          <h5 class="modal-title" id="FormLPHistoryLabel">Loyalty Point History</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -101,46 +100,44 @@
 
         <div class="card shadow-none">
 
-        <form id="room_type_form">
+        <form id="lphistory_form">
 
           <div class="card-body">
-            <h6 class="heading-small text-muted mb-4">Room Types Information</h6>
+            <h6 class="heading-small text-muted mb-4">Loyalty Points History Information</h6>
             <div class="pl-lg-4">
               <div class="row">
-                <div class="col-lg-12" id="update_room_type_id">
-                  <div class="form-group" id="group-room_type_id">
-                    <label class="form-control-label" for="input-tax-percentage">Room Type ID</label>
-                    <input type="text" id="room_type_id" class="form-control" name="room_type_id">
+                <div class="col-lg-12" id="update_lp_history_id">
+                  <div class="form-group" id="group-lp_history_id">
+                    <label class="form-control-label" for="input-tax-percentage">Loyalty Point ID</label>
+                    <input type="text" id="lp_history_id" class="form-control" name="lp_history_id">
                   </div>
                 </div>
                 <div class="col-lg-12">
-                  <div class="form-group" id="group-type">
+                  <div class="form-group" id="group-points">
+                    <label class="form-control-label" for="input-tax-percentage">Loyalty Point ID</label>
+                    <select id="loyalty_point_id" class="form-control" name="loyalty_point_id">
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group" id="group-points">
+                    <label class="form-control-label" for="input-tax-percentage">Booking ID</label>
+                    <select id="booking_id" class="form-control" name="booking_id">
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group" id="group-points">
+                    <label class="form-control-label" for="input-tax-percentage">Points</label>
+                    <input type="text" id="points" class="form-control" name="points">
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group" id="group-points">
                     <label class="form-control-label" for="input-tax-percentage">Type</label>
-                    <input type="text" id="type" class="form-control" name="type">
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="form-group" id="group-description">
-                    <label class="form-control-label" for="input-tax-percentage">Description</label>
-                    <input type="text" id="description" class="form-control" name="description">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group" id="group-description">
-                    <label class="form-control-label" for="input-tax-percentage">Minumum Guest</label>
-                    <input type="number" id="min_guest" class="form-control" name="min_guest">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group" id="group-type">
-                    <label class="form-control-label" for="input-tax-percentage">Maximum Guest</label>
-                    <input type="number" id="max_guest" class="form-control" name="max_guest">
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="form-group" id="group-description">
-                    <label class="form-control-label" for="input-tax-percentage">Price</label>
-                    <select id="pricing_id" class="form-control" name="pricing_id">
+                    <select id="type" class="form-control" name="type">
+                    <option value="Earned">Earned</option>
+                    <option value="Used">Used</option>
                     </select>
                   </div>
                 </div>
@@ -177,4 +174,4 @@
 </div>
 
 <!-- Import JS-->
-<script src="<?= base_url('assets') ?>/js/pages/roomtypes.js"></script>
+<script src="<?= base_url('assets') ?>/js/pages/loyalty_point_history.js"></script>

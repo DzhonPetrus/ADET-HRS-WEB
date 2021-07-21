@@ -1,27 +1,37 @@
 $(function () {
-	window.fields = ["pricing_id", "price_per_qty", "date_start","date_end","creator", "btnAdd", "btnUpdate"];
-	window.fieldsHidden = ["pricing_id", "creator", "btnUpdate"];
-	window.readOnlyFields = ["pricing_id", "creator"];
-	
+	window.fields = ["condition_code", "duration", "min_duration","min_guest","max_guest","limit","creator", "btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["condition_code", "creator", "btnUpdate"];
+	window.readOnlyFields = ["condition_code", "creator"];
+
 	loadTable();
 	formReset();
-
+	
 
 	// function to save/update record
-	$("#pricing_form").on("submit", function (e) {
+	$("#pd_condition_form").on("submit", function (e) {
 		e.preventDefault();
 		trimInputFields();
 
-		if ($("#pricing_form").parsley().validate()) {
+		if ($("#pd_condition_form").parsley().validate()) {
 			var form_data = new FormData(this);
-			var pricing_id = $("#pricing_id").val();
-			if (pricing_id == "") {
+			var condition_code = $("#condition_code").val();
+			var min = $("#min_guest").val();
+			var max = $("#max_guest").val();
+			console.log(min);
+			console.log(max);
+			if (min > max){
+
+				notification("error", "Min > Max");
+				formReset();
+			}else{ 
+			if (condition_code == "") {
 				// form_data.append("password", "P@ssw0rd");
 				// form_data.append("c_password", "P@ssw0rd");
 
 				// add record
+				console.table([...form_data]);
 				$.ajax({
-					url: BASE_URL + "pricing",
+					url: BASE_URL + "pd_condition",
 					type: "POST",
 					data: form_data,
 					dataType: "JSON",
@@ -32,16 +42,20 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
-							document.getElementById("pricing_form").reset();
+							document.getElementById("pd_condition_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
+							document.getElementById("pd_condition_form").reset();
 						}
 					},
-					error: function ({ responseJSON }) {},
+					error: function ({ responseError }) {
+						notification("error", "Error!");
+						document.getElementById("pd_condition_form").reset();
+					},
 				});
 			} else {
 				$.ajax({
-					url: BASE_URL + `pricing/${pricing_id}`,
+					url: BASE_URL + `pd_condition/${condition_code}`,
 					type: "PUT",
 					data: form_data,
 					dataType: "JSON",
@@ -56,8 +70,11 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {},
+					error: function ({ responseJSON }) {
+						notification("error", "Error!");
+					},
 				});
+			}
 			}
 		}
 	});
@@ -86,6 +103,8 @@ loadTable = () => {
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
 		],
 		columns: [
 			{
@@ -93,26 +112,38 @@ loadTable = () => {
 				render: (aData, type, row) => renderButtons(aData),
 			},
 			{
-				data: "pricing_id",
-				name: "pricing_id",
+				data: "condition_code",
+				name: "condition_code",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "price_per_qty",
-				name: "price_per_qty",
+				data: "duration",
+				name: "duration",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "date_start",
-				name: "date_start",
+				data: "min_duration",
+				name: "min_duration",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "date_end",
-				name: "date_end",
+				data: "min_guest",
+				name: "min_guest",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "max_guest",
+				name: "max_guest",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "limit",
+				name: "limit",
 				searchable: true,
 				className: "dtr-control",
 			},
@@ -124,17 +155,19 @@ loadTable = () => {
 			},
 		],
 		ajax: {
-			url: BASE_URL + "pricing",
+			url: BASE_URL + "pd_condition",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["pricing_id"]);
-			$("td:eq(2)", nRow).html(aData["price_per_qty"]);
-			$("td:eq(3)", nRow).html(aData["date_start"]);
-			$("td:eq(4)", nRow).html(aData["date_end"]);
-			$("td:eq(5)", nRow).html(aData["created.email"]);
+			$("td:eq(1)", nRow).html(aData["condition_code"]);
+			$("td:eq(2)", nRow).html(aData["duration"]);
+			$("td:eq(3)", nRow).html(aData["min_duration"]);
+			$("td:eq(4)", nRow).html(aData["min_guest"]);
+			$("td:eq(2)", nRow).html(aData["max_guest"]);
+			$("td:eq(2)", nRow).html(aData["limit"]);
+			$("td:eq(2)", nRow).html(aData["created.email"]);
 
 		},
 		drawCallback: function (settings) {
@@ -144,27 +177,28 @@ loadTable = () => {
 };
 
 // VIEW DATA
-viewData = (pricing_id) => {
+viewData = (condition_code) => {
 	{
 		$.ajax({
-			url: BASE_URL + "pricing/" + pricing_id,
+			url: BASE_URL + "pd_condition/" + condition_code,
 			type: "GET",
-			data: { pricing_id },
+			data: { condition_code },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("view", data) : notification("error", "Error!", data.message),
 			error: function ({ responseJSON }) {},
 		});
+		
 	}
 };
 
 // Edit DATA
-editData = (pricing_id) => {
+editData = (condition_code) => {
 	{
 		$.ajax({
-			url: BASE_URL + "pricing/" + pricing_id,
+			url: BASE_URL + "pd_condition/" + condition_code,
 			type: "GET",
-			data: { pricing_id },
+			data: { condition_code },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("edit", data) : notification("error", "Error!", data.message),
@@ -174,7 +208,7 @@ editData = (pricing_id) => {
 };
 
 // function to delete data
-deleteData = (pricing_id) => {
+deleteData = (condition_code) => {
 	Swal.fire({
 		title: "Are you sure you want to delete this record?",
 		text: "You won't be able to revert this!",
@@ -187,16 +221,15 @@ deleteData = (pricing_id) => {
 		// if user clickes yes, it will change the active status to "Not Active".
 		if (t.value) {
 			$.ajax({
-				url: BASE_URL + "pricing",
+				url: BASE_URL + "pd_condition",
 				type: "DELETE",
-				data: { pricing_id },
+				data: { condition_code },
 				dataType: "json",
 
 				success: function (data) {
 					if (data.error == false) {
 						loadTable();
 						notification("success", "Success!", data.message);
-						
 					} else {
 						notification("error", "Error!", data.message);
 					}
@@ -211,12 +244,12 @@ deleteData = (pricing_id) => {
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
-	$("#pricing_form")[0].reset();
+	$("#pd_condition_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormPricings").modal("show");
+const showModal = () => $("#FormPdConditions").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
@@ -239,9 +272,9 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["pricing_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
-		`<button type="button" onClick="return editData('${aData["pricing_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
-		`<button type="button" onClick="return deleteData('${aData["pricing_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
+		`<button type="button" onClick="return viewData('${aData["condition_code"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
+		`<button type="button" onClick="return editData('${aData["condition_code"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
+		`<button type="button" onClick="return deleteData('${aData["condition_code"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
 	return buttons;
 };
 
