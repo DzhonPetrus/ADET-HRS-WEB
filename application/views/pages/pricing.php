@@ -14,7 +14,7 @@
           </nav>
         </div>
         <div class="col-lg-6 col-5 text-right">
-          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormPricings" id="show_tax_form" onClick="newHandler()">New</button>
+          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormPricing" onClick="newHandler()">New</button>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
       <div class="card">
         <!-- Card header -->
         <div class="card-header border-0">
-          <h3 class="mb-0">PRICINGS TABLE</h3>
+          <h3 class="mb-0">PRICING TABLE</h3>
         </div>
         <!-- Light table -->
         <div class="table-responsive">
@@ -40,16 +40,16 @@
               <tr>
                 <th scope="col" class="sort" data-sort="buttons">Actions</th>
                 <th scope="col" class="sort" data-sort="pricing_id">Pricing ID</th>
-                <th scope="col" class="sort" data-sort="price_per_qty">Price</th>
+                <th scope="col" class="sort" data-sort="price_per_qty">Price Per Qty</th>
                 <th scope="col" class="sort" data-sort="date_start">Start Date</th>
                 <th scope="col" class="sort" data-sort="date_end">End Date</th>
-                <th scope="col" class="sort" data-sort="created">Created</th>
               </tr>
             </thead>
             <tbody class="list"></tbody>
           </table>
         </div>
         <br>
+
 
         <!-- Card footer -->
 
@@ -85,11 +85,11 @@
 
 
   <!-- MODAL FORM -->
-  <div class="modal fade" id="FormPricings" tabindex="-1" role="dialog" aria-labelledby="FormPricingsLabel" aria-hidden="true">
+  <div class="modal fade" id="FormPricing" tabindex="-1" role="dialog" aria-labelledby="FormPricingLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="FormPricingsLabel">PRICINGS</h5>
+          <h5 class="modal-title" id="FormPricingLabel">PRICING</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -99,55 +99,59 @@
 
         <div class="card shadow-none">
 
-        <form id="pricing_form">
+          <form id="pricing_form">
 
-          <div class="card-body">
-            <h6 class="heading-small text-muted mb-4">Pricings Information</h6>
-            <div class="pl-lg-4">
-              <div class="row">
+            <div class="card-body">
+              <h6 class="heading-small text-muted mb-4">Pricing Information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
                 <div class="col-lg-12" id="update_pricing_id">
                   <div class="form-group" id="group-pricing_id">
                     <label class="form-control-label" for="input-tax-percentage">Pricing ID</label>
                     <input type="text" id="pricing_id" class="form-control" readonly name="pricing_id">
                   </div>
                 </div>
-                <div class="col-lg-12">
-                  <div class="form-group" id="group-taxCode">
-                    <label class="form-control-label" for="input-tax-percentage">Price</label>
-                    <input type="number" id="price_per_qty" class="form-control" readonly name="price_per_qty">
+                  <div class="col-lg-12">
+                    <div class="form-group" id="group-price_per_qty">
+                      <label class="form-control-label" for="input-amenities-type">Price</label>
+                      <input type="number" id="price_per_qty" class="form-control" name="price_per_qty">
+                    </div>
+
                   </div>
-                </div>
-                  <div class="col-lg-6">
-                    <div class="form-group" id="group-description">
-                      <label class="form-control-label" for="input-tax-percentage">Start Date</label>
-                      <input type="datetime-local" id="date_start" class="form-control" readonly name="date_start">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group" id="group-date_start">
+                        <label class="form-control-label" for="input-amenities-description">Date Start</label>
+                        <input type="datetime-local" id="date_start" class="form-control" name="date_start">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group" id="group-date_end">
+                        <label class="form-control-label" for="input-amenities-description">Date End</label>
+                        <input type="datetime-local" id="date_end" class="form-control" name="date_end">
+                      </div>
                     </div>
                   </div>
-                  <div class="col-lg-6">
-                    <div class="form-group" id="group-description">
-                      <label class="form-control-label" for="input-tax-percentage">End Date</label>
-                      <input type="datetime-local" id="date_end" class="form-control" readonly name="date_end">
-                    </div>
-                  </div>
-                <div class="col-lg-12">
+                  <div class="col-lg-12">
                   <div class="form-group" id="group-creator">
                     <label class="form-control-label" for="input-tax-percentage">CREATED BY</label>
                     <input type="text" id="creator" class="form-control" readonly name="creator">
                   </div>
                 </div>
+
+                </div>
+              </div>
+              <hr class="my-4">
+              <div class="col-12 text-right">
+                <button type="button" class="btn btn-secondary" onClick="formReset()" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="group-btnAdd">Add</button>
+                <button type="submit" class="btn btn-primary" id="group-btnUpdate">Save Changes</button>
               </div>
             </div>
-            <hr class="my-4">
-            <div class="col-12 text-right">
-              <button type="button" class="btn btn-secondary" onClick="formReset()" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" id="group-btnAdd">Add</button>
-              <button type="submit" class="btn btn-primary" id="group-btnUpdate">Save Changes</button>
-            </div>
-          </div>
-        </form>
+          </form>
 
         </div>
-        
+
         <!-- </div> -->
 
       </div>
@@ -155,11 +159,10 @@
   </div>
 
 
+
   <!-- BODY CLOSING -->
 </div>
 
-<!-- BODY CLOSING -->
-</div>
 
 <!-- Import JS-->
 <script src="<?= base_url('assets') ?>/js/pages/pricing.js"></script>
