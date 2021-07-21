@@ -1,11 +1,10 @@
 $(function () {
-	window.fields = ["pricing_id", "price_per_qty", "date_start","date_end","creator", "btnAdd", "btnUpdate"];
-	window.fieldsHidden = ["pricing_id", "creator", "btnUpdate"];
-	window.readOnlyFields = ["pricing_id", "creator"];
-	
-	loadTable();
-	formReset();
+	window.fields = ["pricing_id", "price_per_qty", "date_start","creator", "date_end", "btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["pricing_id", "creator", "btnUpdate"]; // kung alin yung hidden sa add
+	window.readOnlyFields = ["pricing_id", "creator"]; // kung alin yung readonly sa edit
 
+	formReset();
+	loadTable();
 
 	// function to save/update record
 	$("#pricing_form").on("submit", function (e) {
@@ -14,6 +13,7 @@ $(function () {
 
 		if ($("#pricing_form").parsley().validate()) {
 			var form_data = new FormData(this);
+
 			var pricing_id = $("#pricing_id").val();
 			if (pricing_id == "") {
 				// form_data.append("password", "P@ssw0rd");
@@ -32,7 +32,6 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
-							document.getElementById("pricing_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
 						}
@@ -79,19 +78,14 @@ loadTable = () => {
 		serverSide: false,
 		order: [[0, "desc"]],
 		aLengthMenu: [5, 10, 20, 30, 50, 100],
-		aaColumns: [
+		aoColumns: [
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
 			{ sClass: "text-center" },
-			{ sClass: "text-left" },
-			{ sClass: "text-left" },
-			{ sClass: "text-left" },
-			{ sClass: "text-left" },
-			{ sClass: "text-left" },
 		],
 		columns: [
-			{
-				data: null,
-				render: (aData, type, row) => renderButtons(aData),
-			},
 			{
 				data: "pricing_id",
 				name: "pricing_id",
@@ -104,7 +98,7 @@ loadTable = () => {
 				searchable: true,
 				className: "dtr-control",
 			},
-			{
+            {
 				data: "date_start",
 				name: "date_start",
 				searchable: true,
@@ -115,13 +109,7 @@ loadTable = () => {
 				name: "date_end",
 				searchable: true,
 				className: "dtr-control",
-			},
-			{
-				data: "created.email",
-				name: "created.email",
-				searchable: true,
-				className: "dtr-control",
-			},
+			}
 		],
 		ajax: {
 			url: BASE_URL + "pricing",
@@ -132,10 +120,8 @@ loadTable = () => {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
 			$("td:eq(1)", nRow).html(aData["pricing_id"]);
 			$("td:eq(2)", nRow).html(aData["price_per_qty"]);
-			$("td:eq(3)", nRow).html(aData["date_start"]);
-			$("td:eq(4)", nRow).html(aData["date_end"]);
-			$("td:eq(5)", nRow).html(aData["created.email"]);
-
+            $("td:eq(3)", nRow).html(aData["date_start"]);
+            $("td:eq(4)", nRow).html(aData["date_end"]);
 		},
 		drawCallback: function (settings) {
 			// $("#data-table").removeClass("dataTable");
@@ -194,9 +180,8 @@ deleteData = (pricing_id) => {
 
 				success: function (data) {
 					if (data.error == false) {
-						loadTable();
 						notification("success", "Success!", data.message);
-						
+						loadTable();
 					} else {
 						notification("error", "Error!", data.message);
 					}
@@ -216,7 +201,7 @@ formReset = () => {
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormPricings").modal("show");
+const showModal = () => $("#FormPricing").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
@@ -237,6 +222,7 @@ const newHandler = () => {
 };
 
 const renderButtons = (aData, type, row) => {
+	console.table(aData);
 	let buttons =
 		"" +
 		`<button type="button" onClick="return viewData('${aData["pricing_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
@@ -264,5 +250,4 @@ const setState = (state, data) => {
 	}
 
 	showModal();
-
 };
