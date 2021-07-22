@@ -1,7 +1,7 @@
 <!-- Main content -->
   <div class="main-content" >
     <!-- Header -->
-    <div class="header py-7 py-lg-8 pt-lg-9"style="background-color:#dca73a">
+    <div class="header py-7 py-lg-8 pt-lg-9"style="background-color:#5e72e4">
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
@@ -72,7 +72,7 @@
                     <div class="custom-control custom-control-alternative custom-checkbox">
                       <input type="checkbox">
                       <label>
-                        <span class="text-muted">I agree with the <a href="#!" style="color:#dca73a">Privacy Policy</a></span>
+                        <span class="text-muted">I agree with the <a href="#!" style="color:#5e72e4">Privacy Policy</a></span>
                     </div>
                   </div>
                   <div class="row my-3">
@@ -83,7 +83,7 @@
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary mt-4" style="background-color:#dca73a; border-color:#dca73a">Create account</button>
+                  <button type="button" class="btn btn-primary mt-4" style="background-color:#5e72e4; border-color:#5e72e4">Create account</button>
                 </div>
               </form>
             </div>

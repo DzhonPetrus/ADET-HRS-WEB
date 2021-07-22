@@ -85,7 +85,7 @@
 
   <!-- MODAL FORM -->
   <div class="modal fade" id="FormAmenities" tabindex="-1" role="dialog" aria-labelledby="FormAmenitiesLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="FormAmenitiesLabel">AMENITIES</h5>
@@ -104,19 +104,28 @@
             <h6 class="heading-small text-muted mb-4">Amenities Information</h6>
             <div class="pl-lg-4">
               <div class="row">
+                  <div class="col-lg-8">
+                      <label for="image" class="form-label">Image</label>
+                      <input class="form-control" type="file" name="imageUpload"
+                          accept="image/*">
+                      <input type="hidden" name="photo_url">
+                  </div>
+                  <div class="col-lg-4">
+                      <img src="https://i.stack.imgur.com/y9DpT.jpg" alt=""
+                          class="rounded avatar-lg img-thumbnail" style="object-fit: cover;"
+                          id="photo_url_placeholder" name="photo_url_placeholder">
+                  </div>
                 <div class="col-lg-12" id="update_amenity_id">
                   <div class="form-group" id="group-amenity_id">
                     <label class="form-control-label" for="input-tax-percentage">Amenity ID</label>
                     <input type="text" id="amenity_id" class="form-control" readonly name="amenity_id">
                   </div>
                 </div>
-                <div class="col-lg-12">
-                  <div class="form-group" id="group-type">
+                  <!-- <div class="form-group" id="group-type">
                     <label class="form-label" for="photo_url">Image</label>
                     <input type="file" class="form-control-file" name="image">
-                    <input type="hidden" name="photo_url">
-                  </div>
-                </div><div class="col-lg-12">
+                  </div> -->
+                <div class="col-lg-12">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Type</label>
                     <input type="text" id="type" class="form-control" readonly name="type">

@@ -1,3 +1,31 @@
+<?php
+$tablePages = array(
+  array('text'=>'Amenities', 'url'=> 'amenity', 'icon'=>' fa fa-wifi'),
+  array('text'=>'Bookings', 'url'=> 'booking', 'icon'=>' fa fa-address-book'),
+  array('text'=>'Housekeepings', 'url'=> 'housekeeping', 'icon'=>' fas fa-broom'),
+  array('text'=>'Loyalty Points', 'url'=> 'loyalty_point', 'icon'=>'fa fa-coins'),
+  array('text'=>'Loyalty Point Histories', 'url'=> 'loyalty_point_history', 'icon'=>' fas fa-poll'),
+  array('text'=>'Packages', 'url'=> 'package', 'icon'=>' fas fa-user-friends'),
+  array('text'=>'Payment', 'url'=> 'payment', 'icon'=>' fa fa-credit-card'),
+  array('text'=>'Promos and Discounts', 'url'=> 'promo_and_discount', 'icon'=>' fas fa-percentage'),
+  array('text'=>'Promos and Discounts Conditions', 'url'=> 'pd_condition', 'icon'=>' fas fa-columns'),
+  array('text'=>'Pricings', 'url'=> 'pricing', 'icon'=>'ni ni-money-coins'),
+  array('text'=>'Rates', 'url'=> 'rate', 'icon'=>' fas fa-money-bill-wave-alt'),
+  array('text'=>'Room Types', 'url'=> 'room_type', 'icon'=>'fa fa-bed'),
+  array('text'=>'Rooms', 'url'=> 'room', 'icon'=>'fas fa-door-open'),
+  array('text'=>'Rooms Reserved', 'url'=> 'room_reserved', 'icon'=>'fas fa-clipboard-list'),
+  array('text'=>'Taxes', 'url'=> 'tax', 'icon'=>' fas fa-donate'),
+  array('text'=>'User Informations', 'url'=> 'user_information', 'icon'=>' fa fa-address-card')
+  );
+
+$adminPages = array(
+  array('text'=>'Dashboard', 'url'=> '', 'icon'=>' ni ni-tv-2'),
+  );
+
+  $currentPage = basename($_SERVER['REQUEST_URI']) ;
+
+
+?>
 <!-- SIDE NAV -->
 <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
   <div class="scrollbar-inner">
@@ -15,24 +43,20 @@
       <div class="collapse navbar-collapse" id="sidenav-collapse-main">
         <!-- Nav items -->
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="./Admin/">
-              <i class="ni ni-tv-2 text-primary"></i>
-              <span class="nav-link-text">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="./">
-              <i class="ni ni-bullet-list-67 text-default"></i>
-              <span class="nav-link-text">Tables</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./profile">
-              <i class="ni ni-single-02 text-default"></i>
-              <span class="nav-link-text">Profile</span>
-            </a>
-          </li>
+
+        <?php
+          foreach($adminPages as $item){
+            $isActive = $currentPage == ($item['url'] != '' ? $item['url'] : 'admin');
+            $html = '<li class="nav-item">'
+                .  '<a class="nav-link '. (($isActive) ? 'active' : ' ') .'" href="' . base_url('admin/'.$item['url']) . '">'
+                . '<i class="'. $item['icon'] . (($isActive) ? ' text-primary' : ' text-default') .'"></i>'
+                . '<span class="nav-link-text '.(($isActive) ? ' text-primary' : ' text-default').'">' . $item['text'] . '</span>'
+                . '</a>'
+                . '</li>';
+            echo $html;
+          }
+        ?>
+          
         </ul>
         <!-- Divider -->
         <hr class="my-3">
@@ -42,42 +66,20 @@
         </h6>
       </div>
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="./amenity">
-            <i class="ni ni-bag-17 text-primary"></i>
-            <span class="nav-link-text">Amenity</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="./tax">
-            <i class="ni ni-bullet-list-67 text-default"></i>
-            <span class="nav-link-text">Tax</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./loyalty_point">
-            <i class="fas fa-coins text-default"></i>
-            <span class="nav-link-text">Loyalty Point</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./user_information">
-            <i class="ni ni-badge text-default"></i>
-            <span class="nav-link-text">User Information</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./pricing">
-            <i class="ni ni-money-coins text-default"></i>
-            <span class="nav-link-text">Pricing</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./room_type">
-            <i class="fa fa-bed text-default"></i>
-            <span class="nav-link-text">Room Type</span>
-          </a>
-        </li>
+
+        <?php
+          foreach($tablePages as $item){
+            $isActive = $currentPage == $item['url'];
+            $html = '<li class="nav-item">'
+                .  '<a class="nav-link '. (($isActive) ? 'active' : ' ') .'" href="' . base_url('admin/'.$item['url']) . '">'
+                . '<i class="'. $item['icon'] . (($isActive) ? ' text-primary' : ' text-default') .'"></i>'
+                . '<span class="nav-link-text '.(($isActive) ? ' text-primary' : ' text-default').'">' . $item['text'] . '</span>'
+                . '</a>'
+                . '</li>';
+            echo $html;
+          }
+        ?>
+
       </ul>
     </div>
   </div>

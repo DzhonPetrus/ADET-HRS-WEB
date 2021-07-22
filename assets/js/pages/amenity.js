@@ -199,6 +199,11 @@ deleteData = (amenity_id) => {
 };
 
 //EXTRA
+// read pictures
+$("#imageUpload").change(function () {
+    readURL(this);
+});
+
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
@@ -241,6 +246,7 @@ const setState = (state, data) => {
 	setInputValue(data);
 	$("#creator").val(data.data.created.email);
 	$("#group-btnAdd").hide();
+	$("#photo_url_placeholder").attr("src", `http://localhost:4000/public/${data.data.photo_url}`);
 
 	if (state === "view") {
 		setFieldsReadOnly(true);

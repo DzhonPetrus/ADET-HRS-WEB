@@ -1,6 +1,6 @@
 <div class="main-content">
     <!-- Header -->
-    <div class="header  py-7 py-lg-8 pt-lg-9" style="background-color:#dca73a">
+    <div class="header  py-7 py-lg-8 pt-lg-9" style="background-color:#5e72e4">
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
@@ -69,7 +69,7 @@
                 </div>
                   </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4" style="background-color:#dca73a; border-color:#dca73a">Sign in</button>
+                  <button type="submit" class="btn btn-primary my-4" style="background-color:#5e72e4; border-color:#5e72e4">Sign in</button>
                 </div>
               </form>
             </div>
@@ -79,7 +79,7 @@
               <a href="#" class="text-light"><small>Forgot password?</small></a>
             </div>
             <div class="col-6 text-right">
-              <a href="<?= base_url() ?>Access/register" class="text-light"><small>Create new account</small></a>
+              <a href="<?= base_url('Access/register') ?>" class="text-light"><small>Create new account</small></a>
             </div>
           </div>
         </div>

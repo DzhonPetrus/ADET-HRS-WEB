@@ -87,7 +87,7 @@
 
   <!-- MODAL FORM -->
   <div class="modal fade" id="FormLPHistory" tabindex="-1" role="dialog" aria-labelledby="FormLPHistoryLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="FormLPHistoryLabel">Loyalty Point History</h5>
