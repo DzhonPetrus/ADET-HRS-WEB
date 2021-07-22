@@ -1,20 +1,21 @@
 <?php
 $tablePages = array(
-  array('text'=>'Amenities', 'url'=> 'amenity', 'icon'=>' ni ni-bag-17'),
-  array('text'=>'Bookings', 'url'=> 'booking', 'icon'=>' ni ni-bag-17'),
-  array('text'=>'Housekeepings', 'url'=> 'housekeeping', 'icon'=>' ni ni-bag-17'),
+  array('text'=>'Amenities', 'url'=> 'amenity', 'icon'=>' fa fa-wifi'),
+  array('text'=>'Bookings', 'url'=> 'booking', 'icon'=>' fa fa-address-book'),
+  array('text'=>'Housekeepings', 'url'=> 'housekeeping', 'icon'=>' fas fa-broom'),
   array('text'=>'Loyalty Points', 'url'=> 'loyalty_point', 'icon'=>'fa fa-coins'),
-  array('text'=>'Loyalty Point Histories', 'url'=> 'loyalty_point_history', 'icon'=>' ni ni-bag-17'),
-  array('text'=>'Packages', 'url'=> 'package', 'icon'=>' ni ni-bag-17'),
-  array('text'=>'Promos and Discounts', 'url'=> 'promo_and_discount', 'icon'=>' ni ni-bag-17'),
-  array('text'=>'Promos and Discounts Conditions', 'url'=> 'pd_condition', 'icon'=>' ni ni-bag-17'),
+  array('text'=>'Loyalty Point Histories', 'url'=> 'loyalty_point_history', 'icon'=>' fas fa-poll'),
+  array('text'=>'Packages', 'url'=> 'package', 'icon'=>' fas fa-user-friends'),
+  array('text'=>'Payment', 'url'=> 'payment', 'icon'=>' fa fa-credit-card'),
+  array('text'=>'Promos and Discounts', 'url'=> 'promo_and_discount', 'icon'=>' fas fa-percentage'),
+  array('text'=>'Promos and Discounts Conditions', 'url'=> 'pd_condition', 'icon'=>' fas fa-columns'),
   array('text'=>'Pricings', 'url'=> 'pricing', 'icon'=>'ni ni-money-coins'),
-  array('text'=>'Rates', 'url'=> 'rate', 'icon'=>' ni ni-bag-17'),
+  array('text'=>'Rates', 'url'=> 'rate', 'icon'=>' fas fa-money-bill-wave-alt'),
   array('text'=>'Room Types', 'url'=> 'room_type', 'icon'=>'fa fa-bed'),
-  array('text'=>'Rooms', 'url'=> 'room', 'icon'=>'fa fa-bed'),
-  array('text'=>'Rooms Reserved', 'url'=> 'room_reserved', 'icon'=>'fa fa-bed'),
-  array('text'=>'Taxes', 'url'=> 'tax', 'icon'=>' ni ni-bullet-list-67'),
-  array('text'=>'User Informations', 'url'=> 'user_information', 'icon'=>' ni ni-badge')
+  array('text'=>'Rooms', 'url'=> 'room', 'icon'=>'fas fa-door-open'),
+  array('text'=>'Rooms Reserved', 'url'=> 'room_reserved', 'icon'=>'fas fa-clipboard-list'),
+  array('text'=>'Taxes', 'url'=> 'tax', 'icon'=>' fas fa-donate'),
+  array('text'=>'User Informations', 'url'=> 'user_information', 'icon'=>' fa fa-address-card')
   );
 
 $adminPages = array(
