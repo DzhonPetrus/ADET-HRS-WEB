@@ -79,7 +79,7 @@
               <a href="#" class="text-light"><small>Forgot password?</small></a>
             </div>
             <div class="col-6 text-right">
-              <a href="<?= base_url() ?>Access/register" class="text-light"><small>Create new account</small></a>
+              <a href="<?= base_url('Access/register') ?>" class="text-light"><small>Create new account</small></a>
             </div>
           </div>
         </div>

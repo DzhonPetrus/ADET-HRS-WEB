@@ -21,6 +21,7 @@ class Admin extends CI_Controller {
 	 function __construct() {
 		 parent::__construct();
 		 ($this->session->userdata['token']) ? null : redirect('Access/login');
+		 print_r($this->session->userdata);
 	 }
 
 	public function index()
@@ -87,7 +88,7 @@ class Admin extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
-	public function rates()
+	public function rate()
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/admin/nav');
@@ -141,7 +142,7 @@ class Admin extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
-	public function rooms_reserved()
+	public function room_reserved()
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/admin/nav');
