@@ -48,7 +48,7 @@ $adminPages = array(
           foreach($adminPages as $item){
             $isActive = $currentPage == ($item['url'] != '' ? $item['url'] : 'admin');
             $html = '<li class="nav-item">'
-                .  '<a class="nav-link '. (($isActive) ? 'active' : ' ') .'" href="' . base_url($this->session->userdata['user_type'].$item['url']) . '">'
+                .  '<a class="nav-link '. (($isActive) ? 'active' : ' ') .'" href="' . base_url($this->session->userdata['user_type'].'/'.$item['url']) . '">'
                 . '<i class="'. $item['icon'] . (($isActive) ? ' text-primary' : ' text-default') .'"></i>'
                 . '<span class="nav-link-text '.(($isActive) ? ' text-primary' : ' text-default').'">' . $item['text'] . '</span>'
                 . '</a>'
@@ -71,7 +71,7 @@ $adminPages = array(
           foreach($tablePages as $item){
             $isActive = $currentPage == $item['url'];
             $html = '<li class="nav-item">'
-                .  '<a class="nav-link '. (($isActive) ? 'active' : ' ') .'" href="' . base_url($this->session->userdata['user_type'].$item['url']) . '">'
+                .  '<a class="nav-link '. (($isActive) ? 'active' : ' ') .'" href="' . base_url($this->session->userdata['user_type'].'/'.$item['url']) . '">'
                 . '<i class="'. $item['icon'] . (($isActive) ? ' text-primary' : ' text-default') .'"></i>'
                 . '<span class="nav-link-text '.(($isActive) ? ' text-primary' : ' text-default').'">' . $item['text'] . '</span>'
                 . '</a>'
