@@ -107,25 +107,25 @@
                 <div class="col-lg-12" id="update_loyalty_point_id">
                   <div class="form-group" id="group-loyalty_point_id">
                     <label class="form-control-label" for="input-tax-percentage">Loyalty Point ID</label>
-                    <input type="text" id="loyalty_point_id" class="form-control" readonly name="loyalty_point_id">
+                    <input type="text" id="loyalty_point_id" class="form-control" name="loyalty_point_id">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Points</label>
-                    <input type="text" id="points" class="form-control" readonly name="points">
+                    <input type="text" id="points" class="form-control" name="points">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-owner">
                     <label class="form-control-label" for="input-tax-percentage">Owner</label>
-                    <input type="text" id="owner" class="form-control" readonly name="owner">
+                    <input type="text" id="owner" class="form-control" name="owner">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-creator">
                     <label class="form-control-label" for="input-tax-percentage">CREATED BY</label>
-                    <input type="text" id="creator" class="form-control" readonly name="creator">
+                    <input type="text" id="creator" class="form-control" name="creator">
                   </div>
                 </div>
               </div>

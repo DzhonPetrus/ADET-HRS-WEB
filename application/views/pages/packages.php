@@ -111,25 +111,25 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-package_id">
                     <label class="form-control-label" for="input-package-percentage">Package ID</label>
-                    <input type="text" id="package_id" class="form-control" readonly name="package_id">
+                    <input type="text" id="package_id" class="form-control" name="package_id">
                   </div>
                 </div>
                 <div class="col-lg-12">
                 <div class="form-group" id="group-percentage">
                     <label class="form-control-label" for="input-room-type">Title</label>
-                    <input type="text" id="title" class="form-control" readonly name="title" >
+                    <input type="text" id="title" class="form-control" name="title" >
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-percentage">
                     <label class="form-control-label" for="input-min-guest">Min Guest</label>
-                    <input type="Number" id="min_guest" class="form-control" readonly name="min_guest">
+                    <input type="Number" id="min_guest" class="form-control" name="min_guest">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-percentage">
                     <label class="form-control-label" for="input-max-guest">Max Guest</label>
-                    <input type="Number" id="max_guest" class="form-control" readonly name="max_guest">
+                    <input type="Number" id="max_guest" class="form-control" name="max_guest">
                   </div>
                 </div>
                 <div class="col-lg-12">
@@ -155,7 +155,7 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-creator">
                     <label class="form-control-label" for="input-created">CREATED BY</label>
-                    <input type="text" id="creator" class="form-control" readonly name="creator">
+                    <input type="text" id="creator" class="form-control" name="creator">
                   </div>
                 </div>
             </div>
