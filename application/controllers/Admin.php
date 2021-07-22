@@ -21,7 +21,6 @@ class Admin extends CI_Controller {
 	 function __construct() {
 		 parent::__construct();
 		 ($this->session->userdata['token']) ? null : redirect('Access/login');
-		 print_r($this->session->userdata);
 	 }
 
 	public function index()
