@@ -1,5 +1,5 @@
 $(function () {
-	window.fields = ["amenity_id", "type", "description","creator", "btnAdd", "btnUpdate", "photo_url"];
+	window.fields = ["amenity_id", "type", "description","creator", "btnAdd", "btnUpdate", "imageUpload"];
 	window.fieldsHidden = ["amenity_id", "creator", "btnUpdate"];
 	window.readOnlyFields = ["amenity_id", "creator"];
 
@@ -207,6 +207,7 @@ $("#imageUpload").change(function () {
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
+	$("#photo_url_placeholder").attr("src", `https://i.stack.imgur.com/y9DpT.jpg`);
 	$("#amenity_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
@@ -217,9 +218,9 @@ const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
 const setFieldsReadOnly = (bool) =>
-	fields.forEach((field) => $(`#${field}`).prop("readonly", bool));
+	fields.forEach((field) => $(`#${field}`).prop("disabled", bool));
 const setReadOnlyFields = () =>
-	readOnlyFields.forEach((field) => $(`#${field}`).prop("readonly", true));
+	readOnlyFields.forEach((field) => $(`#${field}`).prop("disabled", true));
 
 const showAllFields = () =>
 	fields.forEach((field) => $(`#group-${field}`).show());

@@ -1,5 +1,5 @@
 $(function () {
-	window.fields = ["room_type_id", "type", "description","min_guest","max_guest", "pricing_id", "creator","btnAdd", "btnUpdate"];
+	window.fields = ["room_type_id", "type", "description","min_guest","max_guest", "pricing_id", "creator","btnAdd", "btnUpdate", "imageUpload"];
 	window.fieldsHidden = ["room_type_id", "creator", "btnUpdate"];
 	window.readOnlyFields = ["room_type_id", "creator"];
 
@@ -249,9 +249,15 @@ deleteData = (room_type_id) => {
 };
 
 //EXTRA
+// read pictures
+$("#imageUpload").change(function () {
+    readURL(this);
+});
+
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
+	$("#photo_url_placeholder").attr("src", `https://i.stack.imgur.com/y9DpT.jpg`);
 	$("#room_type_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
@@ -291,6 +297,7 @@ const setState = (state, data) => {
 	setInputValue(data);
 	$("#creator").val(data.data.created.email);
 	$("#group-btnAdd").hide();
+	$("#photo_url_placeholder").attr("src", `http://localhost:4000/public/${data.data.photo_url}`);
 
 	if (state === "view") {
 		setFieldsReadOnly(true);

@@ -1,26 +1,26 @@
 $(function () {
-	window.fields = ["taxCode", "percentage", "creator", "btnAdd", "btnUpdate"];
-	window.fieldsHidden = ["taxCode", "creator", "btnUpdate"];
-	window.readOnlyFields = ["taxCode", "creator"];
+	window.fields = ["id", "email", "user_type", "password", "btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["id", "btnUpdate"];
+	window.readOnlyFields = ["id"];
 
 	formReset();
 	loadTable();
 
 	// function to save/update record
-	$("#tax_form").on("submit", function (e) {
+	$("#user_form").on("submit", function (e) {
 		e.preventDefault();
 		trimInputFields();
 
-		if ($("#tax_form").parsley().validate()) {
+		if ($("#user_form").parsley().validate()) {
 			var form_data = new FormData(this);
-			var taxCode = $("#taxCode").val();
-			if (taxCode == "") {
+			var id = $("#id").val();
+			if (id == "") {
 				// form_data.append("password", "P@ssw0rd");
 				// form_data.append("c_password", "P@ssw0rd");
 
 				// add record
 				$.ajax({
-					url: BASE_URL + "tax",
+					url: BASE_URL + "user",
 					type: "POST",
 					data: form_data,
 					dataType: "JSON",
@@ -31,6 +31,7 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
+							document.getElementById("user_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
 						}
@@ -39,7 +40,7 @@ $(function () {
 				});
 			} else {
 				$.ajax({
-					url: BASE_URL + `tax/${taxCode}`,
+					url: BASE_URL + `user/${id}`,
 					type: "PUT",
 					data: form_data,
 					dataType: "JSON",
@@ -77,8 +78,9 @@ loadTable = () => {
 		serverSide: false,
 		order: [[0, "desc"]],
 		aLengthMenu: [5, 10, 20, 30, 50, 100],
-		aaColumns: [
+		aoColumns: [
 			{ sClass: "text-center" },
+			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
@@ -89,34 +91,34 @@ loadTable = () => {
 				render: (aData, type, row) => renderButtons(aData),
 			},
 			{
-				data: "taxCode",
-				name: "taxCode",
+				data: "id",
+				name: "id",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "percentage",
-				name: "percentage",
+				data: "email",
+				name: "email",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "created.email",
-				name: "created.email",
+				data: "user_type",
+				name: "user_type",
 				searchable: true,
 				className: "dtr-control",
 			},
 		],
 		ajax: {
-			url: BASE_URL + "tax",
+			url: BASE_URL + "user",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["taxCode"]);
-			$("td:eq(2)", nRow).html(aData["percentage"]);
-			$("td:eq(3)", nRow).html(aData["created.email"]);
+			$("td:eq(1)", nRow).html(aData["id"]);
+			$("td:eq(2)", nRow).html(aData["email"]);
+			$("td:eq(3)", nRow).html(aData["user_type"]);
 
 		},
 		drawCallback: function (settings) {
@@ -126,12 +128,12 @@ loadTable = () => {
 };
 
 // VIEW DATA
-viewData = (taxCode) => {
+viewData = (id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "tax/" + taxCode,
+			url: BASE_URL + "user/" + id,
 			type: "GET",
-			data: { taxCode },
+			data: { id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("view", data) : notification("error", "Error!", data.message),
@@ -141,12 +143,12 @@ viewData = (taxCode) => {
 };
 
 // Edit DATA
-editData = (taxCode) => {
+editData = (id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "tax/" + taxCode,
+			url: BASE_URL + "user/" + id,
 			type: "GET",
-			data: { taxCode },
+			data: { id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("edit", data) : notification("error", "Error!", data.message),
@@ -156,7 +158,7 @@ editData = (taxCode) => {
 };
 
 // function to delete data
-deleteData = (taxCode) => {
+deleteData = (id) => {
 	Swal.fire({
 		title: "Are you sure you want to delete this record?",
 		text: "You won't be able to revert this!",
@@ -169,9 +171,9 @@ deleteData = (taxCode) => {
 		// if user clickes yes, it will change the active status to "Not Active".
 		if (t.value) {
 			$.ajax({
-				url: BASE_URL + "tax",
+				url: BASE_URL + "user",
 				type: "DELETE",
-				data: { taxCode },
+				data: { id },
 				dataType: "json",
 
 				success: function (data) {
@@ -192,19 +194,19 @@ deleteData = (taxCode) => {
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
-	$("#tax_form")[0].reset();
+	$("#user_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormTaxes").modal("show");
+const showModal = () => $("#FormUser").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
 const setFieldsReadOnly = (bool) =>
-	fields.forEach((field) => $(`#${field}`).prop("readonly", bool));
+	fields.forEach((field) => $(`#${field}`).prop("disabled", bool));
 const setReadOnlyFields = () =>
-	readOnlyFields.forEach((field) => $(`#${field}`).prop("readonly", true));
+	readOnlyFields.forEach((field) => $(`#${field}`).prop("disabled", true));
 
 const showAllFields = () =>
 	fields.forEach((field) => $(`#group-${field}`).show());
@@ -220,16 +222,15 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["taxCode"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
-		`<button type="button" onClick="return editData('${aData["taxCode"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
-		`<button type="button" onClick="return deleteData('${aData["taxCode"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
+		`<button type="button" onClick="return viewData('${aData["id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
+		`<button type="button" onClick="return editData('${aData["id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
+		`<button type="button" onClick="return deleteData('${aData["id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
 	return buttons;
 };
 
 const setState = (state, data) => {
 	showAllFields();
 	setInputValue(data);
-	$("#creator").val(data.data.created.email);
 	$("#group-btnAdd").hide();
 
 	if (state === "view") {

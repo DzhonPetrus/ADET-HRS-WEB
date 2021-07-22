@@ -107,19 +107,19 @@
                 <div class="col-lg-12" id="update_tax_code">
                   <div class="form-group" id="group-taxCode">
                     <label class="form-control-label" for="input-tax-percentage">Tax Code</label>
-                    <input type="text" id="taxCode" class="form-control" readonly name="taxCode">
+                    <input type="text" id="taxCode" class="form-control" name="taxCode">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-percentage">
                     <label class="form-control-label" for="input-tax-percentage">PERCENTAGE</label>
-                    <input type="Number" id="percentage" class="form-control" readonly name="percentage">
+                    <input type="Number" id="percentage" class="form-control" name="percentage">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-creator">
                     <label class="form-control-label" for="input-tax-percentage">CREATED BY</label>
-                    <input type="text" id="creator" class="form-control" readonly name="creator">
+                    <input type="text" id="creator" class="form-control" name="creator">
                   </div>
                 </div>
               </div>

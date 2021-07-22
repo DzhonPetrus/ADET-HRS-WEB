@@ -106,28 +106,40 @@
           <h6 class="heading-small text-muted mb-4">Package Information</h6>
           <div class="pl-lg-4">
             <div class="row">
+                  <div class="col-lg-8">
+                      <label for="image" class="form-label">Image</label>
+
+                      <input class="form-control" type="file" id="imageUpload" name="imageUpload"
+                          accept="image/*">
+                      <input type="hidden" name="photo_url">
+                  </div>
+                  <div class="col-lg-4">
+                      <img src="https://i.stack.imgur.com/y9DpT.jpg" alt=""
+                          class="rounded avatar-lg img-thumbnail" style="object-fit: cover;"
+                          id="photo_url_placeholder" name="photo_url_placeholder">
+                  </div>
               <div class="col-lg-12" id="update_package_id">
                 <div class="form-group" id="group-package_id">
                   <label class="form-control-label" for="input-package-percentage">Package ID</label>
-                  <input type="text" id="package_id" class="form-control" readonly name="package_id">
+                  <input type="text" id="package_id" class="form-control" name="package_id">
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="form-group" id="group-percentage">
                   <label class="form-control-label" for="input-room-type">Title</label>
-                  <input type="text" id="title" class="form-control" readonly name="title" >
+                  <input type="text" id="title" class="form-control" name="title" >
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="form-group" id="group-percentage">
                   <label class="form-control-label" for="input-min-guest">Min Guest</label>
-                  <input type="Number" id="min_guest" class="form-control" readonly name="min_guest">
+                  <input type="Number" id="min_guest" class="form-control" name="min_guest">
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="form-group" id="group-percentage">
                   <label class="form-control-label" for="input-max-guest">Max Guest</label>
-                  <input type="Number" id="max_guest" class="form-control" readonly name="max_guest">
+                  <input type="Number" id="max_guest" class="form-control" name="max_guest">
                 </div>
               </div>
               <div class="col-lg-12">
@@ -147,13 +159,13 @@
               <div class="col-lg-12">
                 <div class="form-group" id="group-description">
                   <label class="form-control-label" for="input-tax-percentage">Description</label>
-                  <input type="text" id="description" class="form-control" readonly name="description">
+                  <input type="text" id="description" class="form-control" name="description">
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="form-group" id="group-creator">
                   <label class="form-control-label" for="input-created">CREATED BY</label>
-                  <input type="text" id="creator" class="form-control" readonly name="creator">
+                  <input type="text" id="creator" class="form-control" name="creator">
                 </div>
               </div>
             </div>

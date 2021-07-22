@@ -1,6 +1,5 @@
 <?php
 $tablePages = array(
-  array('text'=>'Amenities', 'url'=> 'amenity', 'icon'=>' fa fa-wifi'),
   array('text'=>'Bookings', 'url'=> 'booking', 'icon'=>' fa fa-address-book'),
   array('text'=>'Housekeepings', 'url'=> 'housekeeping', 'icon'=>' fas fa-broom'),
   array('text'=>'Loyalty Points', 'url'=> 'loyalty_point', 'icon'=>'fa fa-coins'),
@@ -8,18 +7,11 @@ $tablePages = array(
   array('text'=>'Packages', 'url'=> 'package', 'icon'=>' fas fa-user-friends'),
   array('text'=>'Payment', 'url'=> 'payment', 'icon'=>' fa fa-credit-card'),
   array('text'=>'Promos and Discounts', 'url'=> 'promo_and_discount', 'icon'=>' fas fa-percentage'),
-  array('text'=>'Promos and Discounts Conditions', 'url'=> 'pd_condition', 'icon'=>' fas fa-columns'),
-  array('text'=>'Pricings', 'url'=> 'pricing', 'icon'=>'ni ni-money-coins'),
-  array('text'=>'Rates', 'url'=> 'rate', 'icon'=>' fas fa-money-bill-wave-alt'),
-  array('text'=>'Room Types', 'url'=> 'room_type', 'icon'=>'fa fa-bed'),
-  array('text'=>'Rooms', 'url'=> 'room', 'icon'=>'fas fa-door-open'),
   array('text'=>'Rooms Reserved', 'url'=> 'room_reserved', 'icon'=>'fas fa-clipboard-list'),
-  array('text'=>'Taxes', 'url'=> 'tax', 'icon'=>' fas fa-donate'),
-  array('text'=>'User Informations', 'url'=> 'user_information', 'icon'=>' fa fa-address-card'),
-  array('text'=>'Users', 'url'=> 'user', 'icon'=>' fa fa-users')
+  array('text'=>'User Informations', 'url'=> 'user_information', 'icon'=>' fa fa-address-card')
   );
 
-$adminPages = array(
+$helpdeskPages = array(
   array('text'=>'Dashboard', 'url'=> '', 'icon'=>' ni ni-tv-2'),
   );
 
@@ -46,7 +38,7 @@ $adminPages = array(
         <ul class="navbar-nav">
 
         <?php
-          foreach($adminPages as $item){
+          foreach($helpdeskPages as $item){
             $isActive = $currentPage == ($item['url'] != '' ? $item['url'] : 'admin');
             $html = '<li class="nav-item">'
                 .  '<a class="nav-link '. (($isActive) ? 'active' : ' ') .'" href="' . base_url($this->session->userdata['user_type'].'/'.$item['url']) . '">'
