@@ -110,43 +110,43 @@
                 <div class="col-lg-12" id="update_condition_code">
                   <div class="form-group" id="group-condition_code">
                     <label class="form-control-label" for="input-tax-percentage">Promo/Discount Condition ID</label>
-                    <input type="text" id="condition_code" class="form-control" readonly name="condition_code">
+                    <input type="text" id="condition_code" class="form-control" name="condition_code">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Duration</label>
-                    <input type="time" id="duration" class="form-control" readonly name="duration">
+                    <input type="time" id="duration" class="form-control" name="duration">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-owner">
                     <label class="form-control-label" for="input-tax-percentage">Minimum Duration</label>
-                    <input type="date" id="min_duration" class="form-control" readonly name="min_duration">
+                    <input type="date" id="min_duration" class="form-control" name="min_duration">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-owner">
                     <label class="form-control-label" for="input-tax-percentage">Minimum Guest</label>
-                    <input type="number" id="min_guest" class="form-control" readonly name="min_guest">
+                    <input type="number" id="min_guest" class="form-control" name="min_guest">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-owner">
                     <label class="form-control-label" for="input-tax-percentage">Maximum Guest</label>
-                    <input type="number" id="max_guest" class="form-control" readonly name="max_guest">
+                    <input type="number" id="max_guest" class="form-control" name="max_guest">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-owner">
                     <label class="form-control-label" for="input-tax-percentage">Limit</label>
-                    <input type="number" id="limit" class="form-control" readonly name="limit">
+                    <input type="number" id="limit" class="form-control" name="limit">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-creator">
                     <label class="form-control-label" for="input-tax-percentage">CREATED BY</label>
-                    <input type="text" id="creator" class="form-control" readonly name="creator">
+                    <input type="text" id="creator" class="form-control" name="creator">
                   </div>
                 </div>
               </div>

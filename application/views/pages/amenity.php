@@ -106,7 +106,8 @@
               <div class="row">
                   <div class="col-lg-8">
                       <label for="image" class="form-label">Image</label>
-                      <input class="form-control" type="file" name="imageUpload"
+
+                      <input class="form-control" type="file" id="imageUpload" name="imageUpload"
                           accept="image/*">
                       <input type="hidden" name="photo_url">
                   </div>
@@ -118,7 +119,7 @@
                 <div class="col-lg-12" id="update_amenity_id">
                   <div class="form-group" id="group-amenity_id">
                     <label class="form-control-label" for="input-tax-percentage">Amenity ID</label>
-                    <input type="text" id="amenity_id" class="form-control" readonly name="amenity_id">
+                    <input type="text" id="amenity_id" class="form-control" name="amenity_id">
                   </div>
                 </div>
                   <!-- <div class="form-group" id="group-type">
@@ -128,19 +129,19 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Type</label>
-                    <input type="text" id="type" class="form-control" readonly name="type">
+                    <input type="text" id="type" class="form-control" name="type">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-description">
                     <label class="form-control-label" for="input-tax-percentage">Description</label>
-                    <input type="text" id="description" class="form-control" readonly name="description">
+                    <input type="text" id="description" class="form-control" name="description">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-creator">
                     <label class="form-control-label" for="input-tax-percentage">CREATED BY</label>
-                    <input type="text" id="creator" class="form-control" readonly name="creator">
+                    <input type="text" id="creator" class="form-control" name="creator">
                   </div>
                 </div>
               </div>
