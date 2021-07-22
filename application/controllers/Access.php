@@ -43,7 +43,7 @@ class Access extends CI_Controller {
 				)
 			);
 
-			redirect(base_url('/'));
+			redirect(base_url('/').$this->session->userdata['user_type']);
 		}
 	}
 }
