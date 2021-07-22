@@ -106,6 +106,7 @@
               <div class="row">
                   <div class="col-lg-8">
                       <label for="image" class="form-label">Image</label>
+
                       <input class="form-control" type="file" id="imageUpload" name="imageUpload"
                           accept="image/*">
                       <input type="hidden" name="photo_url">

@@ -4,7 +4,7 @@
 <div class="slider-area ">
     <!-- Mobile Menu -->
     <div class="slider-active dot-style">
-        <div class="single-slider  hero-overly slider-height d-flex align-items-center" data-background="<?= base_url() ?>marian-master/assets/img/hero/landing1.jpg" >
+        <div class="single-slider  hero-overly slider-height d-flex align-items-center" data-background="<?= base_url() ?>marian-master/assets/img/hero/landing3.jpg" >
             <div class="container">
                 <div class="row justify-content-center text-center">
                     <div class="col-xl-9">
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="single-slider  hero-overly slider-height d-flex align-items-center" data-background="<?= base_url() ?>marian-master/assets/img/hero/landing3.jpg" >
+        <div class="single-slider  hero-overly slider-height d-flex align-items-center" data-background="<?= base_url() ?>marian-master/assets/img/hero/landing1.jpg" >
             <div class="container">
                 <div class="row justify-content-center text-center">
                     <div class="col-xl-9">
