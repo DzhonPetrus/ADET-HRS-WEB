@@ -94,11 +94,11 @@
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-email">
-                    <label class="form-control-label" for="input-tax-email">Room Type</label>
+                    <label class="form-control-label" for="input-tax-email">User Type</label>
                     <select id="user_type" class="form-control"  name="user_type">
                       <option value="admin">Admin</option>
-                      <option value="user">User</option>
-                      <option value="desk">Front Desk</option>
+                      <option value="customer">Customer</option>
+                      <option value="frontdesk">Front Desk</option>
                     </select>
                   </div>
                 </div>

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Helpdesk extends CI_Controller {
+class Frontdesk extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,7 +20,7 @@ class Helpdesk extends CI_Controller {
 
 	 function __construct() {
 		 parent::__construct();
-		 ($this->session->userdata['token']) ? ($this->session->userdata['user_type'] != 'helpdesk' ? redirect(base_url().$this->session->userdata['user_type']) : null) : redirect('Access/login');
+		 ($this->session->userdata['token']) ? ($this->session->userdata['user_type'] != 'frontdesk' ? redirect(base_url().$this->session->userdata['user_type']) : null) : redirect('Access/login');
 	 }
 
 	public function index()

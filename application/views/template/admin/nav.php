@@ -15,7 +15,8 @@ $tablePages = array(
   array('text'=>'Rooms', 'url'=> 'room', 'icon'=>'fas fa-door-open'),
   array('text'=>'Rooms Reserved', 'url'=> 'room_reserved', 'icon'=>'fas fa-clipboard-list'),
   array('text'=>'Taxes', 'url'=> 'tax', 'icon'=>' fas fa-donate'),
-  array('text'=>'User Informations', 'url'=> 'user_information', 'icon'=>' fa fa-address-card')
+  array('text'=>'User Informations', 'url'=> 'user_information', 'icon'=>' fa fa-address-card'),
+  array('text'=>'Users', 'url'=> 'user', 'icon'=>' fa fa-users')
   );
 
 $adminPages = array(
