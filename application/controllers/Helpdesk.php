@@ -20,7 +20,7 @@ class Helpdesk extends CI_Controller {
 
 	 function __construct() {
 		 parent::__construct();
-		 ($this->session->userdata['token']) ? ($this->session->userdata['user_type'] == 'helpdesk' ? null : redirect(base_url().'Access/login')) : redirect('Access/login');
+		 ($this->session->userdata['token']) ? ($this->session->userdata['user_type'] != 'helpdesk' ? redirect(base_url().$this->session->userdata['user_type']) : null) : redirect('Access/login');
 	 }
 
 	public function index()
@@ -41,7 +41,6 @@ class Helpdesk extends CI_Controller {
 
 	public function amenity()
 	{
-		echo 'helpdesk';
 		$this->load->view('template/head');
 		$this->load->view('template/helpdesk/nav');
 		$this->load->view('pages/amenity');
