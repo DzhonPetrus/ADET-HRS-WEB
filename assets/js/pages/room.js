@@ -35,20 +35,30 @@ $(function () {
 			success: function (data){
 				if (data.error == false){
 					$("#room_type_id").empty();
+					
+					window.room_types = data.data;
+
 					$.each(data.data, function (i, dataOptions)
 					{
-						console.log(dataOptions.description);
 						var options = "";
-
+						
 						options = "<option value='" + dataOptions.room_type_id + "'>" + dataOptions.type + "</option>";
 
 						$("#room_type_id").append(options);
 
 						min = dataOptions.room_type_id;
 					
-					}
-					
-					);
+					});
+
+					$('#room_type_id').change(() => {
+						const selectedIndex = $('#room_type_id option:selected').index();
+						const selectedRoomType = window.room_types[selectedIndex];
+
+						$("#min_guest").val(selectedRoomType.min_guest);
+						$("#max_guest").val(selectedRoomType.max_guest);
+						$("#description").val(selectedRoomType.description);
+						
+					});
 					console.log(min);
 				} else {
 					notification("error", "Eror!", data.message);
@@ -57,6 +67,7 @@ $(function () {
 			error: function({responseJSON}){},
 		});
 	};
+
     loadRoomType();
     loadPricing();
 
