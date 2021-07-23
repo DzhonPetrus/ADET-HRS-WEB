@@ -49,4 +49,19 @@ class User extends CI_Controller {
 		$this->load->view('user/pages/package');
 		$this->load->view('user/template/footer');
 	}
+	public function Profile()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('user/pages/profile');
+		$this->load->view('template/footer');
+	}
+	public function editProfile()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('user/pages/editprofile');
+		$this->load->view('template/footer');
+	}
+	
 }
