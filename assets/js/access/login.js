@@ -20,8 +20,8 @@ $(function() {
                     session_data += `token=${data.token}`;
                     session_data += `&email=${data.data.user.email}`;
                     session_data += `&user_type=${data.data.user.user_type}`;
+                    session_data += `&user_id=${data.data.user.id}`;
                     session_data += `&user_info=${JSON.stringify(data.data.user_info)}`;
-                    window.USER_INFO = data.data.user_info;
 
                     window.location.replace('./oAuth?' + session_data);
 

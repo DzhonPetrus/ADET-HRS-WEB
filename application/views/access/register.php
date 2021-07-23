@@ -219,5 +219,5 @@
 
 </html>
 
-  <!-- LOGIN JS -->
+  <!-- REGISTER JS -->
   <script defer src="<?= base_url('assets')?>/js/access/register.js "></script>
