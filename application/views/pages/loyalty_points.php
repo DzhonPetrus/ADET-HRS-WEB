@@ -119,7 +119,7 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-owner">
                     <label class="form-control-label" for="input-tax-percentage">Owner</label>
-                    <input type="text" id="owner" class="form-control" name="owner">
+                    <input type="text" id="owner" class="form-control" name="owner" >
                   </div>
                 </div>
                 <div class="col-lg-12">

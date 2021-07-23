@@ -129,7 +129,7 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-points">
                     <label class="form-control-label" for="input-tax-percentage">Points</label>
-                    <input type="text" id="points" class="form-control" name="points">
+                    <input type="text" id="points" class="form-control" name="points" required>
                   </div>
                 </div>
                 <div class="col-lg-12">

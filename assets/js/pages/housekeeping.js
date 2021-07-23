@@ -67,7 +67,9 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {},
+					error: function (data) {
+						notification("error", data.responseJSON.message);
+				},
 				});
 			} else {
 				$.ajax({
@@ -86,7 +88,9 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {},
+					error: function (data) {
+						notification("error", data.responseJSON.message);
+				},
 				});
 			}
 		}

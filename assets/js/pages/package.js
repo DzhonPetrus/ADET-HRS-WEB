@@ -80,8 +80,9 @@ $(function () {
 							loadTable();
 							notification("success", "Success!", data.message);
                             document.getElementById("package_form").reset();
+							$("#photo_url_placeholder").attr("src", `https://i.stack.imgur.com/y9DpT.jpg`);
 						} else {
-							notification("error", "Error!", data.message);
+							notification("error", data.message);
 						}
 					},
 					error: function ({ responseJSON }) {},
@@ -104,7 +105,9 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {},
+					error: function (data) {
+						notification("error", data.responseJSON.message);
+				},
 				});
 			}
 		}

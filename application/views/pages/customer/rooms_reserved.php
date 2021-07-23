@@ -216,4 +216,4 @@
 </div>
 
 <!-- Import JS-->
-<script src="<?= base_url('assets') ?>/js/pages/room_reserved.js"></script>
+<script src="<?= base_url('assets') ?>/js/pages/customer/room_reserved.js"></script>

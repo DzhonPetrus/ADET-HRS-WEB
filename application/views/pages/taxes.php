@@ -113,7 +113,7 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-percentage">
                     <label class="form-control-label" for="input-tax-percentage">PERCENTAGE</label>
-                    <input type="Number" id="percentage" class="form-control" name="percentage">
+                    <input type="Number" id="percentage" class="form-control" name="percentage" required>
                   </div>
                 </div>
                 <div class="col-lg-12">

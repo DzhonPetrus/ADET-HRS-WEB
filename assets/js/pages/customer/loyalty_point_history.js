@@ -135,27 +135,11 @@ loadTable = () => {
 			{ sClass: "text-center" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
-			{ sClass: "text-left" },
-			{ sClass: "text-left" },
-			{ sClass: "text-left" },
-			{ sClass: "text-left" },
 		],
 		columns: [
 			{
 				data: null,
 				render: (aData, type, row) => renderButtons(aData),
-			},
-			{
-				data: "lp_history_id",
-				name: "lp_history_id",
-				searchable: true,
-				className: "dtr-control",
-			},
-			{
-				data: "loyalty_point_id",
-				name: "loyalty_point_id",
-				searchable: true,
-				className: "dtr-control",
 			},
 			{
 				data: "booking_id",
@@ -175,12 +159,6 @@ loadTable = () => {
 				searchable: true,
 				className: "dtr-control",
 			},
-			{
-				data: "created.email",
-				name: "created.email",
-				searchable: true,
-				className: "dtr-control",
-			},
 		],
 		ajax: {
 			url: BASE_URL + "loyalty_point_history",
@@ -189,13 +167,9 @@ loadTable = () => {
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["lp_history_id"]);
-			$("td:eq(2)", nRow).html(aData["loyalty_point_id"]);
-			$("td:eq(3)", nRow).html(aData["booking_id"]);
-			$("td:eq(4)", nRow).html(aData["points"]);
-			$("td:eq(5)", nRow).html(aData["type"]);
-			$("td:eq(6)", nRow).html(aData["created.email"]);
-
+			$("td:eq(1)", nRow).html(aData["booking_id"]);
+			$("td:eq(2)", nRow).html(aData["points"]);
+			$("td:eq(3)", nRow).html(aData["type"]);
 		},
 		drawCallback: function (settings) {
 			// $("#data-table").removeClass("dataTable");

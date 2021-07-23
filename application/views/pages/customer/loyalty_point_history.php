@@ -9,12 +9,12 @@
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
               <li class="breadcrumb-item"><a href="./"><i class="fas fa-home"></i></a></li>
               <li class="breadcrumb-item"><a href="#">Tables</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Amenity</li>
+              <li class="breadcrumb-item active" aria-current="page">Loyalty Point History</li>
             </ol>
           </nav>
         </div>
         <div class="col-lg-6 col-5 text-right">
-          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormAmenities" id="show_tax_form" onClick="newHandler()">New</button>
+          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormLPHistory" id="show_tax_form" onClick="newHandler()">New</button>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
       <div class="card">
         <!-- Card header -->
         <div class="card-header border-0">
-          <h3 class="mb-0">AMENITIES TABLE</h3>
+          <h3 class="mb-0">LOYALTY POINT HISTORY TABLE</h3>
         </div>
         <!-- Light table -->
         <div class="table-responsive">
@@ -39,10 +39,9 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col" class="sort" data-sort="buttons">Actions</th>
-                <th scope="col" class="sort" data-sort="amenity_id">Amenity ID</th>
-                <th scope="col" class="sort" data-sort="type">TYPE</th>
-                <th scope="col" class="sort" data-sort="descreption">Descreption</th>
-                <th scope="col" class="sort" data-sort="created">Created</th>
+                <th scope="col" class="sort" data-sort="booking_id">Booking ID</th>
+                <th scope="col" class="sort" data-sort="points">Points</th>
+                <th scope="col" class="sort" data-sort="type">Type</th>
               </tr>
             </thead>
             <tbody class="list"></tbody>
@@ -84,11 +83,11 @@
 
 
   <!-- MODAL FORM -->
-  <div class="modal fade" id="FormAmenities" tabindex="-1" role="dialog" aria-labelledby="FormAmenitiesLabel" aria-hidden="true">
+  <div class="modal fade" id="FormLPHistory" tabindex="-1" role="dialog" aria-labelledby="FormLPHistoryLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="FormAmenitiesLabel">AMENITIES</h5>
+          <h5 class="modal-title" id="FormLPHistoryLabel">Loyalty Point History</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -98,44 +97,45 @@
 
         <div class="card shadow-none">
 
-        <form id="amenity_form" enctype="multipart/form-data">
+        <form id="lphistory_form">
 
           <div class="card-body">
-            <h6 class="heading-small text-muted mb-4">Amenities Information</h6>
+            <h6 class="heading-small text-muted mb-4">Loyalty Points History Information</h6>
             <div class="pl-lg-4">
               <div class="row">
-                  <div class="col-lg-8">
-                      <label for="image" class="form-label">Image</label>
-
-                      <input class="form-control" type="file" id="imageUpload" name="imageUpload"
-                          accept="image/*">
-                      <input type="hidden" name="photo_url">
-                  </div>
-                  <div class="col-lg-4">
-                      <img src="https://i.stack.imgur.com/y9DpT.jpg" alt=""
-                          class="rounded avatar-lg img-thumbnail" style="object-fit: cover;"
-                          id="photo_url_placeholder" name="photo_url_placeholder">
-                  </div>
-                <div class="col-lg-12" id="update_amenity_id">
-                  <div class="form-group" id="group-amenity_id">
-                    <label class="form-control-label" for="input-tax-percentage">Amenity ID</label>
-                    <input type="text" id="amenity_id" class="form-control" name="amenity_id">
+                <div class="col-lg-12" id="update_lp_history_id">
+                  <div class="form-group" id="group-lp_history_id">
+                    <label class="form-control-label" for="input-tax-percentage">Loyalty Point ID</label>
+                    <input type="text" id="lp_history_id" class="form-control" name="lp_history_id">
                   </div>
                 </div>
-                  <!-- <div class="form-group" id="group-type">
-                    <label class="form-label" for="photo_url">Image</label>
-                    <input type="file" class="form-control-file" name="image">
-                  </div> -->
                 <div class="col-lg-12">
-                  <div class="form-group" id="group-type">
+                  <div class="form-group" id="group-points">
+                    <label class="form-control-label" for="input-tax-percentage">Loyalty Point ID</label>
+                    <select id="loyalty_point_id" class="form-control" name="loyalty_point_id">
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group" id="group-points">
+                    <label class="form-control-label" for="input-tax-percentage">Booking ID</label>
+                    <select id="booking_id" class="form-control" name="booking_id">
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group" id="group-points">
+                    <label class="form-control-label" for="input-tax-percentage">Points</label>
+                    <input type="text" id="points" class="form-control" name="points" required>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group" id="group-points">
                     <label class="form-control-label" for="input-tax-percentage">Type</label>
-                    <input type="text" id="type" class="form-control" name="type" required>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="form-group" id="group-description">
-                    <label class="form-control-label" for="input-tax-percentage">Description</label>
-                    <input type="text" id="description" class="form-control" name="description" required>
+                    <select id="type" class="form-control" name="type">
+                    <option value="Earned">Earned</option>
+                    <option value="Used">Used</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-lg-12">
@@ -171,4 +171,4 @@
 </div>
 
 <!-- Import JS-->
-<script src="<?= base_url('assets') ?>/js/pages/amenity.js"></script>
+<script src="<?= base_url('assets') ?>/js/pages/customer/loyalty_point_history.js"></script>

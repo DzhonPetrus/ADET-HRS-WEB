@@ -113,13 +113,13 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-price_per_qty">
                     <label class="form-control-label" for="input-tax-percentage">Room Number</label>
-                   <select id="room_id" class="form-control" name="room_id"></select>
+                   <select id="room_id" class="form-control" name="room_id" required></select>
                   </div>
                 </div>
                   <div class="col-lg-12">
                     <div class="form-group" id="group-room_status">
                       <label class="form-control-label" for="input-tax-percentage">Room Status</label>
-                      <select id="room_status" class="form-control" name="room_status">
+                      <select id="room_status" class="form-control" name="room_status" required>
                         <option value="Clean">Clean</option>
                         <option value="To Be Clean">To Be Clean</option>
                       </select>

@@ -147,7 +147,7 @@
                 </div>
             </div>
           <hr class="my-4">
-          <h6 class="heading-small text-muted mb-4">Address 2</h6>
+          <h6 class="heading-small text-muted mb-4">Address 2 (Optional)</h6>
             <div class="row">
               <div class="col-lg-4">
                 <div class="form-group">
