@@ -39,6 +39,8 @@ class Access extends CI_Controller {
 				array(
 					'token' => $_GET['token'],
 					'email' => $_GET['email'],
+					'user_info_id' => $_GET['user_info_id'],
+					'user_info' => json_decode($_GET['user_info']),
 					'user_type' => $_GET['user_type']
 				)
 			);
