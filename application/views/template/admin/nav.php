@@ -167,8 +167,9 @@ $adminPages = array(
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="<?= base_url('assets') ?>/img/theme/team-4.jpg">
+                  <img alt="Image placeholder" src="<?= API_PUBLIC.$this->session->userdata['user_info']->photo_url ?>">
                 </span>
+        
                 <div class="media-body  ml-2  d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold"><?= $this->session->userdata['email'] ?></span>
                 </div>
