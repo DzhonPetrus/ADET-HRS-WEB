@@ -18,6 +18,7 @@ $(function () {
 						options = "<option value='" + dataOptions.pricing_id + "'>" + dataOptions.price_per_qty + "</option>";
 
 						$("#pricing_id").append(options);
+
 					});
 				} else {
 					notification("error", "Eror!", data.message);
@@ -36,6 +37,7 @@ $(function () {
 					$("#room_type_id").empty();
 					$.each(data.data, function (i, dataOptions)
 					{
+						console.log(dataOptions.description);
 						var options = "";
 
 						options = "<option value='" + dataOptions.room_type_id + "'>" + dataOptions.type + "</option>";

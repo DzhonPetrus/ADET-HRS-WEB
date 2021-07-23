@@ -128,7 +128,7 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Type</label>
-                    <select id="type" class="form-control" name="type">
+                    <select id="type" class="form-control" name="type" required>
                       <option value="Promo">Promo</option>
                       <option value="Discount">Discount</option>
                     </select>
@@ -143,26 +143,26 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-description">
                     <label class="form-control-label" for="input-tax-percentage">Room Type</label>
-                    <select id="room_type_id" class="form-control" name="room_type_id">
+                    <select id="room_type_id" class="form-control" name="room_type_id" required>
                     </select>
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Discount Amount</label>
-                    <input type="number" id="discount_percentage_amount" class="form-control" name="discount_percentage_amount">
+                    <input type="number" id="discount_percentage_amount" class="form-control" name="discount_percentage_amount" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-description">
                     <label class="form-control-label" for="input-tax-percentage">Valid From</label>
-                    <input type="date" id="valid_from" class="form-control" name="valid_from">
+                    <input type="date" id="valid_from" class="form-control" name="valid_from" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Valid Until</label>
-                    <input type="date" id="valid_until" class="form-control" name="valid_until">
+                    <input type="date" id="valid_until" class="form-control" name="valid_until" required>
                   </div>
                 </div>
                 <div class="col-lg-12">

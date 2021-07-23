@@ -127,19 +127,19 @@
               <div class="col-lg-12">
                 <div class="form-group" id="group-percentage">
                   <label class="form-control-label" for="input-room-type">Title</label>
-                  <input type="text" id="title" class="form-control" name="title" >
+                  <input type="text" id="title" class="form-control" name="title" required>
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="form-group" id="group-percentage">
                   <label class="form-control-label" for="input-min-guest">Min Guest</label>
-                  <input type="Number" id="min_guest" class="form-control" name="min_guest">
+                  <input type="Number" id="min_guest" class="form-control" name="min_guest" required>
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="form-group" id="group-percentage">
                   <label class="form-control-label" for="input-max-guest">Max Guest</label>
-                  <input type="Number" id="max_guest" class="form-control" name="max_guest">
+                  <input type="Number" id="max_guest" class="form-control" name="max_guest" required>
                 </div>
               </div>
               <div class="col-lg-12">
@@ -152,7 +152,7 @@
               <div class="col-lg-12">
                 <div class="form-group" id="room_type">
                   <label class="form-control-label" for="input-room-type">Room Type</label>
-                  <select name="room_type_id" id="room_type_id" class="form-control">
+                  <select name="room_type_id" id="room_type_id" class="form-control" required>
                   </select>
                 </div>
               </div>

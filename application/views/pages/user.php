@@ -83,19 +83,19 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-email">
                     <label class="form-control-label" for="input-tax-email">Email</label>
-                    <input type="text" id="email" class="form-control"  name="email">
+                    <input type="text" id="email" class="form-control"  name="email" required>
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-email">
                     <label class="form-control-label" for="input-tax-email">Password</label>
-                    <input type="text" id="password" class="form-control"  name="password">
+                    <input type="text" id="password" class="form-control"  name="password" required>
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-email">
                     <label class="form-control-label" for="input-tax-email">User Type</label>
-                    <select id="user_type" class="form-control"  name="user_type">
+                    <select id="user_type" class="form-control"  name="user_type" required>
                       <option value="admin">Admin</option>
                       <option value="customer">Customer</option>
                       <option value="frontdesk">Front Desk</option>

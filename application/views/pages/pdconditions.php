@@ -116,31 +116,31 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Duration</label>
-                    <input type="time" id="duration" class="form-control" name="duration">
+                    <input type="time" id="duration" class="form-control" name="duration" required>
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-owner">
                     <label class="form-control-label" for="input-tax-percentage">Minimum Duration</label>
-                    <input type="date" id="min_duration" class="form-control" name="min_duration">
+                    <input type="date" id="min_duration" class="form-control" name="min_duration" required> 
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-owner">
                     <label class="form-control-label" for="input-tax-percentage">Minimum Guest</label>
-                    <input type="number" id="min_guest" class="form-control" name="min_guest">
+                    <input type="number" id="min_guest" class="form-control" name="min_guest" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-owner">
                     <label class="form-control-label" for="input-tax-percentage">Maximum Guest</label>
-                    <input type="number" id="max_guest" class="form-control" name="max_guest">
+                    <input type="number" id="max_guest" class="form-control" name="max_guest" required>
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-owner">
                     <label class="form-control-label" for="input-tax-percentage">Limit</label>
-                    <input type="number" id="limit" class="form-control" name="limit">
+                    <input type="number" id="limit" class="form-control" name="limit" required>
                   </div>
                 </div>
                 <div class="col-lg-12">

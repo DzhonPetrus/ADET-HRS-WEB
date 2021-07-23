@@ -116,7 +116,7 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-room_type_id">Room Number</label>
-                    <input type="number" id="room_no" class="form-control" name="room_no">
+                    <input type="number" id="room_no" class="form-control" name="room_no" required>
                   </div>
                 </div>
                 <div class="col-lg-12">
@@ -135,13 +135,13 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-description">
                     <label class="form-control-label" for="input-tax-percentage">Minimum Guest</label>
-                    <input type="text" id="min_guest" class="form-control" name="min_guest">
+                    <input type="text" id="min_guest" class="form-control" name="min_guest" required>
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-description">
                     <label class="form-control-label" for="input-tax-percentage">Maximum Guest</label>
-                    <input type="text" id="max_guest" class="form-control" name="max_guest">
+                    <input type="text" id="max_guest" class="form-control" name="max_guest" required>
                   </div>
                 </div>
                 <div class="col-lg-12">

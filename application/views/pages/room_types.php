@@ -128,25 +128,25 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Type</label>
-                    <input type="text" id="type" class="form-control" name="type">
+                    <input type="text" id="type" class="form-control" name="type" required>
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-description">
                     <label class="form-control-label" for="input-tax-percentage">Description</label>
-                    <input type="text" id="description" class="form-control" name="description">
+                    <input type="text" id="description" class="form-control" name="description" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-description">
                     <label class="form-control-label" for="input-tax-percentage">Minumum Guest</label>
-                    <input type="number" id="min_guest" class="form-control" name="min_guest">
+                    <input type="number" id="min_guest" class="form-control" name="min_guest" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Maximum Guest</label>
-                    <input type="number" id="max_guest" class="form-control" name="max_guest">
+                    <input type="number" id="max_guest" class="form-control" name="max_guest" required>
                   </div>
                 </div>
                 <div class="col-lg-12">
