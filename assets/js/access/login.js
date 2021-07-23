@@ -20,7 +20,7 @@ $(function() {
                     session_data += `&email=${data.data.email}`;
                     session_data += `&user_type=${data.data.user_type}`;
 
-                    redirect('./oAuth?' + session_data);
+                    window.location.replace('./oAuth?' + session_data);
 
                 },
                 error: ( {responseJSON} ) => {
