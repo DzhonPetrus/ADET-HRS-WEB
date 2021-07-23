@@ -59,7 +59,7 @@ class Customer extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/customer/nav');
-		$this->load->view('pages/loyalty_points');
+		$this->load->view('pages/customer/loyalty_points');
 		$this->load->view('template/footer');
 	}
 
@@ -67,7 +67,7 @@ class Customer extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/customer/nav');
-		$this->load->view('pages/user_info');
+		$this->load->view('pages/customer/user_info');
 		$this->load->view('template/footer');
 	}
 
@@ -123,14 +123,14 @@ class Customer extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/customer/nav');
-		$this->load->view('pages/booking');
+		$this->load->view('pages/customer/booking');
 		$this->load->view('template/footer');
 	}
 	public function loyalty_point_history()
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/customer/nav');
-		$this->load->view('pages/loyalty_point_history');
+		$this->load->view('pages/customer/loyalty_point_history');
 		$this->load->view('template/footer');
 	}
 	public function promo_and_discount()
@@ -145,7 +145,7 @@ class Customer extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/customer/nav');
-		$this->load->view('pages/rooms_reserved');
+		$this->load->view('pages/customer/rooms_reserved');
 		$this->load->view('template/footer');
 	}
 
