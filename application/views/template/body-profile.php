@@ -1,3 +1,10 @@
+<?php
+  if(isset($_COOKIE['USER_INFO'])){
+    echo "<alert>".$_COOKIE['USER_INFO']."</alert>";
+    $this->session->userdata['user_info'] = json_decode($_COOKIE['USER_INFO']);
+
+  }
+?>
 <div class="main-content" id="panel">
     <!-- Header -->
     <div class="header pb-6 d-flex align-items-center" style="min-height: 500px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">

@@ -12,8 +12,11 @@ $(function() {
                     password: $('#password').val()
                 },
                 dataType: "json",
-                success: (data) => {
+                success: (info) => {
+                    let data = info;
                     console.log(data)
+                    if(data.data.user_info == null)
+                        data.data.user_info = {first_name:null, middle_name:null, last_name:null, user_info_id:null, country1:null, city1:null, photo_url:`http://keyrecruitment.co.za/wp-content/uploads/2013/10/image.jpg`}
                     localStorage.setItem("TOKEN", data.token);
                     let session_data = "";
                     
