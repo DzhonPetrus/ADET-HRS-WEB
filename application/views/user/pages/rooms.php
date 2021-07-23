@@ -32,96 +32,66 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="col-xl-3">
                 <!-- Single Room -->
                 <div class="single-room mb-50">
                     <div class="room-img">
-                       <a href="rooms.html"><img src="<?= base_url() ?>marian-master/assets/img/rooms/room1.jpg" alt=""></a>
+                       <a href="<?= base_url() ?>user/singleroom"><img src="<?= base_url() ?>marian-master/assets/img/rooms/room2.jpg" alt=""></a>
                     </div>
                     <div class="room-caption">
-                        <h3><a href="rooms.html">Classic Double Bed</a></h3>
+                        <h3><a href="<?= base_url() ?>user/singleroom">Single</a></h3>
                         <div class="per-night">
-                            <span><u>$</u>150 <span>/ par night</span></span>
+                            <span><u>₱</u>4,620 <span>/ per night</span></span>
+                            <h4> 1 Person</h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-6 col-md-6">
-                <!-- Single Room -->
+            <div class="col-xl-3">
+                <!-- Standard Room -->
                 <div class="single-room mb-50">
                     <div class="room-img">
-                       <a href="rooms.html"><img src="<?= base_url() ?>marian-master/assets/img/rooms/room2.jpg" alt=""></a>
+                       <a href="<?= base_url() ?>user/standardroom"><img src="<?= base_url() ?>marian-master/assets/img/rooms/room5.jpg" alt=""></a>
                     </div>
                     <div class="room-caption">
-                        <h3><a href="rooms.html">Classic Double Bed</a></h3>
+                        <h3><a href="<?= base_url() ?>user/standardroom">Standard</a></h3>
                         <div class="per-night">
-                            <span><u>$</u>150 <span>/ par night</span></span>
+                            <span><u>₱</u>6,740<span>/ per night</span></span>
+                            <h4> 1 to 2 Persons</h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-6 col-md-6">
-                <!-- Single Room -->
+            <div class="col-xl-3">
+                <!-- Deluxe Room -->
                 <div class="single-room mb-50">
                     <div class="room-img">
-                       <a href="rooms.html"> <img src="<?= base_url() ?>marian-master/assets/img/rooms/room3.jpg" alt=""></a>
+                       <a href="<?= base_url() ?>user/deluxeroom"> <img src="<?= base_url() ?>marian-master/assets/img/rooms/room6.jpg" alt=""></a>
                     </div>
                     <div class="room-caption">
-                        <h3><a href="rooms.html">Classic Double Bed</a></h3>
+                        <h3><a href="<?= base_url() ?>user/deluxeroom">Deluxe</a></h3>
                         <div class="per-night">
-                            <span><u>$</u>150 <span>/ par night</span></span>
+                            <span><u>₱</u>7,140 <span>/ per night</span></span>
+                            <h4> 2 to 4 Persons</h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-6 col-md-6">
-                <!-- Single Room -->
+            <div class="col-xl-3">
+                <!-- Suite Room -->
                 <div class="single-room mb-50">
                     <div class="room-img">
-                        <a href="rooms.html"><img src="<?= base_url() ?>marian-master/assets/img/rooms/room4.jpg" alt=""></a>
+                       <a href="<?= base_url() ?>user/suiteroom"> <img src="<?= base_url() ?>marian-master/assets/img/rooms/room4.jpg" alt=""></a>
                     </div>
                     <div class="room-caption">
-                        <h3><a href="rooms.html">Classic Double Bed</a></h3>
+                        <h3><a href="<?= base_url() ?>user/suiteroom">Suite</a></h3>
                         <div class="per-night">
-                            <span><u>$</u>150 <span>/ par night</span></span>
+                            <span><u>₱</u>10,560 <span>/ per night</span></span>
+                            <h4> 10 to 12 Persons</h4>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-6 col-md-6">
-                <!-- Single Room -->
-                <div class="single-room mb-50">
-                    <div class="room-img">
-                        <a href="rooms.html"><img src="<?= base_url() ?>marian-master/assets/img/rooms/room5.jpg" alt=""></a>
-                    </div>
-                    <div class="room-caption">
-                        <h3><a href="rooms.html">Classic Double Bed</a></h3>
-                        <div class="per-night">
-                            <span><u>$</u>150 <span>/ par night</span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-6">
-                <!-- Single Room -->
-                <div class="single-room mb-50">
-                    <div class="room-img">
-                       <a href="rooms.html"> <img src="<?= base_url() ?>marian-master/assets/img/rooms/room6.jpg" alt=""></a>
-                    </div>
-                    <div class="room-caption">
-                        <h3><a href="rooms.html">Classic Double Bed</a></h3>
-                        <div class="per-night">
-                            <span><u>$</u>150 <span>/ par night</span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="room-btn pt-70">
-                <a href="#" class="btn view-btn1">View more  <i class="ti-angle-right"></i> </a>
-            </div>
-        </div>
     </div>
 
 </section>
