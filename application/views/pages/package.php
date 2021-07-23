@@ -106,6 +106,18 @@
           <h6 class="heading-small text-muted mb-4">Package Information</h6>
           <div class="pl-lg-4">
             <div class="row">
+                  <div class="col-lg-8">
+                      <label for="image" class="form-label">Image</label>
+
+                      <input class="form-control" type="file" id="imageUpload" name="imageUpload"
+                          accept="image/*">
+                      <input type="hidden" name="photo_url">
+                  </div>
+                  <div class="col-lg-4">
+                      <img src="https://i.stack.imgur.com/y9DpT.jpg" alt=""
+                          class="rounded avatar-lg img-thumbnail" style="object-fit: cover;"
+                          id="photo_url_placeholder" name="photo_url_placeholder">
+                  </div>
               <div class="col-lg-12" id="update_package_id">
                 <div class="form-group" id="group-package_id">
                   <label class="form-control-label" for="input-package-percentage">Package ID</label>

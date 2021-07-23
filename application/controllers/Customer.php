@@ -20,7 +20,7 @@ class Customer extends CI_Controller {
 
 	 function __construct() {
 		 parent::__construct();
-		 ($this->session->userdata['token']) ? ($this->session->userdata['user_type'] != 'customer' ? redirect(base_url().$this->session->userdata['user_type']) : null) : redirect('Access/login');
+		 ($this->session->userdata['token']) ? (strtolower($this->session->userdata['user_type']) != 'customer' ? redirect(base_url().$this->session->userdata['user_type']) : null) : redirect('Access/login');
 	 }
 
 	public function index()

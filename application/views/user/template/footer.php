@@ -7,7 +7,7 @@
                       <div class="single-footer-caption mb-30">
                          <!-- logo -->
                          <div class="footer-logo">
-                           <a href="index.html"><img src="<?= base_url() ?>marian-master/assets/img/logo/logo2_footer.png" alt=""></a>
+                           <a href="<?= base_url() ?>user/home"><img src="<?= base_url() ?>marian-master/assets/img/logo/HRS LOGO.png" alt=""></a>
                          </div>
                          <div class="footer-social footer-social2">
                              <a href="#"><i class="fab fa-facebook-f"></i></a>

@@ -1,7 +1,7 @@
 <!-- Main content -->
   <div class="main-content" >
     <!-- Header -->
-    <div class="header py-7 py-lg-8 pt-lg-9"style="background-color:#dca73a">
+    <div class="header py-7 py-lg-8 pt-lg-9"style="background-color:#5e72e4">
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
@@ -23,67 +23,181 @@
     <div class="container mt--8 pb-5">
       <!-- Table -->
       <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8">
+        <div class="col-lg-12 col-md-12">
           <div class="card bg-secondary border-0">
-            <div class="card-header bg-transparent pb-5">
-              <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
-              <div class="text-center">
-                <a href="#" class="btn btn-neutral btn-icon mr-4">
-                  <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
-                  <span class="btn-inner--text" style="color:black">Github</span>
-                </a>
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-                  <span class="btn-inner--text" style="color:black">Google</span>
-                </a>
-              </div>
-            </div>
+
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
-                <small> sign up with credentials</small>
+              <div class="logo">
+                  <img src="<?= base_url() ?>marian-master/assets/img/logo/HRS LOGO.png" alt="">
+                </div>
               </div>
-              <form role="form">
+
+              <form role="form" id="formRegister" name="formRegister" data-parsley-validate>
+              <hr>
+              <div class="card-body">
+              <h3 style="text-align:center"> Sign up with Credentials</h3>
+          <h6 class="heading-small text-muted mb-4">USER Information</h6>
+          <div class="pl-lg-4">
+            <div class="row">
+                  <div class="col-lg-8">
+                      <label for="image" class="form-label">Picture</label>
+
+                      <input class="form-control" type="file" id="imageUpload" name="imageUpload"
+                          accept="image/*">
+                      <input type="hidden" name="photo_url">
+                  </div>
+                  <div class="col-lg-4">
+                      <img src="https://i.stack.imgur.com/y9DpT.jpg" alt=""
+                          class="rounded avatar-lg img-thumbnail" style="object-fit: cover;"
+                          id="photo_url_placeholder" name="photo_url_placeholder">
+                  </div>
+              <div class="col-lg-4">
                 <div class="form-group">
-                  <div class="input-group input-group-merge input-group-alternative mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Name" type="text">
+                  <label class="form-control-label" for="input-user-email">Email</label>
+                  <input type="text" id="email" name="email" class="form-control" placeholder="Email" required>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-user-password">Password</label>
+                  <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-user-password">Confirm Password</label>
+                  <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" placeholder="Confirm Password" data-parsley-equalto="#password" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-user-first-name">First Name</label>
+                  <input id="firstname" name="first_name" class="form-control" placeholder="First Name" type="text" required>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-user-middle-name">Middle Name</label>
+                  <input id="middle_name" name="middle_name" class="form-control" placeholder="Middle Name" type="text" >
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-user-last-name">Last Name</label>
+                  <input id="last_name" name="last_name" class="form-control" placeholder="Last Name" type="text" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-user-birthdate">Birthdate</label>
+                  <input type="date" id="birth_date" name="birth_date" class="form-control" placeholder="User Birthdate" required>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-user-nationality">Nationality</label>
+                  <input type="text" id="nationality" name="nationality" class="form-control" placeholder="Nationality" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-contact-number">Contact Number</label>
+                  <input id="contact_no" name="contact_no" class="form-control" placeholder="Contact Number" type="number" required>
+                </div>
+              </div>
+            </div>
+
+          <hr class="my-4">
+          <h6 class="heading-small text-muted mb-4">Address</h6>
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-Street">Street</label>
+                  <input type="text" id="street1" name="street1" class="form-control" placeholder="Street" required>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-city">City</label>
+                  <input type="text" id="city1" name="city1" class="form-control" placeholder="City" required>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-postal-code">Postal code</label>
+                  <input type="number" id="zip1" name="zip1" class="form-control" placeholder="Postal code" required>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-state">State</label>
+                  <input type="text" id="state1" name="state1" class="form-control" placeholder="State" required>
+                </div>
+              </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-country">Country</label>
+                    <input type="text" id="country1" name="country1" class="form-control" placeholder="Country" required>
                   </div>
                 </div>
+            </div>
+          <hr class="my-4">
+          <h6 class="heading-small text-muted mb-4">Address 2</h6>
+            <div class="row">
+              <div class="col-lg-4">
                 <div class="form-group">
-                  <div class="input-group input-group-merge input-group-alternative mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Email" type="email">
+                  <label class="form-control-label" for="input-Street">Street</label>
+                  <input type="text" id="street2" name="street2" class="form-control" placeholder="Street" >
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-city">City</label>
+                  <input type="text" id="city2" name="city2" class="form-control" placeholder="City" >
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-postal-code">Postal code</label>
+                  <input type="number" id="zip2" name="zip2" class="form-control" placeholder="Postal" >
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-state">State</label>
+                  <input type="text" id="state2" name="state2" class="form-control" placeholder="State" >
+                </div>
+              </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-country">Country</label>
+                    <input type="text" id="country2" name="country2" class="form-control" placeholder="Country" >
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group input-group-merge input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Password" type="password">
-                  </div>
-                </div>
+            </div>
+        </div>
                 <div class="row my-4">
                   <div class="col-12">
                     <div class="custom-control custom-control-alternative custom-checkbox">
                       <input type="checkbox">
                       <label>
-                        <span class="text-muted">I agree with the <a href="#!" style="color:#dca73a">Privacy Policy</a></span>
+                        <span class="text-muted">I agree with the <a href="#!" style="color:#5e72e4">Privacy Policy</a></span>
                     </div>
                   </div>
                   <div class="row my-3">
                     <div class="col-12">
-                        <a href="<?= base_url() ?>Access/login" class="text-light">&nbsp&nbsp&nbsp&nbsp<small>Already have an account?</small></a>
+                        <a href="<?= base_url('Access/login') ?>" class="text-light">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<small>Already have an account?</small></a>
                       </label>
                     </div>
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary mt-4" style="background-color:#dca73a; border-color:#dca73a">Create account</button>
+                  <button type="submit" class="btn btn-primary my-4" style="background-color:#5e72e4; border-color:#5e72e4">Create account</button>
                 </div>
               </form>
             </div>
@@ -104,3 +218,6 @@
 </body>
 
 </html>
+
+  <!-- LOGIN JS -->
+  <script defer src="<?= base_url('assets')?>/js/access/register.js "></script>

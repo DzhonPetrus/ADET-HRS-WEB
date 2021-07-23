@@ -174,7 +174,7 @@ label {
 /* button style */
 .btn {
 	-moz-user-select: none;
-	background: #dca73a;
+	background: #5e72e4;
 	border: medium none;
 	border-radius: 5px;
 	color: #fff;
@@ -194,17 +194,17 @@ label {
 	white-space: nowrap;
 }
 .btn:hover {
-	background:#f1b233;
+	background:#5e72e4;
 	color: #fff;
 }
 
 .border-btn {
 	background: none;
-	border: 2px solid #dca73a;
-	color: #dca73a;
+	border: 2px solid #5e72e4;
+	color: #5e72e4;
 }
 .border-btn i{
-	color: #dca73a !important;
+	color: #5e72e4 !important;
 	position: relative;
 	left: 0;
 }
@@ -306,7 +306,7 @@ label {
 
 /* scrollUp */
 #scrollUp {
-	background: #dca73a;
+	background: #5e72e4;
 	height: 50px;
 	width: 50px;
 	right: 50px;
@@ -557,7 +557,7 @@ label {
 }
 .preloader .pere-text strong{
 	font-weight: 800;
-	color:#dca73a ;
+	color:#5e72e4 ;
 	text-transform: uppercase;
 }
 @-webkit-keyframes zoom {

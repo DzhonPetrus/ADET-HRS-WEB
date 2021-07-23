@@ -1,5 +1,5 @@
 $(function () {
-	window.fields = ["amenity_id", "type", "description","creator", "btnAdd", "btnUpdate", "photo_url"];
+	window.fields = ["amenity_id", "type", "description","creator", "btnAdd", "btnUpdate", "imageUpload"];
 	window.fieldsHidden = ["amenity_id", "creator", "btnUpdate"];
 	window.readOnlyFields = ["amenity_id", "creator"];
 
