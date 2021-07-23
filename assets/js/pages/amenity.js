@@ -33,11 +33,14 @@ $(function () {
 							loadTable();
 							notification("success", "Success!", data.message);
 							document.getElementById("amenity_form").reset();
+							$("#photo_url_placeholder").attr("src", `https://i.stack.imgur.com/y9DpT.jpg`);
 						} else {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {notification("error", "Error!", responseJSON)},
+					error: function (data) {
+						notification("error", data.responseJSON.message);
+					},
 				});
 			} else {
 				$.ajax({
@@ -56,7 +59,9 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {notification("error", "Error!", responseJSON)},
+					error: function (data) {
+						notification("error", data.responseJSON.message);
+				},
 				});
 			}
 		}
