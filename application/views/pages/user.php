@@ -71,7 +71,7 @@
         <form id="user_form">
 
           <div class="card-body">
-            <h6 class="heading-small text-muted mb-4">Tax Information</h6>
+            <h6 class="heading-small text-muted mb-4">User Information</h6>
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-12" id="update_id">
