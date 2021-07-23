@@ -204,7 +204,7 @@
                 <div class="col-lg-6">
                   <div class="form-group" id="group-state1">
                     <label class="form-control-label" for="input-state">State</label>
-                    <input type="text" id="state1" name="state1" class="form-control" placeholder="State"> required
+                    <input type="text" id="state1" name="state1" class="form-control" placeholder="State" required> 
                   </div>
                 </div>
                 <div class="col-lg-6">
