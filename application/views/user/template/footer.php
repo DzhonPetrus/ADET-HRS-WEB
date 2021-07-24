@@ -27,10 +27,9 @@
                            <div class="footer-tittle">
                                <h4>Quick Links</h4>
                                <ul>
-                                   <li><a href="#">About Mariana</a></li>
-                                   <li><a href="#">Our Best Rooms</a></li>
-                                   <li><a href="#">Our Photo Gellary</a></li>
-                                   <li><a href="#">Pool Service</a></li>
+                                   <li><a href="#">About HRS</a></li>
+                                   <li><a href="#">Our Rooms</a></li>
+                                   <li><a href="#">Our Packages</a></li>
                                </ul>
                            </div>
                        </div>
@@ -41,8 +40,6 @@
                                <h4>Reservations</h4>
                                <ul>
                                    <li><a href="#">Tel: 345 5667 889</a></li>
-                                   <li><a href="#">Skype: Marianabooking</a></li>
-                                   <li><a href="#">reservations@hotelriver.com</a></li>
                                </ul>
                            </div>
                        </div>
@@ -52,25 +49,9 @@
                            <div class="footer-tittle">
                                <h4>Our Location</h4>
                                <ul>
-                                   <li><a href="#">198 West 21th Street,</a></li>
-                                   <li><a href="#">Suite 721 New York NY 10016</a></li>
+                                   <li><a href="#">BLK 135, LOT 11 Greater Lagro</a></li>
+                                   <li><a href="#">Quezon City, Fairview</a></li>
                                </ul>
-                               <!-- Form -->
-                                <div class="footer-form" >
-                                    <div id="mc_embed_signup">
-                                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                        method="get" class="subscribe_form relative mail_part">
-                                            <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                            class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = ' Email Address '">
-                                            <div class="form-icon">
-                                              <button type="submit" name="submit" id="newsletter-submit"
-                                              class="email_icon newsletter-submit button-contactForm"><img src="<?= base_url() ?>marian-master/assets/img/logo/form-iocn.jpg" alt=""></button>
-                                            </div>
-                                            <div class="mt-10 info"></div>
-                                        </form>
-                                    </div>
-                                </div>
                            </div>
                        </div>
                    </div>

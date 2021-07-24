@@ -59,9 +59,50 @@ class User extends CI_Controller {
 	public function editProfile()
 	{
 		$this->load->view('template/head');
-		$this->load->view('template/admin/nav');
-		$this->load->view('user/pages/editprofile');
+		$this->load->view('user/rooms/editprofile');
 		$this->load->view('template/footer');
+	}
+	public function singleRoom()
+	{
+		$this->load->view('user/template/header');
+		$this->load->view('user/rooms/singleroom');
+		$this->load->view('user/template/footer');
+	}
+	public function standardRoom()
+	{
+		$this->load->view('user/template/header');
+		$this->load->view('user/rooms/standardroom');
+		$this->load->view('user/template/footer');
+	}
+	public function deluxeRoom()
+	{
+		$this->load->view('user/template/header');
+		$this->load->view('user/rooms/deluxeroom');
+		$this->load->view('user/template/footer');
+	}
+	public function suiteRoom()
+	{
+		$this->load->view('user/template/header');
+		$this->load->view('user/rooms/suiteroom');
+		$this->load->view('user/template/footer');
+	}
+	public function famBond()
+	{
+		$this->load->view('user/template/header');
+		$this->load->view('user/packages/fambond');
+		$this->load->view('user/template/footer');
+	}
+	public function takes2toTango()
+	{
+		$this->load->view('user/template/header');
+		$this->load->view('user/packages/takes2totango');
+		$this->load->view('user/template/footer');
+	}
+	public function squadBond()
+	{
+		$this->load->view('user/template/header');
+		$this->load->view('user/packages/squadbond');
+		$this->load->view('user/template/footer');
 	}
 	
 }

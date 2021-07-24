@@ -36,12 +36,14 @@
                 <!-- Single Room -->
                 <div class="single-room mb-50">
                     <div class="room-img">
-                       <a href="rooms.html"><img src="<?= base_url() ?>marian-master/assets/img/rooms/room1.jpg" alt=""></a>
+                       <a href="<?= base_url() ?>user/takes2totango"> <img src="<?= base_url() ?>/assets/img/packages/takes2totangoo.jpg" alt="" height="208"></a>
                     </div>
                     <div class="room-caption">
-                        <h3><a href="rooms.html">Classic Double Bed</a></h3>
+                        <h3><a href="<?= base_url() ?>user/takes2totango">Takes2 to Tango </a></h3>
                         <div class="per-night">
-                            <span><u>$</u>150 <span>/ par night</span></span>
+                            <h4> Deluxe</h4>
+                            <span><u>₱</u>8,999 <span>/ per night</span></span>
+                            <h4> 1 to 2 Persons</h4>
                         </div>
                     </div>
                 </div>
@@ -50,12 +52,14 @@
                 <!-- Single Room -->
                 <div class="single-room mb-50">
                     <div class="room-img">
-                       <a href="rooms.html"><img src="<?= base_url() ?>marian-master/assets/img/rooms/room2.jpg" alt=""></a>
+                       <a href="<?= base_url() ?>user/fambond"> <img src="<?= base_url() ?>/assets/img/packages/fambond.jpg" alt=""></a>
                     </div>
                     <div class="room-caption">
-                        <h3><a href="rooms.html">Classic Double Bed</a></h3>
+                        <h3><a href="<?= base_url() ?>user/fambond">FamBOND</a></h3>
                         <div class="per-night">
-                            <span><u>$</u>150 <span>/ par night</span></span>
+                            <h4> Deluxe</h4>
+                            <span><u>₱</u>12,999 <span>/ 2 Days and 1 Night</span></span>
+                            <h4> 1 to 6 Persons</h4>
                         </div>
                     </div>
                 </div>
@@ -64,62 +68,17 @@
                 <!-- Single Room -->
                 <div class="single-room mb-50">
                     <div class="room-img">
-                       <a href="rooms.html"> <img src="<?= base_url() ?>marian-master/assets/img/rooms/room3.jpg" alt=""></a>
+                       <a href="<?= base_url() ?>user/squadbond"> <img src="<?= base_url() ?>/assets/img/packages/squadbond.jpg" alt=""></a>
                     </div>
                     <div class="room-caption">
-                        <h3><a href="rooms.html">Classic Double Bed</a></h3>
+                        <h3><a href="<?= base_url() ?>user/squadbond">SquadBOND</a></h3>
                         <div class="per-night">
-                            <span><u>$</u>150 <span>/ par night</span></span>
+                            <h4> Suite</h4>
+                            <span><u>₱</u>18,999 <span>/ 2 Days and 1 Night</span></span>
+                            <h4> 10 to 12 Persons</h4>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-6">
-                <!-- Single Room -->
-                <div class="single-room mb-50">
-                    <div class="room-img">
-                        <a href="rooms.html"><img src="<?= base_url() ?>marian-master/assets/img/rooms/room4.jpg" alt=""></a>
-                    </div>
-                    <div class="room-caption">
-                        <h3><a href="rooms.html">Classic Double Bed</a></h3>
-                        <div class="per-night">
-                            <span><u>$</u>150 <span>/ par night</span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-6">
-                <!-- Single Room -->
-                <div class="single-room mb-50">
-                    <div class="room-img">
-                        <a href="rooms.html"><img src="<?= base_url() ?>marian-master/assets/img/rooms/room5.jpg" alt=""></a>
-                    </div>
-                    <div class="room-caption">
-                        <h3><a href="rooms.html">Classic Double Bed</a></h3>
-                        <div class="per-night">
-                            <span><u>$</u>150 <span>/ par night</span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-6">
-                <!-- Single Room -->
-                <div class="single-room mb-50">
-                    <div class="room-img">
-                       <a href="rooms.html"> <img src="<?= base_url() ?>marian-master/assets/img/rooms/room6.jpg" alt=""></a>
-                    </div>
-                    <div class="room-caption">
-                        <h3><a href="rooms.html">Classic Double Bed</a></h3>
-                        <div class="per-night">
-                            <span><u>$</u>150 <span>/ par night</span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="room-btn pt-70">
-                <a href="#" class="btn view-btn1">View more  <i class="ti-angle-right"></i> </a>
             </div>
         </div>
     </div>
