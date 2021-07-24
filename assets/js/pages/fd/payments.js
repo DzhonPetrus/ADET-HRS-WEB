@@ -1,24 +1,24 @@
 $(function () {
-	window.fields = ["booking_id", "user_id", "total_no_guest","total_no_night","total_price", "discount", "creator","btnAdd", "btnUpdate"];
-	window.fieldsHidden = ["booking_id", "creator", "btnUpdate"];
-	window.readOnlyFields = ["booking_id", "creator"];
+	window.fields = ["payment_id", "booking_id", "mode","ref_no","payment_type", "payment_status", "amount", "tax_code", "pd_code", "is_cancelled", "is_refund", "cancelled_refund_by", "date_cancelled_refund", "reason_cancelled_refund", "cancelled_refund_amt", "process_by", "btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["payment_id", "btnUpdate", "ref_no"];
+	window.readOnlyFields = ["payment_id", "ref_no", "process_by", "date_cancelled_refund", "cancelled_refund_by"];
 
 
-	loadUser = () => {
+	loadBooking = () => {
 		$.ajax({
-			url: BASE_URL + "user",
+			url: BASE_URL + "booking",
 			type: "GET",
 			dataType: "JSON",
 			success: function (data){
 				if (data.error == false){
-					$("#user_id").empty();
+					$("#booking_id").empty();
 					$.each(data.data, function (i, dataOptions)
 					{
 						var options = "";
 
-						options = "<option value='" + dataOptions.id + "'>" + dataOptions.email + "</option>";
+						options = `<option value='${dataOptions.booking_id}'>${dataOptions.created.email} | ${dataOptions.booking_id}</option>`;
 
-						$("#user_id").append(options);
+						$("#booking_id").append(options);
 					});
 				} else {
 					notification("error", "Eror!", data.message);
@@ -27,28 +27,51 @@ $(function () {
 			error: function({responseJSON}){},
 		});
 	};
+	loadTax = () => {
+		$.ajax({
+			url: BASE_URL + "tax",
+			type: "GET",
+			dataType: "JSON",
+			success: function (data){
+				if (data.error == false){
+					$("#tax_code").empty();
+					$.each(data.data, function (i, dataOptions)
+					{
+						var options = "";
 
-	loadUser();
+						options = `<option value='${dataOptions.tax_code}'>${dataOptions.percentage}</option>`;
+
+						$("#tax_code").append(options);
+					});
+				} else {
+					notification("error", "Eror!", data.message);
+				}
+			},
+			error: function({responseJSON}){},
+		});
+	};
 	loadTable();
+	loadBooking();
+	loadTax();
 	formReset();
 	
 
 	// function to save/update record
-	$("#booking_form").on("submit", function (e) {
+	$("#payment_form").on("submit", function (e) {
 		e.preventDefault();
 		trimInputFields();
 
-		if ($("#booking_form").parsley().validate()) {
+		if ($("#payment_form").parsley().validate()) {
 			var form_data = new FormData(this);
-			var booking_id = $("#booking_id").val();
-			if (booking_id == "") {
+			var payment_id = $("#payment_id").val();
+			if (payment_id == "") {
 				// form_data.append("password", "P@ssw0rd");
 				// form_data.append("c_password", "P@ssw0rd");
 
 				// add record
 				console.table([...form_data]);
 				$.ajax({
-					url: BASE_URL + "booking",
+					url: BASE_URL + "payment",
 					type: "POST",
 					data: form_data,
 					dataType: "JSON",
@@ -59,18 +82,16 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
-							document.getElementById("booking_form").reset();
+							document.getElementById("payment_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function (data) {
-						notification("error", data.responseJSON.message);
-				},
+					error: function ({ responseJSON }) {},
 				});
 			} else {
 				$.ajax({
-					url: BASE_URL + `booking/${booking_id}`,
+					url: BASE_URL + `payment/${payment_id}`,
 					type: "PUT",
 					data: form_data,
 					dataType: "JSON",
@@ -85,9 +106,7 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function (data) {
-						notification("error", data.responseJSON.message);
-				},
+					error: function ({ responseJSON }) {},
 				});
 			}
 		}
@@ -117,11 +136,18 @@ loadTable = () => {
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
+			{ sClass: "text-left" },
 		],
 		columns: [
 			{
 				data: null,
 				render: (aData, type, row) => renderButtons(aData),
+			},
+			{
+				data: "payment_id",
+				name: "payment_id",
+				searchable: true,
+				className: "dtr-control",
 			},
 			{
 				data: "booking_id",
@@ -130,44 +156,43 @@ loadTable = () => {
 				className: "dtr-control",
 			},
 			{
-				data: "total_no_guest",
-				name: "total_no_guest",
+				data: "mode",
+				name: "mode",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "total_no_night",
-				name: "total_no_night",
+				data: "ref_no",
+				name: "ref_no",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "total_price",
-				name: "total_price",
+				data: "payment_type",
+				name: "payment_type",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "discount",
-				name: "discount",
+				data: "payment_status",
+				name: "payment_status",
 				searchable: true,
 				className: "dtr-control",
 			},
 		],
 		ajax: {
-			url: BASE_URL + "booking" ,
+			url: BASE_URL + "payment",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["booking_id"]);
-			$("td:eq(2)", nRow).html(aData["client.email"]);
-			$("td:eq(3)", nRow).html(aData["total_no_guest"]);
-			$("td:eq(4)", nRow).html(aData["total_no_night"]);
-			$("td:eq(5)", nRow).html(aData["total_price"]);
-			$("td:eq(6)", nRow).html(aData["discount"]);
-			$("td:eq(7a)", nRow).html(aData["created.email"]);
+			$("td:eq(1)", nRow).html(aData["payment_id"]);
+			$("td:eq(2)", nRow).html(aData["booking_id"]);
+			$("td:eq(3)", nRow).html(aData["mode"]);
+			$("td:eq(4)", nRow).html(aData["ref_no"]);
+			$("td:eq(5)", nRow).html(aData["payment_type"]);
+			$("td:eq(6)", nRow).html(aData["payment_status"]);
 
 		},
 		drawCallback: function (settings) {
@@ -177,12 +202,12 @@ loadTable = () => {
 };
 
 // VIEW DATA
-viewData = (booking_id) => {
+viewData = (payment_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "booking/" + booking_id,
+			url: BASE_URL + "payment/" + payment_id,
 			type: "GET",
-			data: { booking_id },
+			data: { payment_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("view", data) : notification("error", "Error!", data.message),
@@ -192,12 +217,12 @@ viewData = (booking_id) => {
 };
 
 // Edit DATA
-editData = (booking_id) => {
+editData = (payment_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "booking/" + booking_id,
+			url: BASE_URL + "payment/" + payment_id,
 			type: "GET",
-			data: { booking_id },
+			data: { payment_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("edit", data) : notification("error", "Error!", data.message),
@@ -207,7 +232,7 @@ editData = (booking_id) => {
 };
 
 // function to delete data
-deleteData = (booking_id) => {
+deleteData = (payment_id) => {
 	Swal.fire({
 		title: "Are you sure you want to delete this record?",
 		text: "You won't be able to revert this!",
@@ -220,9 +245,9 @@ deleteData = (booking_id) => {
 		// if user clickes yes, it will change the active status to "Not Active".
 		if (t.value) {
 			$.ajax({
-				url: BASE_URL + "booking",
+				url: BASE_URL + "payment",
 				type: "DELETE",
-				data: { booking_id },
+				data: { payment_id },
 				dataType: "json",
 
 				success: function (data) {
@@ -240,15 +265,16 @@ deleteData = (booking_id) => {
 };
 
 //EXTRA
+
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
-	$("#booking_form")[0].reset();
+	$("#payment_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormBookings").modal("show");
+const showModal = () => $("#FormPayments").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
@@ -271,7 +297,9 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["booking_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> `;
+		`<button type="button" onClick="return viewData('${aData["payment_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
+		`<button type="button" onClick="return editData('${aData["payment_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
+		`<button type="button" onClick="return deleteData('${aData["payment_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
 	return buttons;
 };
 
@@ -296,3 +324,25 @@ const setState = (state, data) => {
 	showModal();
 
 };
+
+
+$("#payment_form input:radio").change(function() {
+	$('#group-cancelled_refund_info').hide();
+	let selectedRadio = $(this)[0].value;
+	console.log(selectedRadio)
+	if (selectedRadio != 'is_neither')
+		$('#group-cancelled_refund_info').show();
+});
+
+$('#group-cancelled_refund_info').hide();
+
+
+const modeOptions = ["Over-the-counter", "Online"];
+const paymentTypeOptions = ["Half Payment", "Full Payment"];
+const paymentStatusOptions = ["Pending", "Failed", "Success", "Cancelled", "Refunded"];
+
+const optionGenerator = options => options.reduce((allOptions, currentOption) => allOptions + `<option value='${currentOption}'>${currentOption}</option>`, '');
+
+$('#payment_status').append(optionGenerator(paymentStatusOptions));
+$('#payment_type').append(optionGenerator(paymentTypeOptions));
+$('#mode').append(optionGenerator(modeOptions));
