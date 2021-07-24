@@ -7,12 +7,14 @@ $tablePages = array(
   array('text'=>'Packages', 'url'=> 'package', 'icon'=>' fas fa-user-friends'),
   array('text'=>'Payment', 'url'=> 'payment', 'icon'=>' fa fa-credit-card'),
   array('text'=>'Promos and Discounts', 'url'=> 'promo_and_discount', 'icon'=>' fas fa-percentage'),
+  array('text'=>'Rooms', 'url'=> 'room', 'icon'=>'fas fa-door-open'),
   array('text'=>'Rooms Reserved', 'url'=> 'room_reserved', 'icon'=>'fas fa-clipboard-list'),
   array('text'=>'User Informations', 'url'=> 'user_information', 'icon'=>' fa fa-address-card')
   );
 
 $helpdeskPages = array(
   array('text'=>'Dashboard', 'url'=> '', 'icon'=>' ni ni-tv-2'),
+  array('text'=>'Book', 'url'=> '', 'icon'=>' ni ni-tv-2')
   );
 
   $currentPage = basename($_SERVER['REQUEST_URI']) ;
@@ -82,7 +84,6 @@ $helpdeskPages = array(
 
 <!--  TOP NAV -->
 <div class="main-content" id="panel">
-
 
   <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
     <div class="container-fluid">
@@ -159,8 +160,9 @@ $helpdeskPages = array(
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="<?= base_url('assets') ?>/img/theme/team-4.jpg">
+                  <img alt="Image placeholder" src="<?= API_PUBLIC.$this->session->userdata['user_info']->photo_url ?>">
                 </span>
+        
                 <div class="media-body  ml-2  d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold"><?= $this->session->userdata['email'] ?></span>
                 </div>
@@ -170,7 +172,7 @@ $helpdeskPages = array(
               <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
-              <a href="#!" class="dropdown-item">
+              <a href="<?= base_url($this->session->userdata['user_type'].'/profile') ?>" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
               </a>

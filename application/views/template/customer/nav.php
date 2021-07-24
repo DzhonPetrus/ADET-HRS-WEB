@@ -4,12 +4,12 @@ $tablePages = array(
   array('text'=>'Loyalty Points', 'url'=> 'loyalty_point', 'icon'=>'fa fa-coins'),
   array('text'=>'Loyalty Point Histories', 'url'=> 'loyalty_point_history', 'icon'=>' fas fa-poll'),
   array('text'=>'Payment', 'url'=> 'payment', 'icon'=>' fa fa-credit-card'),
-  array('text'=>'Rooms Reserved', 'url'=> 'room_reserved', 'icon'=>'fas fa-clipboard-list'),
-  array('text'=>'User Informations', 'url'=> 'user_information', 'icon'=>' fa fa-address-card')
+  array('text'=>'Rooms Reserved', 'url'=> 'room_reserved', 'icon'=>'fas fa-clipboard-list')
   );
 
 $customerPages = array(
   array('text'=>'Dashboard', 'url'=> '', 'icon'=>' ni ni-tv-2'),
+  array('text'=>'Book Now', 'url'=> 'home', 'icon'=>' fa fa-address-book')
   );
 
   $currentPage = basename($_SERVER['REQUEST_URI']) ;
@@ -156,8 +156,9 @@ $customerPages = array(
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="<?= base_url('assets') ?>/img/theme/team-4.jpg">
+                  <img alt="Image placeholder" src="<?= API_PUBLIC.$this->session->userdata['user_info']->photo_url ?>">
                 </span>
+        
                 <div class="media-body  ml-2  d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold"><?= $this->session->userdata['email'] ?></span>
                 </div>
@@ -167,7 +168,7 @@ $customerPages = array(
               <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
-              <a href="#!" class="dropdown-item">
+              <a href="<?= base_url($this->session->userdata['user_type'].'/profile') ?>" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
               </a>

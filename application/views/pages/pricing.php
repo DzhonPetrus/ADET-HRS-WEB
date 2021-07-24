@@ -114,19 +114,19 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-taxCode">
                     <label class="form-control-label" for="input-tax-percentage">Price</label>
-                    <input type="number" id="price_per_qty" class="form-control" name="price_per_qty">
+                    <input type="number" id="price_per_qty" class="form-control" name="price_per_qty" required>
                   </div>
                 </div>
                   <div class="col-lg-6">
                     <div class="form-group" id="group-description">
                       <label class="form-control-label" for="input-tax-percentage">Start Date</label>
-                      <input type="datetime-local" id="date_start" class="form-control" name="date_start">
+                      <input type="datetime-local" id="date_start" class="form-control" name="date_start" required> 
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group" id="group-description">
                       <label class="form-control-label" for="input-tax-percentage">End Date</label>
-                      <input type="datetime-local" id="date_end" class="form-control" name="date_end">
+                      <input type="datetime-local" id="date_end" class="form-control" name="date_end" required>
                     </div>
                   </div>
                 <div class="col-lg-12">

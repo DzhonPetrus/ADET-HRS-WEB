@@ -43,7 +43,6 @@
                 <th scope="col" class="sort" data-sort="booking_id">Booking ID</th>
                 <th scope="col" class="sort" data-sort="room_id">Room Number</th>
                 <th scope="col" class="sort" data-sort="room_reserved_status">Room Status</th>
-                <th scope="col" class="sort" data-sort="package_id">Package</th>
                 <th scope="col" class="sort" data-sort="created">Created</th>
               </tr>
             </thead>
@@ -144,25 +143,25 @@
                 <div class="col-lg-6">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">No. of Nights</label>
-                    <input type="number" id="no_of_nights" class="form-control" name="no_of_nights">
+                    <input type="number" id="no_of_nights" class="form-control" name="no_of_nights" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">No. of Guests</label>
-                    <input type="number" id="no_of_guest" class="form-control" name="no_of_guest">
+                    <input type="number" id="no_of_guest" class="form-control" name="no_of_guest" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Start Date</label>
-                    <input type="date" id="date_from" class="form-control" name="date_from">
+                    <input type="date" id="date_from" class="form-control" name="date_from" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">End Date </label>
-                    <input type="date" id="date_to" class="form-control" name="date_to">
+                    <input type="date" id="date_to" class="form-control" name="date_to" required>
                   </div>
                 </div>
                 <div class="col-lg-12">
@@ -174,7 +173,7 @@
                 <div class="col-lg-6">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Check In</label>
-                    <input type="date" id="checkIn" class="form-control" name="checkIn">
+                    <input type="date" id="checkIn" class="form-control" name="checkIn" >
                   </div>
                 </div>
                 <div class="col-lg-6">

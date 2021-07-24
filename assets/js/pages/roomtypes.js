@@ -59,11 +59,15 @@ $(function () {
 							loadTable();
 							notification("success", "Success!", data.message);
 							document.getElementById("room_type_form").reset();
+							$("#photo_url_placeholder").attr("src", `https://i.stack.imgur.com/y9DpT.jpg`);
 						} else {
-							notification("error", "Error!", data.message);
+							console.log(data.message);
+							notification("error", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {},
+					error: function (data) {
+							notification("error", data.responseJSON.message);
+					},
 				});
 			} else {
 				$.ajax({
@@ -82,7 +86,9 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {},
+					error: function (data) {
+						notification("error", data.responseJSON.message);
+				},
 				});
 			}
 		}

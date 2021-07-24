@@ -48,9 +48,8 @@ $(function () {
 							document.getElementById("pd_condition_form").reset();
 						}
 					},
-					error: function ({ responseError }) {
-						notification("error", "Error!");
-						document.getElementById("pd_condition_form").reset();
+					error: function (data) {
+						notification("error", data.responseJSON.message);
 					},
 				});
 			} else {
@@ -70,8 +69,8 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {
-						notification("error", "Error!");
+					error: function (data) {
+						notification("error", data.responseJSON.message);
 					},
 				});
 			}

@@ -111,7 +111,9 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {},
+					error: function (data) {
+						notification("error", data.responseJSON.message);
+				},
 				});
 			} else {
 				$.ajax({
@@ -130,7 +132,9 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function ({ responseJSON }) {},
+					error: function (data) {
+						notification("error", data.responseJSON.message);
+				},
 				});
 			}
 		}
@@ -155,7 +159,6 @@ loadTable = () => {
 		aLengthMenu: [5, 10, 20, 30, 50, 100],
 		aaColumns: [
 			{ sClass: "text-center" },
-			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
@@ -193,12 +196,6 @@ loadTable = () => {
 				className: "dtr-control",
 			},
 			{
-				data: "package.title",
-				name: "package.title",
-				searchable: true,
-				className: "dtr-control",
-			},
-			{
 				data: "created.email",
 				name: "created.email",
 				searchable: true,
@@ -216,7 +213,6 @@ loadTable = () => {
 			$("td:eq(2)", nRow).html(aData["booking_id"]);
 			$("td:eq(3)", nRow).html(aData["room.room_no"]);
 			$("td:eq(4)", nRow).html(aData["room_reserved_status"]);
-			$("td:eq(5)", nRow).html(aData["package.title"]);
 			$("td:eq(6)", nRow).html(aData["created.email"]);
 
 		},

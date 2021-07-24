@@ -117,7 +117,7 @@
                 </div><div class="col-lg-12">
                   <div class="form-group" id="group-email">
                       <label class="form-control-label" for="input-user-email">Email</label>
-                      <input type="text" id="email" name="email" class="form-control" placeholder="UserEmail">
+                      <input type="text" id="email" name="email" class="form-control" placeholder="UserEmail" required>
                     </div>
                   </div>
                 </div>
@@ -126,7 +126,7 @@
                   <div class="col-lg-12">
                     <div class="form-group" id="group-first_name">
                       <label class="form-control-label" for="input-user-first-name">First Name</label>
-                      <input id="first_name" name="first_name" class="form-control" placeholder="First Name" type="text">
+                      <input id="first_name" name="first_name" class="form-control" placeholder="First Name" type="text" required>
                     </div>
                   </div>
                 </div>
@@ -144,7 +144,7 @@
                   <div class="col-lg-12">
                     <div class="form-group" id="group-last_name">
                       <label class="form-control-label" for="input-user-last-name">Last Name</label>
-                      <input id="last_name" name="last_name" class="form-control" placeholder="Last Name" type="text">
+                      <input id="last_name" name="last_name" class="form-control" placeholder="Last Name" type="text" required>
                     </div>
                   </div>
                 </div>
@@ -153,13 +153,13 @@
                   <div class="col-lg-6">
                     <div class="form-group" id="group-birth_date">
                       <label class="form-control-label" for="input-user-birthdate">Birthdate</label>
-                      <input type="date" id="birth_date" name="birth_date" class="form-control" placeholder="User Birthdate">
+                      <input type="date" id="birth_date" name="birth_date" class="form-control" placeholder="User Birthdate" required>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group" id="group-nationality">
                       <label class="form-control-label" for="input-user-nationality">Nationality</label>
-                      <input type="text" id="nationality" name="nationality" class="form-control" placeholder="Nationality">
+                      <input type="text" id="nationality" name="nationality" class="form-control" placeholder="Nationality" required>
 
                     </div>
                   </div>
@@ -174,7 +174,7 @@
                   <div class="col-md-12">
                     <div class="form-group" id="group-contact_no">
                       <label class="form-control-label" for="input-contact-number">Contact Number</label>
-                      <input id="contact_no" name="contact_no" class="form-control" placeholder="Contact Number" type="number">
+                      <input id="contact_no" name="contact_no" class="form-control" placeholder="Contact Number" type="number" required>
                     </div>
                   </div>
                 </div>
@@ -186,31 +186,31 @@
                 <div class="col-lg-4">
                   <div class="form-group" id="group-street1">
                     <label class="form-control-label" for="input-Street">Street</label>
-                    <input type="text" id="street1" name="street1" class="form-control" placeholder="Street">
+                    <input type="text" id="street1" name="street1" class="form-control" placeholder="Street" required>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group" id="group-city1">
                     <label class="form-control-label" for="input-city">City</label>
-                    <input type="text" id="city1" name="city1" class="form-control" placeholder="City">
+                    <input type="text" id="city1" name="city1" class="form-control" placeholder="City" required>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group" id="group-zip1">
                     <label class="form-control-label" for="input-postal-code">Postal code</label>
-                    <input type="number" id="zip1" name="zip1" class="form-control" placeholder="Postal code">
+                    <input type="number" id="zip1" name="zip1" class="form-control" placeholder="Postal code" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-state1">
                     <label class="form-control-label" for="input-state">State</label>
-                    <input type="text" id="state1" name="state1" class="form-control" placeholder="State">
+                    <input type="text" id="state1" name="state1" class="form-control" placeholder="State" required> 
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-country1">
                     <label class="form-control-label" for="input-country">Country</label>
-                    <input type="text" id="country1" name="country1" class="form-control" placeholder="Country">
+                    <input type="text" id="country1" name="country1" class="form-control" placeholder="Country" required>
                   </div>
                 </div>
               </div>

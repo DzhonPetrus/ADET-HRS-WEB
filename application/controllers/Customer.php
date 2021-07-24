@@ -20,7 +20,7 @@ class Customer extends CI_Controller {
 
 	 function __construct() {
 		 parent::__construct();
-		 ($this->session->userdata['token']) ? ($this->session->userdata['user_type'] != 'customer' ? redirect(base_url().$this->session->userdata['user_type']) : null) : redirect('Access/login');
+		 ($this->session->userdata['token']) ? (strtolower($this->session->userdata['user_type']) != 'customer' ? redirect(base_url().$this->session->userdata['user_type']) : null) : redirect('Access/login');
 	 }
 
 	public function index()
@@ -59,7 +59,7 @@ class Customer extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/customer/nav');
-		$this->load->view('pages/loyalty_points');
+		$this->load->view('pages/customer/loyalty_points');
 		$this->load->view('template/footer');
 	}
 
@@ -67,7 +67,7 @@ class Customer extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/customer/nav');
-		$this->load->view('pages/user_info');
+		$this->load->view('pages/customer/user_info');
 		$this->load->view('template/footer');
 	}
 
@@ -123,14 +123,14 @@ class Customer extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/customer/nav');
-		$this->load->view('pages/booking');
+		$this->load->view('pages/customer/booking');
 		$this->load->view('template/footer');
 	}
 	public function loyalty_point_history()
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/customer/nav');
-		$this->load->view('pages/loyalty_point_history');
+		$this->load->view('pages/customer/loyalty_point_history');
 		$this->load->view('template/footer');
 	}
 	public function promo_and_discount()
@@ -145,7 +145,7 @@ class Customer extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/customer/nav');
-		$this->load->view('pages/rooms_reserved');
+		$this->load->view('pages/customer/rooms_reserved');
 		$this->load->view('template/footer');
 	}
 
@@ -156,4 +156,36 @@ class Customer extends CI_Controller {
 		$this->load->view('pages/housekeeping');
 		$this->load->view('template/footer');
 	}
+
+	public function home()
+	{
+		$this->load->view('user/template/header');
+		$this->load->view('user/template/body');
+		$this->load->view('user/template/footer');
+	}
+	public function about()
+	{
+		$this->load->view('user/template/header');
+		$this->load->view('user/pages/about');
+		$this->load->view('user/template/footer');
+	}
+    public function rooms()
+	{
+		$this->load->view('user/template/header');
+		$this->load->view('user/pages/rooms');
+		$this->load->view('user/template/footer');
+	}
+    public function contact()
+	{
+		$this->load->view('user/template/header');
+		$this->load->view('user/pages/contact');
+		$this->load->view('user/template/footer');
+	}
+    public function packages()
+	{
+		$this->load->view('user/template/header');
+		$this->load->view('user/pages/package');
+		$this->load->view('user/template/footer');
+	}
 }
+

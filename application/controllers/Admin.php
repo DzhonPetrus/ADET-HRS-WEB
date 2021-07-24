@@ -20,7 +20,7 @@ class Admin extends CI_Controller {
 
 	 function __construct() {
 		 parent::__construct();
-		 ($this->session->userdata['token']) ? ($this->session->userdata['user_type'] != 'admin' ? redirect(base_url().$this->session->userdata['user_type']) : null) : redirect('Access/login');
+		 ($this->session->userdata['token']) ? (strtolower($this->session->userdata['user_type']) != 'admin' ? redirect(base_url().$this->session->userdata['user_type']) : null) : redirect('Access/login');
 	 }
 
 	public function index()
@@ -169,6 +169,14 @@ class Admin extends CI_Controller {
 		$this->load->view('template/head');
 		$this->load->view('template/admin/nav');
 		$this->load->view('template/admin/dashboard');
+		$this->load->view('template/footer');
+	}
+  
+	public function payment()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/payments');
 		$this->load->view('template/footer');
 	}
 }

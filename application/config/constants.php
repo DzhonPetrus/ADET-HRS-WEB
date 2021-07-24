@@ -90,3 +90,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 //  NEW CONSTANT
 define('SYSTEM_NAME', 'Hotel Reservation System with Online Payment');
+define('API_PUBLIC', 'http://localhost:4000/public/');

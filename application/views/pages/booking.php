@@ -123,19 +123,19 @@
                 <div class="col-lg-12">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Total No.Guest</label>
-                    <input type="number" id="total_no_guest" class="form-control" name="total_no_guest">
+                    <input type="number" id="total_no_guest" class="form-control" name="total_no_guest" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Total No.Nights</label>
-                    <input type="number" id="total_no_night" class="form-control" name="total_no_night">
+                    <input type="number" id="total_no_night" class="form-control" name="total_no_night" required> 
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group" id="group-type">
                     <label class="form-control-label" for="input-tax-percentage">Total Price</label>
-                    <input type="number" id="total_price" class="form-control" name="total_price">
+                    <input type="number" id="total_price" class="form-control" name="total_price" required>
                   </div>
                 </div>
                 <div class="col-lg-12">
