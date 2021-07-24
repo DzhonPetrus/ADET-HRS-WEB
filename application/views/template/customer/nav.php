@@ -8,7 +8,6 @@ $tablePages = array(
   );
 
 $customerPages = array(
-  array('text'=>'Dashboard', 'url'=> '', 'icon'=>' ni ni-tv-2'),
   array('text'=>'Book Now', 'url'=> 'home', 'icon'=>' fa fa-address-book')
   );
 

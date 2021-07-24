@@ -13,7 +13,7 @@ $tablePages = array(
   );
 
 $helpdeskPages = array(
-  array('text'=>'Dashboard', 'url'=> '', 'icon'=>' ni ni-tv-2'),
+  array('text'=>'Dashboard', 'url'=> 'dash', 'icon'=>' ni ni-tv-2'),
   array('text'=>'Book', 'url'=> '', 'icon'=>' ni ni-tv-2')
   );
 

@@ -1,5 +1,4 @@
- <!-- Header -->
- <div class="header bg-primary pb-6">
+<div class="header bg-primary pb-6">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
@@ -17,14 +16,14 @@
           </div>
           <!-- Card stats -->
           <div class="row">
-            <div class="col-xl-2 col-md-3">
+            <div class="col-xl-3 col-md-3">
               <div class="card card-stats">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Bookings</h5>
-                      <span class="h2 font-weight-bold mb-0">55</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Rooms Available</h5>
+                      <span class="h2 font-weight-bold mb-0" id="room_avail">0</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -35,14 +34,14 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-2 col-md-3">
+            <div class="col-xl-3 col-md-3">
               <div class="card card-stats">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Available Room</h5>
-                      <span class="h2 font-weight-bold mb-0">30</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Rooms Occupied</h5>
+                      <span class="h2 font-weight-bold mb-0" id="total_out">0</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -53,14 +52,14 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-2 col-md-6">
+            <div class="col-xl-3 col-md-6">
               <div class="card card-stats">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Check In</h5>
-                      <span class="h2 font-weight-bold mb-0">12</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Rooms to be cleaned</h5>
+                      <span class="h2 font-weight-bold mb-0" id="room_to_be_clean">0</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -71,54 +70,18 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-2 col-md-2">
+            <div class="col-xl-3 col-md-2">
               <div class="card card-stats">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Check Out</h5>
-                      <span class="h2 font-weight-bold mb-0">12</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Rooms Reserved</h5>
+                      <span class="h2 font-weight-bold mb-0" id="total_room_r">12</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
                         <i class="ni ni-calendar-grid-58"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                      <span class="h2 font-weight-bold mb-0">12</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                        <i class="ni ni-money-coins"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-2 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Cancellation</h5>
-                      <span class="h2 font-weight-bold mb-0">0</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                        <i class="ni ni-fat-remove"></i>
                       </div>
                     </div>
                   </div>
@@ -187,9 +150,11 @@
         </div>
       </div>
 </div>
-      <!-- Argon Scripts -->
-  <!-- Core -->
-  <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
+
+<script src="<?= base_url('assets') ?>/js/pages/fd/dash.js"></script>
+
+<!-- Core -->
+<script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>

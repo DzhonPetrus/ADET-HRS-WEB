@@ -27,10 +27,9 @@ class Customer extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/customer/nav');
-		$this->load->view('template/customer/dashboard');
+		$this->load->view('pages/customer/booking');
 		$this->load->view('template/footer');
 	}
-
 	public function profile()
 	{
 		$this->load->view('template/head');

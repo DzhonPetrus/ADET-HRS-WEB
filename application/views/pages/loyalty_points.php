@@ -31,6 +31,7 @@
         <!-- Card header -->
         <div class="card-header border-0">
           <h3 class="mb-0">LOYALTY POINTS TABLE</h3>
+          TOTAL<span id="try_id"></span>
         </div>
         <!-- Light table -->
         <div class="table-responsive">

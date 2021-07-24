@@ -156,11 +156,11 @@ class Frontdesk extends CI_Controller {
 		$this->load->view('pages/fd/housekeeping');
 		$this->load->view('template/footer');
 	}
-	public function dashboard()
+	public function dash()
 	{
 		$this->load->view('template/head');
-		$this->load->view('template/frontdesk/nav');
-		$this->load->view('template/frontdesk/dashboard');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/fd/dash');
 		$this->load->view('template/footer');
 	}
 

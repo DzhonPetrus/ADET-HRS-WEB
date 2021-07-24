@@ -20,7 +20,7 @@ $tablePages = array(
   );
 
 $adminPages = array(
-  array('text'=>'Dashboard', 'url'=> '', 'icon'=>' ni ni-tv-2'),
+  array('text'=>'Dashboard', 'url'=> 'dash', 'icon'=>' ni ni-tv-2'),
   );
 
   $currentPage = basename($_SERVER['REQUEST_URI']) ;
