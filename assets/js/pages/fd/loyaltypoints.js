@@ -85,6 +85,9 @@ loadTable = () => {
 		aaColumns: [
 			{ sClass: "text-center" },
 			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
 		],
 		columns: [
 			{
@@ -92,20 +95,41 @@ loadTable = () => {
 				render: (aData, type, row) => renderButtons(aData),
 			},
 			{
+				data: "loyalty_point_id",
+				name: "loyalty_point_id",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
 				data: "points",
 				name: "points",
 				searchable: true,
 				className: "dtr-control",
 			},
+			{
+				data: "user_info.first_name",
+				name: "user_info.first_name",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "created.email",
+				name: "created.email",
+				searchable: true,
+				className: "dtr-control",
+			},
 		],
 		ajax: {
-			url: BASE_URL + "loyalty_point" ,
+			url: BASE_URL + "loyalty_point",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["points"]);
+			$("td:eq(1)", nRow).html(aData["loyalty_point_id"]);
+			$("td:eq(2)", nRow).html(aData["points"]);
+			$("td:eq(3)", nRow).html(aData["user_info.first_name"]);
+			$("td:eq(4)", nRow).html(aData["created.email"]);
 
 		},
 		drawCallback: function (settings) {
@@ -209,7 +233,9 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["loyalty_point_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> `;
+		`<button type="button" onClick="return viewData('${aData["loyalty_point_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
+		`<button type="button" onClick="return editData('${aData["loyalty_point_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
+		`<button type="button" onClick="return deleteData('${aData["loyalty_point_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
 	return buttons;
 };
 

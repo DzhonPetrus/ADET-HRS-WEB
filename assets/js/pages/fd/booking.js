@@ -1,26 +1,54 @@
 $(function () {
-	window.fields = ["loyalty_point_id", "points", "owner","creator", "btnAdd", "btnUpdate"];
-	window.fieldsHidden = ["loyalty_point_id", "creator", "owner","btnUpdate"];
-	window.readOnlyFields = ["loyalty_point_id", "creator","owner"];
+	window.fields = ["booking_id", "user_id", "total_no_guest","total_no_night","total_price", "discount", "creator","btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["booking_id", "creator", "btnUpdate"];
+	window.readOnlyFields = ["booking_id", "creator"];
 
-	formReset();
+
+	loadUser = () => {
+		$.ajax({
+			url: BASE_URL + "user",
+			type: "GET",
+			dataType: "JSON",
+			success: function (data){
+				if (data.error == false){
+					$("#user_id").empty();
+					$.each(data.data, function (i, dataOptions)
+					{
+						var options = "";
+
+						options = "<option value='" + dataOptions.id + "'>" + dataOptions.email + "</option>";
+
+						$("#user_id").append(options);
+					});
+				} else {
+					notification("error", "Eror!", data.message);
+				}
+			},
+			error: function({responseJSON}){},
+		});
+	};
+
+	loadUser();
 	loadTable();
+	formReset();
+	
 
 	// function to save/update record
-	$("#loyalty_point_form").on("submit", function (e) {
+	$("#booking_form").on("submit", function (e) {
 		e.preventDefault();
 		trimInputFields();
 
-		if ($("#loyalty_point_form").parsley().validate()) {
+		if ($("#booking_form").parsley().validate()) {
 			var form_data = new FormData(this);
-			var loyalty_point_id = $("#loyalty_point_id").val();
-			if (loyalty_point_id == "") {
+			var booking_id = $("#booking_id").val();
+			if (booking_id == "") {
 				// form_data.append("password", "P@ssw0rd");
 				// form_data.append("c_password", "P@ssw0rd");
 
 				// add record
+				console.table([...form_data]);
 				$.ajax({
-					url: BASE_URL + "loyalty_point",
+					url: BASE_URL + "booking",
 					type: "POST",
 					data: form_data,
 					dataType: "JSON",
@@ -31,7 +59,7 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
-							document.getElementById("loyalty_point_form").reset();
+							document.getElementById("booking_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
 						}
@@ -42,7 +70,7 @@ $(function () {
 				});
 			} else {
 				$.ajax({
-					url: BASE_URL + `loyalty_point/${loyalty_point_id}`,
+					url: BASE_URL + `booking/${booking_id}`,
 					type: "PUT",
 					data: form_data,
 					dataType: "JSON",
@@ -85,6 +113,12 @@ loadTable = () => {
 		aaColumns: [
 			{ sClass: "text-center" },
 			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
 		],
 		columns: [
 			{
@@ -92,20 +126,62 @@ loadTable = () => {
 				render: (aData, type, row) => renderButtons(aData),
 			},
 			{
-				data: "points",
-				name: "points",
+				data: "booking_id",
+				name: "booking_id",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "client.email",
+				name: "client.email",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "total_no_guest",
+				name: "total_no_guest",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "total_no_night",
+				name: "total_no_night",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "total_price",
+				name: "total_price",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "discount",
+				name: "discount",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "created.email",
+				name: "created.email",
 				searchable: true,
 				className: "dtr-control",
 			},
 		],
 		ajax: {
-			url: BASE_URL + "loyalty_point" ,
+			url: BASE_URL + "booking",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["points"]);
+			$("td:eq(1)", nRow).html(aData["booking_id"]);
+			$("td:eq(2)", nRow).html(aData["client.email"]);
+			$("td:eq(3)", nRow).html(aData["total_no_guest"]);
+			$("td:eq(4)", nRow).html(aData["total_no_night"]);
+			$("td:eq(5)", nRow).html(aData["total_price"]);
+			$("td:eq(6)", nRow).html(aData["discount"]);
+			$("td:eq(7a)", nRow).html(aData["created.email"]);
 
 		},
 		drawCallback: function (settings) {
@@ -115,12 +191,12 @@ loadTable = () => {
 };
 
 // VIEW DATA
-viewData = (loyalty_point_id) => {
+viewData = (booking_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "loyalty_point/" + loyalty_point_id,
+			url: BASE_URL + "booking/" + booking_id,
 			type: "GET",
-			data: { loyalty_point_id },
+			data: { booking_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("view", data) : notification("error", "Error!", data.message),
@@ -130,12 +206,12 @@ viewData = (loyalty_point_id) => {
 };
 
 // Edit DATA
-editData = (loyalty_point_id) => {
+editData = (booking_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "loyalty_point/" + loyalty_point_id,
+			url: BASE_URL + "booking/" + booking_id,
 			type: "GET",
-			data: { loyalty_point_id },
+			data: { booking_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("edit", data) : notification("error", "Error!", data.message),
@@ -145,7 +221,7 @@ editData = (loyalty_point_id) => {
 };
 
 // function to delete data
-deleteData = (loyalty_point_id) => {
+deleteData = (booking_id) => {
 	Swal.fire({
 		title: "Are you sure you want to delete this record?",
 		text: "You won't be able to revert this!",
@@ -158,9 +234,9 @@ deleteData = (loyalty_point_id) => {
 		// if user clickes yes, it will change the active status to "Not Active".
 		if (t.value) {
 			$.ajax({
-				url: BASE_URL + "loyalty_point",
+				url: BASE_URL + "booking",
 				type: "DELETE",
-				data: { loyalty_point_id },
+				data: { booking_id },
 				dataType: "json",
 
 				success: function (data) {
@@ -181,12 +257,12 @@ deleteData = (loyalty_point_id) => {
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
-	$("#loyalty_point_form")[0].reset();
+	$("#booking_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormLoyaltyPoints").modal("show");
+const showModal = () => $("#FormBookings").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
@@ -209,14 +285,14 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["loyalty_point_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> `;
+		`<button type="button" onClick="return viewData('${aData["booking_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
+		`<button type="button" onClick="return editData('${aData["booking_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> `;
 	return buttons;
 };
 
 const setState = (state, data) => {
 	showAllFields();
 	setInputValue(data);
-	$("#owner").val(data.data.user_info.first_name);
 	$("#creator").val(data.data.created.email);
 	$("#group-btnAdd").hide();
 

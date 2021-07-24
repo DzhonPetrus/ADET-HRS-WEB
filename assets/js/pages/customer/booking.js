@@ -3,6 +3,7 @@ $(function () {
 	window.fieldsHidden = ["booking_id", "creator", "btnUpdate"];
 	window.readOnlyFields = ["booking_id", "creator"];
 
+
 	loadUser = () => {
 		$.ajax({
 			url: BASE_URL + "user",
@@ -94,7 +95,7 @@ $(function () {
 });
 
 //TABLEEEEEE
-loadTable = (USER_ID) => {
+loadTable = () => {
 	$.ajaxSetup({
 		headers: {
 			Accept: "application/json",
@@ -154,7 +155,7 @@ loadTable = (USER_ID) => {
 			},
 		],
 		ajax: {
-			url: BASE_URL + "booking/"  + USER_ID ,
+			url: BASE_URL + "booking" ,
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},

@@ -121,3 +121,6 @@
 
 <!-- Import JS-->
 <script src="<?= base_url('assets') ?>/js/pages/customer/loyaltypoints.js"></script>
+<!-- <script defer>
+    var USER_ID = <?php echo json_encode($this->session->userdata['user_id.loyalty_point_id']) ?>
+</script> -->

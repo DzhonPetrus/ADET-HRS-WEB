@@ -4,12 +4,12 @@ $tablePages = array(
   array('text'=>'Loyalty Points', 'url'=> 'loyalty_point', 'icon'=>'fa fa-coins'),
   array('text'=>'Loyalty Point Histories', 'url'=> 'loyalty_point_history', 'icon'=>' fas fa-poll'),
   array('text'=>'Payment', 'url'=> 'payment', 'icon'=>' fa fa-credit-card'),
-  array('text'=>'Rooms Reserved', 'url'=> 'room_reserved', 'icon'=>'fas fa-clipboard-list'),
-  array('text'=>'User Informations', 'url'=> 'user_information', 'icon'=>' fa fa-address-card')
+  array('text'=>'Rooms Reserved', 'url'=> 'room_reserved', 'icon'=>'fas fa-clipboard-list')
   );
 
 $customerPages = array(
   array('text'=>'Dashboard', 'url'=> '', 'icon'=>' ni ni-tv-2'),
+  array('text'=>'Book Now', 'url'=> 'home', 'icon'=>' fa fa-address-book')
   );
 
   $currentPage = basename($_SERVER['REQUEST_URI']) ;

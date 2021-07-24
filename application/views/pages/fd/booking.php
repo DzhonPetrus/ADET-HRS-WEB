@@ -177,4 +177,4 @@
 </div>
 
 <!-- Import JS-->
-<script src="<?= base_url('assets') ?>/js/pages/booking.js"></script>
+<script src="<?= base_url('assets') ?>/js/pages/fd/booking.js"></script>

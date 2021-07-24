@@ -1,26 +1,101 @@
 $(function () {
-	window.fields = ["loyalty_point_id", "points", "owner","creator", "btnAdd", "btnUpdate"];
-	window.fieldsHidden = ["loyalty_point_id", "creator", "owner","btnUpdate"];
-	window.readOnlyFields = ["loyalty_point_id", "creator","owner"];
+	window.fields = ["room_reserved_id", "booking_id", "room_id","room_reserved_status","rate", "no_of_nights","no_of_guest","date_from","date_to","package_id","checkOut","checkIn", "creator","btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["room_reserved_id", "creator", "btnUpdate"];
+	window.readOnlyFields = ["room_reserved_id", "creator"];
 
-	formReset();
+
+	loadBooking = () => {
+		$.ajax({
+			url: BASE_URL + "booking",
+			type: "GET",
+			dataType: "JSON",
+			success: function (data){
+				if (data.error == false){
+					$("#booking_id").empty();
+					$.each(data.data, function (i, dataOptions)
+					{
+						var options = "";
+
+						options = "<option value='" + dataOptions.booking_id + "'>" + dataOptions.booking_id + "</option>";
+
+						$("#booking_id").append(options);
+					});
+				} else {
+					notification("error", "Eror!", data.message);
+				}
+			},
+			error: function({responseJSON}){},
+		});
+	};
+	loadRoom = () => {
+		$.ajax({
+			url: BASE_URL + "room",
+			type: "GET",
+			dataType: "JSON",
+			success: function (data){
+				if (data.error == false){
+					$("#room_id").empty();
+					$.each(data.data, function (i, dataOptions)
+					{
+						var options = "";
+
+						options = "<option value='" + dataOptions.room_id + "'>" + dataOptions.room_no + "</option>";
+
+						$("#room_id").append(options);
+					});
+				} else {
+					notification("error", "Eror!", data.message);
+				}
+			},
+			error: function({responseJSON}){},
+		});
+	};
+	loadPackage = () => {
+		$.ajax({
+			url: BASE_URL + "package",
+			type: "GET",
+			dataType: "JSON",
+			success: function (data){
+				if (data.error == false){
+					$("#package_id").empty();
+					$.each(data.data, function (i, dataOptions)
+					{
+						var options = "";
+
+						options = "<option value='" + dataOptions.package_id + "'>" + dataOptions.title + "</option>";
+
+						$("#package_id").append(options);
+					});
+				} else {
+					notification("error", "Eror!", data.message);
+				}
+			},
+			error: function({responseJSON}){},
+		});
+	};
+	loadPackage();
+	loadRoom();
+	loadBooking();
 	loadTable();
+	formReset();
+	
 
 	// function to save/update record
-	$("#loyalty_point_form").on("submit", function (e) {
+	$("#room_reserve_form").on("submit", function (e) {
 		e.preventDefault();
 		trimInputFields();
 
-		if ($("#loyalty_point_form").parsley().validate()) {
+		if ($("#room_reserve_form").parsley().validate()) {
 			var form_data = new FormData(this);
-			var loyalty_point_id = $("#loyalty_point_id").val();
-			if (loyalty_point_id == "") {
+			var room_reserved_id = $("#room_reserved_id").val();
+			if (room_reserved_id == "") {
 				// form_data.append("password", "P@ssw0rd");
 				// form_data.append("c_password", "P@ssw0rd");
 
 				// add record
+				console.table([...form_data]);
 				$.ajax({
-					url: BASE_URL + "loyalty_point",
+					url: BASE_URL + "rooms_reserved",
 					type: "POST",
 					data: form_data,
 					dataType: "JSON",
@@ -31,7 +106,7 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
-							document.getElementById("loyalty_point_form").reset();
+							document.getElementById("room_reserve_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
 						}
@@ -42,7 +117,7 @@ $(function () {
 				});
 			} else {
 				$.ajax({
-					url: BASE_URL + `loyalty_point/${loyalty_point_id}`,
+					url: BASE_URL + `rooms_reserved/${room_reserved_id}`,
 					type: "PUT",
 					data: form_data,
 					dataType: "JSON",
@@ -85,6 +160,12 @@ loadTable = () => {
 		aaColumns: [
 			{ sClass: "text-center" },
 			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
 		],
 		columns: [
 			{
@@ -92,20 +173,55 @@ loadTable = () => {
 				render: (aData, type, row) => renderButtons(aData),
 			},
 			{
-				data: "points",
-				name: "points",
+				data: "room_reserved_id",
+				name: "room_reserved_id",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "booking_id",
+				name: "booking_id",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "room.room_no",
+				name: "room.room_no",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "room_reserved_status",
+				name: "room_reserved_status",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "package.title",
+				name: "package.title",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "created.email",
+				name: "created.email",
 				searchable: true,
 				className: "dtr-control",
 			},
 		],
 		ajax: {
-			url: BASE_URL + "loyalty_point" ,
+			url: BASE_URL + "rooms_reserved",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["points"]);
+			$("td:eq(1)", nRow).html(aData["room_reserved_id"]);
+			$("td:eq(2)", nRow).html(aData["booking_id"]);
+			$("td:eq(3)", nRow).html(aData["room.room_no"]);
+			$("td:eq(4)", nRow).html(aData["room_reserved_status"]);
+			$("td:eq(5)", nRow).html(aData["package.title"]);
+			$("td:eq(6)", nRow).html(aData["created.email"]);
 
 		},
 		drawCallback: function (settings) {
@@ -115,12 +231,12 @@ loadTable = () => {
 };
 
 // VIEW DATA
-viewData = (loyalty_point_id) => {
+viewData = (room_reserved_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "loyalty_point/" + loyalty_point_id,
+			url: BASE_URL + "rooms_reserved/" + room_reserved_id,
 			type: "GET",
-			data: { loyalty_point_id },
+			data: { room_reserved_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("view", data) : notification("error", "Error!", data.message),
@@ -130,12 +246,12 @@ viewData = (loyalty_point_id) => {
 };
 
 // Edit DATA
-editData = (loyalty_point_id) => {
+editData = (room_reserved_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "loyalty_point/" + loyalty_point_id,
+			url: BASE_URL + "rooms_reserved/" + room_reserved_id,
 			type: "GET",
-			data: { loyalty_point_id },
+			data: { room_reserved_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("edit", data) : notification("error", "Error!", data.message),
@@ -145,7 +261,7 @@ editData = (loyalty_point_id) => {
 };
 
 // function to delete data
-deleteData = (loyalty_point_id) => {
+deleteData = (room_reserved_id) => {
 	Swal.fire({
 		title: "Are you sure you want to delete this record?",
 		text: "You won't be able to revert this!",
@@ -158,9 +274,9 @@ deleteData = (loyalty_point_id) => {
 		// if user clickes yes, it will change the active status to "Not Active".
 		if (t.value) {
 			$.ajax({
-				url: BASE_URL + "loyalty_point",
+				url: BASE_URL + "rooms_reserved",
 				type: "DELETE",
-				data: { loyalty_point_id },
+				data: { room_reserved_id },
 				dataType: "json",
 
 				success: function (data) {
@@ -181,12 +297,12 @@ deleteData = (loyalty_point_id) => {
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
-	$("#loyalty_point_form")[0].reset();
+	$("#room_reserve_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormLoyaltyPoints").modal("show");
+const showModal = () => $("#FormRoomReserved").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
@@ -209,14 +325,15 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["loyalty_point_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> `;
+		`<button type="button" onClick="return viewData('${aData["room_reserved_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
+		`<button type="button" onClick="return editData('${aData["room_reserved_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
+		`<button type="button" onClick="return deleteData('${aData["room_reserved_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
 	return buttons;
 };
 
 const setState = (state, data) => {
 	showAllFields();
 	setInputValue(data);
-	$("#owner").val(data.data.user_info.first_name);
 	$("#creator").val(data.data.created.email);
 	$("#group-btnAdd").hide();
 

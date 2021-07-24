@@ -43,7 +43,6 @@
                 <th scope="col" class="sort" data-sort="booking_id">Booking ID</th>
                 <th scope="col" class="sort" data-sort="room_id">Room Number</th>
                 <th scope="col" class="sort" data-sort="room_reserved_status">Room Status</th>
-                <th scope="col" class="sort" data-sort="package_id">Package</th>
                 <th scope="col" class="sort" data-sort="created">Created</th>
               </tr>
             </thead>

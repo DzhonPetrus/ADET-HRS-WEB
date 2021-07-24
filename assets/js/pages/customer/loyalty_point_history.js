@@ -161,7 +161,7 @@ loadTable = () => {
 			},
 		],
 		ajax: {
-			url: BASE_URL + "loyalty_point_history",
+			url: BASE_URL + "loyalty_point_history/",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},

@@ -13,9 +13,6 @@
             </ol>
           </nav>
         </div>
-        <div class="col-lg-6 col-5 text-right">
-          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormLPHistory" id="show_tax_form" onClick="newHandler()">New</button>
-        </div>
       </div>
     </div>
   </div>
@@ -48,35 +45,6 @@
           </table>
         </div>
         <br>
-
-        <!-- Card footer -->
-
-        <!-- <div class="card-footer py-4">
-              <nav aria-label="...">
-                <ul class="pagination justify-content-end mb-0">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">
-                      <i class="fas fa-angle-left"></i>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      <i class="fas fa-angle-right"></i>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div> -->
-
       </div>
     </div>
   </div>
@@ -172,3 +140,6 @@
 
 <!-- Import JS-->
 <script src="<?= base_url('assets') ?>/js/pages/customer/loyalty_point_history.js"></script>
+<script defer>
+    var USER_ID = <?php echo json_encode($this->session->userdata['user_id']) ?>
+</script>

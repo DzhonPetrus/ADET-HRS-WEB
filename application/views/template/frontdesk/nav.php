@@ -7,12 +7,14 @@ $tablePages = array(
   array('text'=>'Packages', 'url'=> 'package', 'icon'=>' fas fa-user-friends'),
   array('text'=>'Payment', 'url'=> 'payment', 'icon'=>' fa fa-credit-card'),
   array('text'=>'Promos and Discounts', 'url'=> 'promo_and_discount', 'icon'=>' fas fa-percentage'),
+  array('text'=>'Rooms', 'url'=> 'room', 'icon'=>'fas fa-door-open'),
   array('text'=>'Rooms Reserved', 'url'=> 'room_reserved', 'icon'=>'fas fa-clipboard-list'),
   array('text'=>'User Informations', 'url'=> 'user_information', 'icon'=>' fa fa-address-card')
   );
 
 $helpdeskPages = array(
   array('text'=>'Dashboard', 'url'=> '', 'icon'=>' ni ni-tv-2'),
+  array('text'=>'Book', 'url'=> '', 'icon'=>' ni ni-tv-2')
   );
 
   $currentPage = basename($_SERVER['REQUEST_URI']) ;

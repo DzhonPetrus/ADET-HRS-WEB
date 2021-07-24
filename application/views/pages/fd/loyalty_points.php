@@ -9,12 +9,12 @@
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
               <li class="breadcrumb-item"><a href="./"><i class="fas fa-home"></i></a></li>
               <li class="breadcrumb-item"><a href="#">Tables</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Bookings</li>
+              <li class="breadcrumb-item active" aria-current="page">Loyalty Points</li>
             </ol>
           </nav>
         </div>
         <div class="col-lg-6 col-5 text-right">
-          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormBookings" id="show_tax_form" onClick="newHandler()">New</button>
+          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormLoyaltyPoints" id="show_tax_form" onClick="newHandler()">New</button>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
       <div class="card">
         <!-- Card header -->
         <div class="card-header border-0">
-          <h3 class="mb-0">BOOKING TABLE</h3>
+          <h3 class="mb-0">LOYALTY POINTS TABLE</h3>
         </div>
         <!-- Light table -->
         <div class="table-responsive">
@@ -39,12 +39,9 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col" class="sort" data-sort="buttons">Actions</th>
-                <th scope="col" class="sort" data-sort="booking_id">Booking ID</th>
-                <th scope="col" class="sort" data-sort="user_id">Client</th>
-                <th scope="col" class="sort" data-sort="total_no_guest">Total Guest</th>
-                <th scope="col" class="sort" data-sort="total_no_night">Total Nights</th>
-                <th scope="col" class="sort" data-sort="total_price">Total Price</th>
-                <th scope="col" class="sort" data-sort="discount">Discount</th>
+                <th scope="col" class="sort" data-sort="loyalty_point_id">Loyalty Points ID</th>
+                <th scope="col" class="sort" data-sort="points">Points</th>
+                <th scope="col" class="sort" data-sort="owned">Owner</th>
                 <th scope="col" class="sort" data-sort="created">Created</th>
               </tr>
             </thead>
@@ -87,11 +84,11 @@
 
 
   <!-- MODAL FORM -->
-  <div class="modal fade" id="FormBookings" tabindex="-1" role="dialog" aria-labelledby="FormBookingsLabel" aria-hidden="true">
+  <div class="modal fade" id="FormLoyaltyPoints" tabindex="-1" role="dialog" aria-labelledby="FormLoyaltyPointsLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="FormBookingsLabel">Booking</h5>
+          <h5 class="modal-title" id="FormLoyaltyPointsLabel">Loyalty Points</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -101,47 +98,28 @@
 
         <div class="card shadow-none">
 
-        <form id="booking_form">
+        <form id="loyalty_point_form">
 
           <div class="card-body">
-            <h6 class="heading-small text-muted mb-4">Booking Information</h6>
+            <h6 class="heading-small text-muted mb-4">Loyalty Points Information</h6>
             <div class="pl-lg-4">
               <div class="row">
-                <div class="col-lg-12" id="update_booking_id">
-                  <div class="form-group" id="group-booking_id">
-                    <label class="form-control-label" for="input-tax-percentage">Booking ID</label>
-                    <input type="text" id="booking_id" class="form-control" name="booking_id">
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="form-group" id="group-user_id">
-                    <label class="form-control-label" for="input-tax-percentage">Client</label>
-                    <select id="user_id" class="form-control" name="user_id">
-                    </select>
+                <div class="col-lg-12" id="update_loyalty_point_id">
+                  <div class="form-group" id="group-loyalty_point_id">
+                    <label class="form-control-label" for="input-tax-percentage">Loyalty Point ID</label>
+                    <input type="text" id="loyalty_point_id" class="form-control" name="loyalty_point_id">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-type">
-                    <label class="form-control-label" for="input-tax-percentage">Total No.Guest</label>
-                    <input type="number" id="total_no_guest" class="form-control" name="total_no_guest" required>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group" id="group-type">
-                    <label class="form-control-label" for="input-tax-percentage">Total No.Nights</label>
-                    <input type="number" id="total_no_night" class="form-control" name="total_no_night" required> 
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group" id="group-type">
-                    <label class="form-control-label" for="input-tax-percentage">Total Price</label>
-                    <input type="number" id="total_price" class="form-control" name="total_price" required>
+                    <label class="form-control-label" for="input-tax-percentage">Points</label>
+                    <input type="text" id="points" class="form-control" name="points">
                   </div>
                 </div>
                 <div class="col-lg-12">
-                  <div class="form-group" id="group-description">
-                    <label class="form-control-label" for="input-tax-percentage">Discount</label>
-                    <input type="number" id="discount" class="form-control" name="discount">
+                  <div class="form-group" id="group-owner">
+                    <label class="form-control-label" for="input-tax-percentage">Owner</label>
+                    <input type="text" id="owner" class="form-control" name="owner" >
                   </div>
                 </div>
                 <div class="col-lg-12">
@@ -177,4 +155,4 @@
 </div>
 
 <!-- Import JS-->
-<script src="<?= base_url('assets') ?>/js/pages/booking.js"></script>
+<script src="<?= base_url('assets') ?>/js/pages/fd/loyaltypoints.js"></script>

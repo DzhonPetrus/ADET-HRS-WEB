@@ -9,12 +9,12 @@
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
               <li class="breadcrumb-item"><a href="./"><i class="fas fa-home"></i></a></li>
               <li class="breadcrumb-item"><a href="#">Tables</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Bookings</li>
+              <li class="breadcrumb-item active" aria-current="page">Room</li>
             </ol>
           </nav>
         </div>
         <div class="col-lg-6 col-5 text-right">
-          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormBookings" id="show_tax_form" onClick="newHandler()">New</button>
+          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormRooms" id="show_tax_form" onClick="newHandler()">New</button>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
       <div class="card">
         <!-- Card header -->
         <div class="card-header border-0">
-          <h3 class="mb-0">BOOKING TABLE</h3>
+          <h3 class="mb-0">ROOMS TABLE</h3>
         </div>
         <!-- Light table -->
         <div class="table-responsive">
@@ -39,12 +39,12 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col" class="sort" data-sort="buttons">Actions</th>
-                <th scope="col" class="sort" data-sort="booking_id">Booking ID</th>
-                <th scope="col" class="sort" data-sort="user_id">Client</th>
-                <th scope="col" class="sort" data-sort="total_no_guest">Total Guest</th>
-                <th scope="col" class="sort" data-sort="total_no_night">Total Nights</th>
-                <th scope="col" class="sort" data-sort="total_price">Total Price</th>
-                <th scope="col" class="sort" data-sort="discount">Discount</th>
+                <th scope="col" class="sort" data-sort="room_id">Room ID</th>
+                <th scope="col" class="sort" data-sort="room_no">Room Number</th>
+                <th scope="col" class="sort" data-sort="room_type_id">Room Type</th>
+                <th scope="col" class="sort" data-sort="description">Description</th>
+                <th scope="col" class="sort" data-sort="pricing_id">Price</th>
+                <th scope="col" class="sort" data-sort="room_status">Room Status</th>
                 <th scope="col" class="sort" data-sort="created">Created</th>
               </tr>
             </thead>
@@ -87,11 +87,11 @@
 
 
   <!-- MODAL FORM -->
-  <div class="modal fade" id="FormBookings" tabindex="-1" role="dialog" aria-labelledby="FormBookingsLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+  <div class="modal fade" id="FormRooms" tabindex="-1" role="dialog" aria-labelledby="FormRoomsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="FormBookingsLabel">Booking</h5>
+          <h5 class="modal-title" id="FormRoomsLabel">ROOMS</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -101,47 +101,78 @@
 
         <div class="card shadow-none">
 
-        <form id="booking_form">
+        <form id="room_form">
 
           <div class="card-body">
-            <h6 class="heading-small text-muted mb-4">Booking Information</h6>
+            <h6 class="heading-small text-muted mb-4">Rooms Information</h6>
             <div class="pl-lg-4">
               <div class="row">
-                <div class="col-lg-12" id="update_booking_id">
-                  <div class="form-group" id="group-booking_id">
-                    <label class="form-control-label" for="input-tax-percentage">Booking ID</label>
-                    <input type="text" id="booking_id" class="form-control" name="booking_id">
+                <div class="col-lg-12" id="update_room_id">
+                  <div class="form-group" id="group-room_id">
+                    <label class="form-control-label" for="input-tax-percentage">Room ID</label>
+                    <input type="text" id="room_id" class="form-control" name="room_id">
                   </div>
                 </div>
                 <div class="col-lg-12">
-                  <div class="form-group" id="group-user_id">
-                    <label class="form-control-label" for="input-tax-percentage">Client</label>
-                    <select id="user_id" class="form-control" name="user_id">
+                  <div class="form-group" id="group-type">
+                    <label class="form-control-label" for="input-tax-room_type_id">Room Number</label>
+                    <input type="number" id="room_no" class="form-control" name="room_no" required>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group" id="group-type">
+                    <label class="form-control-label" for="input-tax-room_type_id">Room Type</label>
+                    <select id="room_type_id" class="form-control" name="room_type_id">
                     </select>
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-type">
-                    <label class="form-control-label" for="input-tax-percentage">Total No.Guest</label>
-                    <input type="number" id="total_no_guest" class="form-control" name="total_no_guest" required>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group" id="group-type">
-                    <label class="form-control-label" for="input-tax-percentage">Total No.Nights</label>
-                    <input type="number" id="total_no_night" class="form-control" name="total_no_night" required> 
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group" id="group-type">
-                    <label class="form-control-label" for="input-tax-percentage">Total Price</label>
-                    <input type="number" id="total_price" class="form-control" name="total_price" required>
+                    <label class="form-control-label" for="input-tax-percentage">Description</label>
+                    <input type="text" id="description" class="form-control" name="description">
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-description">
-                    <label class="form-control-label" for="input-tax-percentage">Discount</label>
-                    <input type="number" id="discount" class="form-control" name="discount">
+                    <label class="form-control-label" for="input-tax-percentage">Minimum Guest</label>
+                    <input type="text" id="min_guest" class="form-control" name="min_guest" required>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group" id="group-description">
+                    <label class="form-control-label" for="input-tax-percentage">Maximum Guest</label>
+                    <input type="text" id="max_guest" class="form-control" name="max_guest" required>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group" id="group-pricing_id">
+                    <label class="form-control-label" for="input-tax-percentage">Price</label>
+                    <select id="pricing_id" class="form-control" name="pricing_id">
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group" id="group-description">
+                    <label class="form-control-label" for="input-tax-percentage">Room Status</label>
+                    <select id="room_status" class="form-control" name="room_status">
+                      <option value="Occupied">Occupied</option>
+                      <option value="Available">Available</option>
+                      <option value="Under Maintenance">Under Maintenance</option>
+                      <option value="Cleaning">Cleaning</option>
+                    </select>
+                  </div>
+                </div>
+                <h6 class="heading-small text-muted mb-4">Additional</h6>
+                <div class="col-lg-12">
+                  <div class="form-group" id="group-description">
+                    <label class="form-control-label" for="input-tax-percentage">Additonal Guest</label>
+                    <input type="number" id="additional_guest" class="form-control" name="additional_guest">
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group" id="group-crdescriptioneator">
+                    <label class="form-control-label" for="input-tax-percentage">Additional Rate</label>
+                    <input type="number" id="rate_additional_guest" class="form-control" name="rate_additional_guest">
                   </div>
                 </div>
                 <div class="col-lg-12">
@@ -150,6 +181,7 @@
                     <input type="text" id="creator" class="form-control" name="creator">
                   </div>
                 </div>
+                
               </div>
             </div>
             <hr class="my-4">
@@ -177,4 +209,4 @@
 </div>
 
 <!-- Import JS-->
-<script src="<?= base_url('assets') ?>/js/pages/booking.js"></script>
+<script src="<?= base_url('assets') ?>/js/pages/fd/room.js"></script>

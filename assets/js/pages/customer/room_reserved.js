@@ -165,7 +165,6 @@ loadTable = () => {
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
-			{ sClass: "text-left" },
 		],
 		columns: [
 			{
@@ -196,18 +195,6 @@ loadTable = () => {
 				searchable: true,
 				className: "dtr-control",
 			},
-			{
-				data: "package.title",
-				name: "package.title",
-				searchable: true,
-				className: "dtr-control",
-			},
-			{
-				data: "created.email",
-				name: "created.email",
-				searchable: true,
-				className: "dtr-control",
-			},
 		],
 		ajax: {
 			url: BASE_URL + "rooms_reserved",
@@ -220,8 +207,7 @@ loadTable = () => {
 			$("td:eq(2)", nRow).html(aData["booking_id"]);
 			$("td:eq(3)", nRow).html(aData["room.room_no"]);
 			$("td:eq(4)", nRow).html(aData["room_reserved_status"]);
-			$("td:eq(5)", nRow).html(aData["package.title"]);
-			$("td:eq(6)", nRow).html(aData["created.email"]);
+			$("td:eq(5)", nRow).html(aData["created.email"]);
 
 		},
 		drawCallback: function (settings) {

@@ -235,4 +235,4 @@
 
 
 <!-- Import JS-->
-<script src="<?= base_url('assets') ?>/js/pages/customer/user_info.js"></script>
+<script src="<?= base_url('assets') ?>/js/pages/fd/user_info.js"></script>

@@ -1,26 +1,56 @@
 $(function () {
-	window.fields = ["loyalty_point_id", "points", "owner","creator", "btnAdd", "btnUpdate"];
-	window.fieldsHidden = ["loyalty_point_id", "creator", "owner","btnUpdate"];
-	window.readOnlyFields = ["loyalty_point_id", "creator","owner"];
+	window.fields = ["housekeeping_id", "room_id", "room_status","creator", "btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["housekeeping_id", "creator", "btnUpdate"];
+	window.readOnlyFields = ["housekeeping_id", "creator"];
 
+	loadRoom = () => {
+		$.ajax({
+			url: BASE_URL + "room",
+			type: "GET",
+			dataType: "JSON",
+			success: function (data){
+				if (data.error == false){
+					$("#room_id").empty();
+					$.each(data.data, function (i, dataOptions)
+					{
+						var options = "";
+
+						options = "<option value='" + dataOptions.room_id + "'>" + dataOptions.room_no + "</option>";
+
+						$("#room_id").append(options);
+
+						min = dataOptions.room_type_id;
+					
+					}
+					
+					);
+					console.log(min);
+				} else {
+					notification("error", "Eror!", data.message);
+				}
+			},
+			error: function({responseJSON}){},
+		});
+	};
+    loadRoom();
 	formReset();
 	loadTable();
 
 	// function to save/update record
-	$("#loyalty_point_form").on("submit", function (e) {
+	$("#housekeeping_form").on("submit", function (e) {
 		e.preventDefault();
 		trimInputFields();
 
-		if ($("#loyalty_point_form").parsley().validate()) {
+		if ($("#housekeeping_form").parsley().validate()) {
 			var form_data = new FormData(this);
-			var loyalty_point_id = $("#loyalty_point_id").val();
-			if (loyalty_point_id == "") {
+			var housekeeping_id = $("#housekeeping_id").val();
+			if (housekeeping_id == "") {
 				// form_data.append("password", "P@ssw0rd");
 				// form_data.append("c_password", "P@ssw0rd");
 
 				// add record
 				$.ajax({
-					url: BASE_URL + "loyalty_point",
+					url: BASE_URL + "housekeeping",
 					type: "POST",
 					data: form_data,
 					dataType: "JSON",
@@ -29,9 +59,10 @@ $(function () {
 					cache: false,
 					success: function (data) {
 						if (data.error == false) {
+							document.getElementById("housekeeping_form").reset();
 							loadTable();
 							notification("success", "Success!", data.message);
-							document.getElementById("loyalty_point_form").reset();
+							
 						} else {
 							notification("error", "Error!", data.message);
 						}
@@ -42,7 +73,7 @@ $(function () {
 				});
 			} else {
 				$.ajax({
-					url: BASE_URL + `loyalty_point/${loyalty_point_id}`,
+					url: BASE_URL + `housekeeping/${housekeeping_id}`,
 					type: "PUT",
 					data: form_data,
 					dataType: "JSON",
@@ -85,6 +116,9 @@ loadTable = () => {
 		aaColumns: [
 			{ sClass: "text-center" },
 			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
+			{ sClass: "text-left" },
 		],
 		columns: [
 			{
@@ -92,20 +126,41 @@ loadTable = () => {
 				render: (aData, type, row) => renderButtons(aData),
 			},
 			{
-				data: "points",
-				name: "points",
+				data: "housekeeping_id",
+				name: "housekeeping_id",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "room.room_no",
+				name: "room.room_no",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "room_status",
+				name: "room_status",
+				searchable: true,
+				className: "dtr-control",
+			},
+			{
+				data: "created.email",
+				name: "created.email",
 				searchable: true,
 				className: "dtr-control",
 			},
 		],
 		ajax: {
-			url: BASE_URL + "loyalty_point" ,
+			url: BASE_URL + "housekeeping",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["points"]);
+			$("td:eq(1)", nRow).html(aData["housekeeping_id"]);
+			$("td:eq(2)", nRow).html(aData["room.room_no"]);
+			$("td:eq(3)", nRow).html(aData["room_status"]);
+			$("td:eq(4)", nRow).html(aData["created.email"]);
 
 		},
 		drawCallback: function (settings) {
@@ -115,12 +170,12 @@ loadTable = () => {
 };
 
 // VIEW DATA
-viewData = (loyalty_point_id) => {
+viewData = (housekeeping_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "loyalty_point/" + loyalty_point_id,
+			url: BASE_URL + "housekeeping/" + housekeeping_id,
 			type: "GET",
-			data: { loyalty_point_id },
+			data: { housekeeping_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("view", data) : notification("error", "Error!", data.message),
@@ -130,12 +185,12 @@ viewData = (loyalty_point_id) => {
 };
 
 // Edit DATA
-editData = (loyalty_point_id) => {
+editData = (housekeeping_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "loyalty_point/" + loyalty_point_id,
+			url: BASE_URL + "housekeeping/" + housekeeping_id,
 			type: "GET",
-			data: { loyalty_point_id },
+			data: { housekeeping_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("edit", data) : notification("error", "Error!", data.message),
@@ -145,7 +200,7 @@ editData = (loyalty_point_id) => {
 };
 
 // function to delete data
-deleteData = (loyalty_point_id) => {
+deleteData = (housekeeping_id) => {
 	Swal.fire({
 		title: "Are you sure you want to delete this record?",
 		text: "You won't be able to revert this!",
@@ -158,15 +213,15 @@ deleteData = (loyalty_point_id) => {
 		// if user clickes yes, it will change the active status to "Not Active".
 		if (t.value) {
 			$.ajax({
-				url: BASE_URL + "loyalty_point",
+				url: BASE_URL + "housekeeping",
 				type: "DELETE",
-				data: { loyalty_point_id },
+				data: { housekeeping_id },
 				dataType: "json",
 
 				success: function (data) {
 					if (data.error == false) {
-						notification("success", "Success!", data.message);
 						loadTable();
+						notification("success", "Success!", data.message);
 					} else {
 						notification("error", "Error!", data.message);
 					}
@@ -181,12 +236,12 @@ deleteData = (loyalty_point_id) => {
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
-	$("#loyalty_point_form")[0].reset();
+	$("#housekeeping_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormLoyaltyPoints").modal("show");
+const showModal = () => $("#FormHousekeeping").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
@@ -209,14 +264,15 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["loyalty_point_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> `;
+		`<button type="button" onClick="return viewData('${aData["housekeeping_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> ` +
+		`<button type="button" onClick="return editData('${aData["housekeeping_id"]}')" class="btn btn-success"><i class="fa fa-pencil-alt"></i></button> ` +
+		`<button type="button" onClick="return deleteData('${aData["housekeeping_id"]}')" class="btn btn-danger"><i class="fa fa-trash"></i></button>`;
 	return buttons;
 };
 
 const setState = (state, data) => {
 	showAllFields();
 	setInputValue(data);
-	$("#owner").val(data.data.user_info.first_name);
 	$("#creator").val(data.data.created.email);
 	$("#group-btnAdd").hide();
 

@@ -43,7 +43,7 @@ class Frontdesk extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/amenity');
+		$this->load->view('pages/fd/amenity');
 		$this->load->view('template/footer');
 	}
 
@@ -51,7 +51,7 @@ class Frontdesk extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/taxes');
+		$this->load->view('pages/fd/taxes');
 		$this->load->view('template/footer');
 	}
 
@@ -59,7 +59,7 @@ class Frontdesk extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/loyalty_points');
+		$this->load->view('pages/fd/loyalty_points');
 		$this->load->view('template/footer');
 	}
 
@@ -67,7 +67,7 @@ class Frontdesk extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/user_info');
+		$this->load->view('pages/fd/user_info');
 		$this->load->view('template/footer');
 	}
 
@@ -75,7 +75,7 @@ class Frontdesk extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/pricing');
+		$this->load->view('pages/fd/pricing');
 		$this->load->view('template/footer');
 	}
 
@@ -83,7 +83,7 @@ class Frontdesk extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/room_types');
+		$this->load->view('pages/fd/room_types');
 		$this->load->view('template/footer');
 	}
 
@@ -91,7 +91,7 @@ class Frontdesk extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/rates');
+		$this->load->view('pages/fd/rates');
 		$this->load->view('template/footer');
 	}
 
@@ -99,7 +99,7 @@ class Frontdesk extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/package');
+		$this->load->view('pages/fd/package');
 		$this->load->view('template/footer');
 	}
 
@@ -107,7 +107,7 @@ class Frontdesk extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/pdconditions');
+		$this->load->view('pages/fd/pdconditions');
 		$this->load->view('template/footer');
 	}
 
@@ -115,7 +115,7 @@ class Frontdesk extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/room');
+		$this->load->view('pages/fd/room');
 		$this->load->view('template/footer');
 	}
 
@@ -123,21 +123,21 @@ class Frontdesk extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/booking');
+		$this->load->view('pages/fd/booking');
 		$this->load->view('template/footer');
 	}
 	public function loyalty_point_history()
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/loyalty_point_history');
+		$this->load->view('pages/fd/loyalty_point_history');
 		$this->load->view('template/footer');
 	}
 	public function promo_and_discount()
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/promo_discount');
+		$this->load->view('pages/fd/promo_discount');
 		$this->load->view('template/footer');
 	}
 
@@ -145,7 +145,7 @@ class Frontdesk extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/rooms_reserved');
+		$this->load->view('pages/fd/rooms_reserved');
 		$this->load->view('template/footer');
 	}
 
@@ -153,7 +153,7 @@ class Frontdesk extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/frontdesk/nav');
-		$this->load->view('pages/housekeeping');
+		$this->load->view('pages/fd/housekeeping');
 		$this->load->view('template/footer');
 	}
 }
