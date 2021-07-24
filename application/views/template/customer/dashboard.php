@@ -8,7 +8,7 @@
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="#">admin</a></li>
+                  <li class="breadcrumb-item"><a href="#">customer</a></li>
                   <li class="breadcrumb-item active" aria-current="page">dashboard</li>
                 </ol>
               </nav>
@@ -23,7 +23,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Rooms Available</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Bookings</h5>
                       <span class="h2 font-weight-bold mb-0">55</span>
                     </div>
                     <div class="col-auto">
@@ -41,12 +41,12 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Rooms Occupied</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Cancelled Bookings</h5>
                       <span class="h2 font-weight-bold mb-0">30</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                        <i class="fas fa-door-open"></i>
+                        <i class="ni ni-fat-remove"></i>
                       </div>
                     </div>
                   </div>
@@ -59,12 +59,12 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Rooms to be cleaned</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Refunded Bookings</h5>
                       <span class="h2 font-weight-bold mb-0">12</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                        <i class="ni ni-check-bold"></i>
+                        <i class="fa fa-coins"></i>
                       </div>
                     </div>
                   </div>
@@ -77,12 +77,12 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Rooms Reserved</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total Reserved Rooms</h5>
                       <span class="h2 font-weight-bold mb-0">12</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-calendar-grid-58"></i>
+                        <i class="fas fa-door-open"></i>
                       </div>
                     </div>
                   </div>
@@ -102,7 +102,7 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                  <h5 class="h3 text-white mb-0">Sales value</h5>
+                  <h5 class="h3 text-white mb-0">Bookings</h5>
                 </div>
                 <div class="col">
                   <ul class="nav nav-pills justify-content-end">
