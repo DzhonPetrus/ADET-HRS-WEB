@@ -1,24 +1,24 @@
 $(function () {
-	window.fields = ["pd_code", "type", "description","room_type_id","discount_percentage_amount", "valid_from","valid_until","condition_code", "creator","btnAdd", "btnUpdate", "imageUpload"];
-	window.fieldsHidden = ["pd_code", "creator", "btnUpdate"];
-	window.readOnlyFields = ["pd_code", "creator"];
+	window.fields = ["payment_id", "booking_id", "mode","ref_no","payment_type", "payment_status", "amount", "tax_code", "pd_code", "is_cancelled", "is_refund", "cancelled_refund_by", "date_cancelled_refund", "reason_cancelled_refund", "cancelled_refund_amt", "process_by", "btnAdd", "btnUpdate"];
+	window.fieldsHidden = ["payment_id", "btnUpdate", "ref_no"];
+	window.readOnlyFields = ["payment_id", "ref_no", "process_by", "date_cancelled_refund", "cancelled_refund_by"];
 
 
-	loadRoomtype = () => {
+	loadBooking = () => {
 		$.ajax({
-			url: BASE_URL + "room_type",
+			url: BASE_URL + "booking",
 			type: "GET",
 			dataType: "JSON",
 			success: function (data){
 				if (data.error == false){
-					$("#room_type_id").empty();
+					$("#booking_id").empty();
 					$.each(data.data, function (i, dataOptions)
 					{
 						var options = "";
 
-						options = "<option value='" + dataOptions.room_type_id + "'>" + dataOptions.type + "</option>";
+						options = `<option value='${dataOptions.booking_id}'>${dataOptions.created.email} | ${dataOptions.booking_id}</option>`;
 
-						$("#room_type_id").append(options);
+						$("#booking_id").append(options);
 					});
 				} else {
 					notification("error", "Eror!", data.message);
@@ -27,21 +27,21 @@ $(function () {
 			error: function({responseJSON}){},
 		});
 	};
-	loadCondition = () => {
+	loadTax = () => {
 		$.ajax({
-			url: BASE_URL + "pd_condition",
+			url: BASE_URL + "tax",
 			type: "GET",
 			dataType: "JSON",
 			success: function (data){
 				if (data.error == false){
-					$("#condition_code").empty();
+					$("#tax_code").empty();
 					$.each(data.data, function (i, dataOptions)
 					{
 						var options = "";
 
-						options = "<option value='" + dataOptions.condition_code + "'>" + dataOptions.condition_code + "</option>";
+						options = `<option value='${dataOptions.tax_code}'>${dataOptions.percentage}</option>`;
 
-						$("#condition_code").append(options);
+						$("#tax_code").append(options);
 					});
 				} else {
 					notification("error", "Eror!", data.message);
@@ -50,28 +50,28 @@ $(function () {
 			error: function({responseJSON}){},
 		});
 	};
-	loadCondition();
-	loadRoomtype();
 	loadTable();
+	loadBooking();
+	loadTax();
 	formReset();
 	
 
 	// function to save/update record
-	$("#pd_form").on("submit", function (e) {
+	$("#payment_form").on("submit", function (e) {
 		e.preventDefault();
 		trimInputFields();
 
-		if ($("#pd_form").parsley().validate()) {
+		if ($("#payment_form").parsley().validate()) {
 			var form_data = new FormData(this);
-			var pd_code = $("#pd_code").val();
-			if (pd_code == "") {
+			var payment_id = $("#payment_id").val();
+			if (payment_id == "") {
 				// form_data.append("password", "P@ssw0rd");
 				// form_data.append("c_password", "P@ssw0rd");
 
 				// add record
 				console.table([...form_data]);
 				$.ajax({
-					url: BASE_URL + "promo_and_discount",
+					url: BASE_URL + "payment",
 					type: "POST",
 					data: form_data,
 					dataType: "JSON",
@@ -82,18 +82,16 @@ $(function () {
 						if (data.error == false) {
 							loadTable();
 							notification("success", "Success!", data.message);
-							document.getElementById("pd_form").reset();
+							document.getElementById("payment_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function (data) {
-						notification("error", data.responseJSON.message);
-				},
+					error: function ({ responseJSON }) {},
 				});
 			} else {
 				$.ajax({
-					url: BASE_URL + `promo_and_discount/${pd_code}`,
+					url: BASE_URL + `payment/${payment_id}`,
 					type: "PUT",
 					data: form_data,
 					dataType: "JSON",
@@ -108,9 +106,7 @@ $(function () {
 							notification("error", "Error!", data.message);
 						}
 					},
-					error: function (data) {
-						notification("error", data.responseJSON.message);
-				},
+					error: function ({ responseJSON }) {},
 				});
 			}
 		}
@@ -141,7 +137,6 @@ loadTable = () => {
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
 			{ sClass: "text-left" },
-			{ sClass: "text-left" },
 		],
 		columns: [
 			{
@@ -149,62 +144,55 @@ loadTable = () => {
 				render: (aData, type, row) => renderButtons(aData),
 			},
 			{
-				data: "pd_code",
-				name: "pd_code",
+				data: "payment_id",
+				name: "payment_id",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "type",
-				name: "type",
+				data: "booking_id",
+				name: "booking_id",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "rooms.type",
-				name: "rooms.type",
+				data: "mode",
+				name: "mode",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "description",
-				name: "description",
+				data: "ref_no",
+				name: "ref_no",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "discount_percentage_amount",
-				name: "discount_percentage_amount",
+				data: "payment_type",
+				name: "payment_type",
 				searchable: true,
 				className: "dtr-control",
 			},
 			{
-				data: "condition_code",
-				name: "condition_code",
-				searchable: true,
-				className: "dtr-control",
-			},
-			{
-				data: "created.email",
-				name: "created.email",
+				data: "payment_status",
+				name: "payment_status",
 				searchable: true,
 				className: "dtr-control",
 			},
 		],
 		ajax: {
-			url: BASE_URL + "promo_and_discount",
+			url: BASE_URL + "payment",
 			type: "GET",
 			ContentType: "application/x-www-form-urlencoded",
 		},
 		fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 			$("td:eq(0)", nRow).html(renderButtons(aData));
-			$("td:eq(1)", nRow).html(aData["pd_code"]);
-			$("td:eq(2)", nRow).html(aData["type"]);
-			$("td:eq(3)", nRow).html(aData["rooms.type"]);
-			$("td:eq(4)", nRow).html(aData["description"]);
-			$("td:eq(5)", nRow).html(aData["discount_percentage_amount"]);
-			$("td:eq(6)", nRow).html(aData["condition_code"]);
-			$("td:eq(7)", nRow).html(aData["created.email"]);
+			$("td:eq(1)", nRow).html(aData["payment_id"]);
+			$("td:eq(2)", nRow).html(aData["booking_id"]);
+			$("td:eq(3)", nRow).html(aData["mode"]);
+			$("td:eq(4)", nRow).html(aData["ref_no"]);
+			$("td:eq(5)", nRow).html(aData["payment_type"]);
+			$("td:eq(6)", nRow).html(aData["payment_status"]);
 
 		},
 		drawCallback: function (settings) {
@@ -214,12 +202,12 @@ loadTable = () => {
 };
 
 // VIEW DATA
-viewData = (pd_code) => {
+viewData = (payment_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "promo_and_discount/" + pd_code,
+			url: BASE_URL + "payment/" + payment_id,
 			type: "GET",
-			data: { pd_code },
+			data: { payment_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("view", data) : notification("error", "Error!", data.message),
@@ -229,12 +217,12 @@ viewData = (pd_code) => {
 };
 
 // Edit DATA
-editData = (pd_code) => {
+editData = (payment_id) => {
 	{
 		$.ajax({
-			url: BASE_URL + "promo_and_discount/" + pd_code,
+			url: BASE_URL + "payment/" + payment_id,
 			type: "GET",
-			data: { pd_code },
+			data: { payment_id },
 			dataType: "json",
 
 			success: data => (data.error == false) ? setState("edit", data) : notification("error", "Error!", data.message),
@@ -244,7 +232,7 @@ editData = (pd_code) => {
 };
 
 // function to delete data
-deleteData = (pd_code) => {
+deleteData = (payment_id) => {
 	Swal.fire({
 		title: "Are you sure you want to delete this record?",
 		text: "You won't be able to revert this!",
@@ -257,9 +245,9 @@ deleteData = (pd_code) => {
 		// if user clickes yes, it will change the active status to "Not Active".
 		if (t.value) {
 			$.ajax({
-				url: BASE_URL + "promo_and_discount",
+				url: BASE_URL + "payment",
 				type: "DELETE",
-				data: { pd_code },
+				data: { payment_id },
 				dataType: "json",
 
 				success: function (data) {
@@ -277,21 +265,16 @@ deleteData = (pd_code) => {
 };
 
 //EXTRA
-// read pictures
-$("#imageUpload").change(function () {
-    readURL(this);
-});
 
 formReset = () => {
 	$("html", "body").animate({ scrollTop: 0 }, "slow");
 
-	$("#photo_url_placeholder").attr("src", `https://i.stack.imgur.com/y9DpT.jpg`);
-	$("#pd_form")[0].reset();
+	$("#payment_form")[0].reset();
 	showAllFields();
 	setHiddenFields();
 };
 
-const showModal = () => $("#FormPD").modal("show");
+const showModal = () => $("#FormPayments").modal("show");
 const setInputValue = (data) =>
 	fields.forEach((field) => $(`#${field}`).val(data.data[field]));
 
@@ -314,7 +297,7 @@ const newHandler = () => {
 const renderButtons = (aData, type, row) => {
 	let buttons =
 		"" +
-		`<button type="button" onClick="return viewData('${aData["pd_code"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> `;
+		`<button type="button" onClick="return viewData('${aData["payment_id"]}')" class="btn btn-info"><i class="fa fa-eye"></i></button> `;
 	return buttons;
 };
 
@@ -323,7 +306,6 @@ const setState = (state, data) => {
 	setInputValue(data);
 	$("#creator").val(data.data.created.email);
 	$("#group-btnAdd").hide();
-	$("#photo_url_placeholder").attr("src", `http://localhost:4000/public/${data.data.photo_url}`);
 
 	if (state === "view") {
 		setFieldsReadOnly(true);
@@ -340,3 +322,25 @@ const setState = (state, data) => {
 	showModal();
 
 };
+
+
+$("#payment_form input:radio").change(function() {
+	$('#group-cancelled_refund_info').hide();
+	let selectedRadio = $(this)[0].value;
+	console.log(selectedRadio)
+	if (selectedRadio != 'is_neither')
+		$('#group-cancelled_refund_info').show();
+});
+
+$('#group-cancelled_refund_info').hide();
+
+
+const modeOptions = ["Over-the-counter", "Online"];
+const paymentTypeOptions = ["Half Payment", "Full Payment"];
+const paymentStatusOptions = ["Pending", "Failed", "Success", "Cancelled", "Refunded"];
+
+const optionGenerator = options => options.reduce((allOptions, currentOption) => allOptions + `<option value='${currentOption}'>${currentOption}</option>`, '');
+
+$('#payment_status').append(optionGenerator(paymentStatusOptions));
+$('#payment_type').append(optionGenerator(paymentTypeOptions));
+$('#mode').append(optionGenerator(modeOptions));

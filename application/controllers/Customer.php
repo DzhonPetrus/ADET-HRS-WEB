@@ -27,7 +27,7 @@ class Customer extends CI_Controller {
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/customer/nav');
-		$this->load->view('template/body-table');
+		$this->load->view('template/customer/dashboard');
 		$this->load->view('template/footer');
 	}
 
@@ -187,11 +187,20 @@ class Customer extends CI_Controller {
 		$this->load->view('user/pages/package');
 		$this->load->view('user/template/footer');
 	}
+  
 	public function dashboard()
 	{
 		$this->load->view('template/head');
 		$this->load->view('template/customer/nav');
 		$this->load->view('template/customer/dashboard');
+		$this->load->view('template/footer');
+	}
+
+	public function payment()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/customer/nav');
+		$this->load->view('pages/customer/payments');
 		$this->load->view('template/footer');
 	}
 }

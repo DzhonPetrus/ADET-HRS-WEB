@@ -73,7 +73,7 @@
                                     <ul id="navigation">                                                                                                                                     
                                         <li><a href="home">Home</a></li>
                                         <li><a href="rooms">Rooms</a></li>
-                                        <li><a href="package">Packages</a></li>
+                                        <li><a href="packages">Packages</a></li>
                                         <li><a href="contact">Contact</a></li>
                                     </ul>
                                 </nav>

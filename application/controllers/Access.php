@@ -53,7 +53,7 @@ class Access extends CI_Controller {
 	public function updateProfile() {
 		$this->session->unset_userdata('user_info');
 		if ($_GET['user_info'] != null){
-			$this->session->set_userdata('user_info', json_decode($_GET['user_info']));
+			$this->session->set_userdata('user_info', json_decode($_GET['user_info'].'/'));
 
 			redirect(base_url('/').$this->session->userdata['user_type'].'/profile');
 		}

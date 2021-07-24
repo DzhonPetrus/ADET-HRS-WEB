@@ -13,9 +13,6 @@
             </ol>
           </nav>
         </div>
-        <div class="col-lg-6 col-5 text-right">
-          <button type=button class=" btn btn-sm btn-neutral" data-toggle="modal" data-target="#FormPD" id="show_tax_form" onClick="newHandler()">New</button>
-        </div>
       </div>
     </div>
   </div>
