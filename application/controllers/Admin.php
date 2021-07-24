@@ -164,4 +164,12 @@ class Admin extends CI_Controller {
 		$this->load->view('pages/user');
 		$this->load->view('template/footer');
 	}
+
+	public function payment()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/admin/nav');
+		$this->load->view('pages/payments');
+		$this->load->view('template/footer');
+	}
 }

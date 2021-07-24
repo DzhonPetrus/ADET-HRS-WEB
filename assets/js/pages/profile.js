@@ -29,7 +29,6 @@ $(function () {
 					success: function (data) {
 						if (data.error == false) {
 							notification("success", "Success!", data.message);
-							document.getElementById("profile_form").reset();
 						} else {
 							notification("error", "Error!", data.message);
 						}
@@ -48,6 +47,9 @@ $(function () {
 					success: function (data) {
 						if (data.error == false) {
 							notification("success", "Success!", data.message);
+							
+							session_data = `user_info=${JSON.stringify(data.data)}`;
+							window.location.replace(`../access/updateProfile?${session_data} `);
 						} else {
 							notification("error", "Error!", data.message);
 						}
