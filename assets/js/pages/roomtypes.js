@@ -1,5 +1,5 @@
 $(function () {
-	window.fields = ["room_type_id", "type", "description","min_guest","max_guest", "pricing_id", "creator","btnAdd", "btnUpdate", "imageUpload"];
+	window.fields = ["room_type_id", "type","additional_guest","rate_additional", "description","min_guest","max_guest", "pricing_id", "creator","btnAdd", "btnUpdate", "imageUpload"];
 	window.fieldsHidden = ["room_type_id", "creator", "btnUpdate"];
 	window.readOnlyFields = ["room_type_id", "creator"];
 

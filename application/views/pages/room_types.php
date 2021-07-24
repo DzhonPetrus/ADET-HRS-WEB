@@ -156,6 +156,22 @@
                     </select>
                   </div>
                 </div>
+                <hr class="my-4">
+                <h6 class="heading-small text-muted mb-4">Room Types Information</h6>
+<div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group" id="group-description">
+                    <label class="form-control-label" for="input-tax-percentage">Additional Guest</label>
+                    <input type="number" id="additional_guest" class="form-control" name="additional_guest">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group" id="group-description">
+                    <label class="form-control-label" for="input-tax-percentage">Additional Rate</label>
+                    <input type="number" id="rate_additional" class="form-control" name="rate_additional">
+                  </div>
+                </div>
+</div>
                 <div class="col-lg-12">
                   <div class="form-group" id="group-creator">
                     <label class="form-control-label" for="input-tax-percentage">CREATED BY</label>
